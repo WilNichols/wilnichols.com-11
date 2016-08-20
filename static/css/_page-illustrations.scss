@@ -1,0 +1,3838 @@
+@import "bourbon/bourbon";
+@import "_common";
+
+
+%s-120 {
+    @include share(width, height, background-size, 3.75rem);
+    // 1x break on viewport
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+         @include share(width, height, background-size, 3.75rem);
+    }
+}
+
+i {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+    font-size: 16px;
+    box-sizing: content-box;
+    &:not(:first-child) {
+        margin: 0 0 0 1rem;
+    }
+}
+
+ul.details {
+    @include display(flex);
+    @include flex-flow(column wrap);
+    @include align-items(stretch);
+    position: absolute;
+    bottom: 0;
+    height: 1rem;
+    line-height: 1rem;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: calc(100% - 2rem);
+    box-sizing: content-box;
+    opacity: 0;
+    padding: 1rem;
+    @include transition(opacity 0.2s ease-out);
+    li {
+        text-align: center;
+        height: 1rem;
+        line-height: 1rem;
+        vertical-align: middle;
+        font-size: 1rem;
+        font-weight: 600;
+        @include user-select(none);
+        &:first-of-type {
+            text-align: left;
+        }
+        &:last-of-type:not(:first-of-type) {
+            text-align: right;
+        }
+        &.badges:last-of-type:first-of-type {
+            font-size: 0;
+            text-align: right;
+            position: relative;
+            svg {
+                position: relative;
+                right: 0;
+                bottom: 0;
+                &:nth-of-type(2) {
+                    margin-left: .5rem;
+                }
+            }
+        }
+        svg path {
+            fill: currentcolor !important;
+        }
+    }
+}
+.mosaic__panel--1-of-1 {
+    ul.details {
+        max-width: 512px;
+    }
+}
+.mosaic__panel {
+    background-color: #fff; 
+    @include transition(box-shadow 0.2s ease-out, transform 0.2s ease-out);
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(0,0,0,0.025), 0 1px 2px rgba(0,0,0,0.125);
+        z-index: 100;
+        @include transition(box-shadow 0.2s ease-out, transform 0.2s ease-out);
+        //transform: scale(1.01);
+        ul.details {
+            opacity: 1;
+            @include transition(opacity 0.2s ease-out, transform 0.2s ease-out);
+        }
+    }
+    &:active {
+        @include transition(box-shadow 0.2s ease-out, transform 0.2s ease-out);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.125);
+        z-index: 100;
+        //transform: scale(0.99);
+    }
+}
+
+// backgrounds, palettes 
+.page-icons__Keycard {
+    background-color: #405580;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#405580, 0.1), 0 1px 2px rgba(#405580, 0.5);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#405580, 0.5);
+    }
+    ul.details li { 
+        color: #fff !important; 
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/keycard/desktop/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/keycard/desktop/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/keycard/desktop/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/keycard/desktop/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/keycard/desktop/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/keycard/desktop/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/keycard/desktop/16.png');
+        }
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/keycard/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/keycard/iOS/appstore.png');
+        }
+        .i__springboard-3x i {
+            background-image: url('../img/illustrations-content/keycard/iOS/appicon@3x.png');
+        }
+        .i__springboard-2x i{
+            background-image: url('../img/illustrations-content/keycard/iOS/appicon@2x.png');
+        }
+        .i__spotlight-3x i {
+            background-image: url('../img/illustrations-content/keycard/iOS/spotlighticon@3x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/keycard/iOS/spotlighticon@2x.png');
+        }
+        .i__settings-3x i {
+            background-image: url('../img/illustrations-content/keycard/iOS/settingsicon@3x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/keycard/iOS/settingsicon@2x.png');
+        }
+    }
+}
+
+.page-icons__Analog {
+    background-color: #373949;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#373949, 0.025), 0 1px 2px rgba(#373949, 0.125);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#373949, 0.125);
+    }
+    ul.details li { 
+        color: #fff !important; 
+    }
+    .iterations {
+        @include display(flex);
+        @include flex-direction(row);
+        @include align-items(center);
+        //@include justify-content(space-between);
+        @include flex-wrap(wrap);
+        @include justify-content(center);
+        max-width: 52rem;
+        padding: .5rem 0;
+        span {
+            margin: .5rem;
+        }
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/analog/desktop/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/analog/desktop/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/analog/desktop/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/analog/desktop/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/analog/desktop/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/analog/desktop/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/analog/desktop/16.png');
+        }
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/analog/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/analog/iOS/appstore.png');
+        }
+        .i__springboard-3x i {
+            background-image: url('../img/illustrations-content/analog/iOS/appicon@3x.png');
+        }
+        .i__springboard-2x i{
+            background-image: url('../img/illustrations-content/analog/iOS/appicon@2x.png');
+        }
+        .i__spotlight-3x i {
+            background-image: url('../img/illustrations-content/analog/iOS/spotlighticon@3x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/analog/iOS/spotlighticon@2x.png');
+        }
+        .i__settings-3x i {
+            background-image: url('../img/illustrations-content/analog/iOS/settingsicon@3x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/analog/iOS/settingsicon@2x.png');
+        }
+        .a1 i {
+            background-image: url('../img/illustrations-content/analog/round1/a1.png');
+        }
+        .b1 i {
+            background-image: url('../img/illustrations-content/analog/round1/b1.png');
+        }
+        .b2 i {
+            background-image: url('../img/illustrations-content/analog/round1/b2.png');
+        }
+        .b3 i {
+            background-image: url('../img/illustrations-content/analog/round1/b3.png');
+        }
+        .b4 i {
+            background-image: url('../img/illustrations-content/analog/round1/b4.png');
+        }
+        .b5 i {
+            background-image: url('../img/illustrations-content/analog/round1/b5.png');
+        }
+        .c1 i {
+            background-image: url('../img/illustrations-content/analog/round1/c1.png');
+        }
+        .c2 i {
+            background-image: url('../img/illustrations-content/analog/round1/c2.png');
+        }
+        .c3 i {
+            background-image: url('../img/illustrations-content/analog/round1/c3.png');
+        }
+        .c4 i {
+            background-image: url('../img/illustrations-content/analog/round1/c4.png');
+        }
+        .c5 i {
+            background-image: url('../img/illustrations-content/analog/round1/c5.png');
+        }
+        .d1 i {
+            background-image: url('../img/illustrations-content/analog/round1/d1.png');
+        }
+    }
+}
+
+.page-icons__Dell {
+    color: #fff;
+}
+
+.page-icons__SmallChange {
+    color: #fff;
+}
+
+.page-icons__Kismet {
+    background-color: #1d1d1e;
+    ul.details li { 
+        color: #fbcb74 !important; 
+    }
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#1d1d1e, 0.025), 0 1px 2px rgba(#1d1d1e, 0.125);
+    }
+    &:active {
+        box-shadow: 0 .25rem 0.5rem rgba(#1d1d1e, 0.025), 0 1px 2px rgba(#1d1d1e, 0.125);
+    }
+}
+
+.page-icons__Rougemark_Bow {
+    background-color: #f0796c;
+    ul.details li { 
+        color: #FFF !important; 
+    }
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#f0796c, 0.2), 0 1px 2px rgba(#000, 0.25);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#000, 0.25);
+    }
+}
+
+.page-icons__Rougemark {
+    color: #fff;
+    ul.details li { 
+        color: #be1c18 !important; 
+    }
+}
+
+.page-icons__Zello_Web {
+    color: #fff;
+}
+
+.page-icons__Zello_Iconsys {
+    color: #fff;
+}
+
+.page-icons__Zello_Accessories {
+    color: #fff;
+}
+
+.page-icons__toolbaricons {
+    color: #fff;
+}
+
+.page-icons__Flaunt {
+    background-color: #ffd7f8;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffd7f8, 0.5), 0 1px 2px rgba(#f3a4e4, 0.25);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#f3a4e4, 0.25);
+    }
+    ul.details li { 
+        color: #d33bf1 !important; 
+    }
+    .tabs-content {
+        i {
+            background-size: contain;
+        }
+        .a1 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/flaunt/1.png');
+            }
+        }
+        .a2 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/flaunt/2.png');
+            }
+        }
+        .a3 .i__512-2x i {
+            background-image: url('../img/illustrations-content/flaunt/3.png');
+        }
+        .a4 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/flaunt/4.png');
+            }
+        }
+        .a5 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/flaunt/5.png');
+            }
+        }
+        .a6 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/flaunt/6.png');
+            }
+        }
+        .a7 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/flaunt/7.png');
+            }
+        }
+    }
+}
+
+.color-well {
+    @include share(width, height, 10px);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.125), 0 1px 2px rgba(0,0,0,0.25);
+    border: 2px solid #fff;
+    background-color: transparent;
+    position: absolute;
+    z-index: 999;
+    left: 5px;
+    top: -1px;
+    #a1 & { background-color: #d725e3; }
+    #a2 & { background-color: #761d35; }
+    #a3 & { background-color: #8234a2; }
+    #a4 & { background-color: #111417; }
+    #a5 & { background-color: #def8fc; }
+    #a6 & { background-color: #316582; }
+    #a7 & { background-color: #44cef9; }
+}
+.page-icons__PicPicBoom {
+    background-color: #ffb7d3;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffb7d3, 0.5), 0 1px 2px rgba(#ffb7d3, 0.25);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#ffb7d3, 0.25);
+    }
+    ul.details li { 
+        color: #e02040 !important; 
+    }
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/picpicboom/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/picpicboom/appstore.png');
+        }
+        .i__springboard-2x i {
+            background-image: url('../img/illustrations-content/picpicboom/appicon@2x.png');
+        }
+        .i__springboard-1x i {
+            background-image: url('../img/illustrations-content/picpicboom/appicon@1x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/picpicboom/spotlighticon@2x.png');
+        }
+        .i__spotlight-1x i {
+            background-image: url('../img/illustrations-content/picpicboom/spotlighticon@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/picpicboom/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/picpicboom/settingsicon@1x.png');
+        }
+    }
+}
+
+.page-icons__Azul {
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/azul/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/azul/iOS/appstore.png');
+        }
+        .i__springboard-ipad-2x i {
+            background-image: url('../img/illustrations-content/azul/iOS/appicon-ipad@2x.png');
+        }
+        .i__springboard-2x i {
+            background-image: url('../img/illustrations-content/azul/iOS/appicon@2x.png');
+        }
+        .i__springboard-ipad-1x i {
+            background-image: url('../img/illustrations-content/azul/iOS/appicon-ipad@1x.png');
+        }
+        .i__springboard-1x i {
+            background-image: url('../img/illustrations-content/azul/iOS/appicon@1x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/azul/iOS/spotlighticon@2x.png');
+        }
+        .i__spotlight-1x i {
+            background-image: url('../img/illustrations-content/azul/iOS/spotlighticon@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/azul/iOS/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/azul/iOS/settingsicon@1x.png');
+        }
+        .i__googleplay-2x i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-play1024.png');
+        }
+        .i__googleplay-1x i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-play512.png');
+        }
+        .i__launchericon-xxxhdpi i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-xxxhdpi.png');
+        }
+        .i__launchericon-xxhdpi i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-xxhdpi.png');
+        }
+        .i__launchericon-xhdpi i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-xhdpi.png');
+        }
+        .i__launchericon-hdpi i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-hdpi.png');
+        }
+        .i__launchericon-mdpi i {
+            background-image: url('../img/illustrations-content/azul/Android/icon-mdpi.png');
+        }
+    }
+}
+
+.page-icons__FailureGames {
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/failuregames/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/failuregames/appstore.png');
+        }
+        .i__springboard-ipad-o-2x i {
+            background-image: url('../img/illustrations-content/failuregames/appicon-ipad@2x.png');
+        }
+        .i__springboard-o-2x i {
+            background-image: url('../img/illustrations-content/failuregames/appicon@2x.png');
+        }
+        .i__springboard-ipad-o-1x i {
+            background-image: url('../img/illustrations-content/failuregames/appicon-ipad@1x.png');
+        }
+        .i__springboard-o-1x i {
+            background-image: url('../img/illustrations-content/failuregames/appicon@1x.png');
+        }
+    }
+}
+.page-icons__Invite {
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/invite/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/invite/appstore.png');
+        }
+        .i__springboard-3x i {
+            background-image: url('../img/illustrations-content/invite/appicon@3x.png');
+        }
+        .i__springboard-2x i{
+            background-image: url('../img/illustrations-content/invite/appicon@2x.png');
+        }
+        .i__spotlight-3x i {
+            background-image: url('../img/illustrations-content/invite/spotlighticon@3x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/invite/spotlighticon@2x.png');
+        }
+        .i__settings-3x i {
+            background-image: url('../img/illustrations-content/invite/settingsicon@3x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/invite/settingsicon@2x.png');
+        }
+    }
+}
+.page-icons__Shuzzle {
+    .iterations {
+        max-width: 52rem;
+        padding: .5rem 0 .5rem 0;
+        .round-1, .round-2, .round-3 {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+            position: relative;
+            padding: 2rem 0 0 0;
+            span {
+                margin: .5rem;
+            }
+        }
+        h6 {
+            position: absolute;
+            top: 0;
+            left: .5rem;
+        }
+    }
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/appstore.png');
+        }
+        .i__springboard-2x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/appicon@2x.png');
+        }
+        .i__springboard-1x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/appicon@1x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/spotlighticon@2x.png');
+        }
+        .i__spotlight-1x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/spotlighticon@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/shuzzle/iOS/settingsicon@1x.png');
+        }
+        .a1 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a1.png'); }
+        .a2 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a2.png'); }
+        .a3 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a3.png'); }
+        .a4 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a4.png'); }
+        .a5 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a5.png'); }
+        .a6 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a6.png'); }
+        .a7 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a7.png'); }
+        .a8 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a8.png'); }
+        .a9 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a9.png'); }
+        .a10 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a10.png'); }
+        .a11 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a11.png'); }
+        .a12 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a12.png'); }
+        .a13 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a13.png'); }
+        .a14 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a14.png'); }
+        .a15 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a15.png'); }
+        .a16 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a16.png'); }
+        .a17 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a17.png'); }
+        .a18 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a18.png'); }
+        .a19 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a19.png'); }
+        .a20 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a20.png'); }
+        .a21 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a21.png'); }
+        .a22 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a22.png'); }
+        .a23 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a23.png'); }
+        .a24 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a24.png'); }
+        .a25 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a25.png'); }
+        .a26 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a26.png'); }
+        .a27 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a27.png'); }
+        .a28 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a28.png'); }
+        .a29 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a29.png'); }
+        .a30 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a30.png'); }
+        .a31 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a31.png'); }
+        .a32 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a32.png'); }
+        .a33 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a33.png'); }
+        .a34 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a34.png'); }
+        .a35 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a35.png'); }
+        .a36 i { background-image: url('../img/illustrations-content/shuzzle/iterations/a36.png'); }
+        .b1 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b1.png'); }
+        .b2 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b2.png'); }
+        .b3 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b3.png'); }
+        .b4 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b4.png'); }
+        .b5 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b5.png'); }
+        .b6 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b6.png'); }
+        .b7 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b7.png'); }
+        .b8 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b8.png'); }
+        .b9 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b9.png'); }
+        .b10 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b10.png'); }
+        .b11 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b11.png'); }
+        .b12 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b12.png'); }
+        .b13 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b13.png'); }
+        .b14 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b14.png'); }
+        .b15 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b15.png'); }
+        .b16 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b16.png'); }
+        .b17 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b17.png'); }
+        .b18 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b18.png'); }
+        .b19 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b19.png'); }
+        .b20 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b20.png'); }
+        .c1 i { background-image: url('../img/illustrations-content/shuzzle/iterations/c1.png'); }
+        .c2 i { background-image: url('../img/illustrations-content/shuzzle/iterations/b2.png'); }
+    }
+}
+
+.page-icons__TasteBud {
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/tastebud_1/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/tastebud_1/iOS/appstore.png');
+        }
+        .i__springboard-3x i {
+            background-image: url('../img/illustrations-content/tastebud_1/iOS/appicon@3x.png');
+        }
+        .i__springboard-2x i {
+            background-image: url('../img/illustrations-content/tastebud_1/iOS/appicon@2x.png');
+        }
+        .i__spotlight-3x i {
+            background-image: url('../img/illustrations-content/tastebud_1/iOS/spotlighticon@3x.png');
+        }
+        .i__spotlight-2x i {
+            background-image: url('../img/illustrations-content/tastebud_1/iOS/spotlighticon@2x.png');
+        }
+        .i__googleplay-2x i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-play1024.png');
+        }
+        .i__googleplay-1x i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-play512.png');
+        }
+        .i__launchericon-xxxhdpi i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-xxxhdpi.png');
+        }
+        .i__launchericon-xxhdpi i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-xxhdpi.png');
+        }
+        .i__launchericon-xhdpi i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-xhdpi.png');
+        }
+        .i__launchericon-hdpi i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-hdpi.png');
+        }
+        .i__launchericon-mdpi i {
+            background-image: url('../img/illustrations-content/tastebud_1/Android/icon-mdpi.png');
+        }
+    }
+}
+
+.page-icons__TasteBud_Internal {
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/tastebud_2/appstore@2x.png');
+        }
+    }
+}
+.page-icons__TasteBud_Glyphs {
+    color: #fff;
+}
+
+.page-icons__GCC {
+    background-color: #d9f9ff;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#d9f9ff, 0.1), 0 1px 2px rgba(#65d2e5, 0.5);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#65d2e5, 0.5);
+    }
+    ul.details li {
+        color: #57deff !important;
+    }
+}
+
+.page-icons__Instawink {
+    background-color: #fff280;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffbb00, 0.1), 0 1px 2px rgba(#c79200, 0.5);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#c79200, 0.5);
+    }
+    ul.details li {
+        color: #e5a800 !important;
+    }
+}
+
+.page-icons__FreeBee {
+    background-color: #ffbc00;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffbc00, 0.1), 0 1px 2px rgba(#ffbc00, 0.5);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#ffbc00, 0.5);
+    }
+    ul.details li {
+        color: #402f05 !important;
+    }
+    .tabs-content {
+        .iterations {
+            max-width: 47.5rem;
+            padding: .5rem 0 .5rem 0;
+            .round-1, .round-2, .round-3 {
+                @include display(flex);
+                @include flex-direction(row);
+                //@include justify-content(space-between);
+                @include flex-wrap(wrap);
+                @include justify-content(flex-start);
+                position: relative;
+                padding: 2rem 0 0 0;
+                span {
+                    margin: .5rem;
+                }
+            }
+        }
+        h6 {
+            position: absolute;
+            top: 0;
+            left: .5rem;
+        }
+        i { box-shadow: 0 0 0 1px #e09d00 !important;}
+        .final i {
+            background-image: url('../img/illustrations-content/freebee/final.png');
+        }
+        .a1 i {
+            background-image: url('../img/illustrations-content/freebee/a1.png');
+        }
+        .a2 i {
+            background-image: url('../img/illustrations-content/freebee/a2.png');
+        }
+        .a3 i {
+            background-image: url('../img/illustrations-content/freebee/a3.png');
+        }
+        .a4 i {
+            background-image: url('../img/illustrations-content/freebee/a4.png');
+        }
+        .a5 i {
+            background-image: url('../img/illustrations-content/freebee/a5.png');
+        }
+        .a6 i {
+            background-image: url('../img/illustrations-content/freebee/a6.png');
+        }
+        .a7 i {
+            background-image: url('../img/illustrations-content/freebee/a7.png');
+        }
+        .a8 i {
+            background-image: url('../img/illustrations-content/freebee/a8.png');
+        }
+        .a9 i {
+            background-image: url('../img/illustrations-content/freebee/a9.png');
+        }
+        .b1 i {
+            background-image: url('../img/illustrations-content/freebee/b1.png');
+        }
+        .b2 i {
+            background-image: url('../img/illustrations-content/freebee/b2.png');
+        }
+        .b3 i {
+            background-image: url('../img/illustrations-content/freebee/b3.png');
+        }
+        .b4 i {
+            background-image: url('../img/illustrations-content/freebee/b4.png');
+        }
+        .b5 i {
+            background-image: url('../img/illustrations-content/freebee/b5.png');
+        }
+        .c1 i {
+            background-image: url('../img/illustrations-content/freebee/c1.png');
+        }
+        .c2 i {
+            background-image: url('../img/illustrations-content/freebee/c2.png');
+        }
+        .c3 i {
+            background-image: url('../img/illustrations-content/freebee/c3.png');
+        }
+    }
+}
+
+.page-icons__Answers {
+    background-color: #7ec8fc;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#7ec8fc, 0.5), 0 1px 2px rgba(#7ec8fc, 0.1);
+    }
+    &:active {
+        box-shadow:0 1px 2px rgba(#7ec8fc, 0.1);
+    }
+    ul.details li { 
+        color: #fff !important; 
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/answers/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/answers/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/answers/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/answers/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/answers/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/answers/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/answers/16.png');
+        }
+    }
+}
+
+.page-icons__Thoughts {
+    background-color: #fafcff;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#000, 0.025), 0 1px 2px rgba(#b7d3e8, 0.125);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#b7d3e8, 0.125);
+    }
+    ul.details li {
+        color: #7ec8fc !important;
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/thoughts/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/thoughts/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/thoughts/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/thoughts/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/thoughts/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/thoughts/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/thoughts/16.png');
+        }
+    }
+}
+
+.page-icons__Notepad {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/notepad/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/notepad/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/notepad/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/notepad/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/notepad/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/notepad/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/notepad/16.png');
+        }
+    }
+}
+
+.page-icons__Diligence {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/diligence/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/diligence/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/diligence/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/diligence/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/diligence/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/diligence/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/diligence/16.png');
+        }
+    }
+}
+
+.page-icons__Battery_Monitor {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/batterymonitor/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/batterymonitor/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/batterymonitor/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/batterymonitor/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/batterymonitor/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/batterymonitor/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/batterymonitor/16.png');
+        }
+    }
+}
+
+.page-icons__Ghost {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/ghost/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/ghost/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/ghost/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/ghost/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/ghost/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/ghost/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/ghost/16.png');
+        }
+    }
+}
+
+.page-icons__Ghost_Alt {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/ghost_alt/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/ghost_alt/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/ghost_alt/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/ghost_alt/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/ghost_alt/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/ghost_alt/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/ghost_alt/16.png');
+        }
+    }
+}
+
+.page-icons__Compteur {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/compteur/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/compteur/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/compteur/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/compteur/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/compteur/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/compteur/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/compteur/16.png');
+        }
+    }
+}
+
+.page-icons__Iconstructor {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/iconstructor/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/iconstructor/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/iconstructor/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/iconstructor/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/iconstructor/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/iconstructor/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/iconstructor/16.png');
+        }
+    }
+}
+
+.page-icons__Plugin {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/plugin/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/plugin/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/plugin/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/plugin/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/plugin/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/plugin/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/plugin/16.png');
+        }
+    }
+}
+
+.page-icons__Stickies {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/stickies/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/stickies/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/stickies/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/stickies/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/stickies/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/stickies/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/stickies/16.png');
+        }
+    }
+}
+
+.page-icons__FavBook {
+    background-color: #fff;
+}
+
+.page-icons__TB_MM {
+    background-color: #e0ffec;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#2cbf6d, 0.125), 0 1px 2px rgba(#2cbf6d, 0.25);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#2cbf6d, 0.25);
+    }
+    ul.details li {
+        color: #22ab68 !important;
+    }
+}
+
+.page-icons__TB_Giftbox {
+    background-color: #fff6e5;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffa700, 0.05), 0 1px 2px rgba(#ffa700, 0.25);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#ffa700, 0.25);
+    }
+    ul.details li {
+        color: #e68948 !important;
+    }
+    .tabs-content {
+        padding-top: 1rem !important;
+        span {
+            display: block;
+            margin: .5rem;
+        }
+        .i__icon-mdpi {
+            @include share(width, min-width, 64px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 128px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-giftbox/icon-mdpi.png'); }
+        }
+        .i__icon-hdpi {
+            @include share(width, min-width, 96px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 192px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-giftbox/icon-hdpi.png'); }
+        }
+        .i__icon-xhdpi {
+            @include share(width, min-width, 128px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 256px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-giftbox/icon-xhdpi.png'); }
+        }
+        .i__icon-xxhdpi {
+            @include share(width, min-width, 192px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 384px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-giftbox/icon-xxhdpi.png'); }
+        }
+    }
+}
+
+.page-icons__TB_Fork {
+    .tabs-content {
+        span {
+            display: block;
+        }
+        .level-2 {
+            width: 100%;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+        .i__icon-mdpi {
+            @include share(width, min-width, 57px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 104px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-merchant/icon-mdpi.png'); }
+        }
+        .i__icon-hdpi {
+            @include share(width, min-width, 78px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 156px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-merchant/icon-hdpi.png'); }
+        }
+        .i__icon-xhdpi {
+            @include share(width, min-width, 104px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 208px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-merchant/icon-xhdpi.png'); }
+        }
+        .i__icon-xxhdpi {
+            @include share(width, min-width, 156px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 312px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-merchant/icon-xxhdpi.png'); }
+        }
+        .i__icon-lg {
+            margin: 1rem 0;
+            i {
+                background-image: url('../img/illustrations-content/tastebud-merchant/icon-lg.png');
+            }
+        }
+    }
+}
+
+.page-icons__TB_Star, .page-icons__TB_Payments, .page-icons__TB_Purchases {
+    span {
+        display: block;
+        margin: 1rem;
+    }
+    .array, .icongrid {
+        padding-top: 1rem;
+        &.Android.array {
+            padding-top: 0;
+        }
+        .level-2 {
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
+.page-icons__TB_Star {
+    .tabs-content {
+        .i__icon-mdpi {
+            @include share(width, min-width, 180px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 360px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-favorites/icon-mdpi.png'); }
+        }
+        .i__icon-hdpi {
+            @include share(width, min-width, 270px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 540px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-favorites/icon-hdpi.png'); }
+        }
+        .i__icon-xhdpi {
+            @include share(width, min-width, 360px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 720px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-favorites/icon-xhdpi.png'); }
+        }
+        .i__icon-xxhdpi {
+            @include share(width, min-width, 540px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 1080px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-favorites/icon-xxhdpi.png'); }
+        }
+        .i__icon-3x {
+            @include share(width, min-width, 580px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 960px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-favorites/icon-3x.png'); }
+        }
+        .i__icon-2x {
+            @include share(width, min-width, 320px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 460px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-favorites/icon-2x.png'); }
+        }
+    }
+}
+
+.page-icons__TB_Purchases {
+    .tabs-content {
+        .i__icon-mdpi {
+            @include share(width, min-width, 180px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 360px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-purchases/icon-mdpi.png'); }
+        }
+        .i__icon-hdpi {
+            @include share(width, min-width, 270px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 540px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-purchases/icon-hdpi.png'); }
+        }
+        .i__icon-xhdpi {
+            @include share(width, min-width, 360px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 720px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-purchases/icon-xhdpi.png'); }
+        }
+        .i__icon-xxhdpi {
+            @include share(width, min-width, 540px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 1080px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-purchases/icon-xxhdpi.png'); }
+        }
+        .i__icon-3x {
+            @include share(width, min-width, 580px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 960px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-purchases/icon-3x.png'); }
+        }
+        .i__icon-2x {
+            @include share(width, min-width, 320px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 460px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-purchases/icon-2x.png'); }
+        }
+    }
+}
+
+.page-icons__TB_Payments {
+    .tabs-content {
+        .i__icon-mdpi {
+            @include share(width, min-width, 180px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 360px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-payments/icon-mdpi.png'); }
+        }
+        .i__icon-hdpi {
+            @include share(width, min-width, 270px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 540px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-payments/icon-hdpi.png'); }
+        }
+        .i__icon-xhdpi {
+            @include share(width, min-width, 360px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 720px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-payments/icon-xhdpi.png'); }
+        }
+        .i__icon-xxhdpi {
+            @include share(width, min-width, 540px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 1080px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-payments/icon-xxhdpi.png'); }
+        }
+        .i__icon-3x {
+            @include share(width, min-width, 580px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 960px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-payments/icon-3x.png'); }
+        }
+        .i__icon-2x {
+            @include share(width, min-width, 320px);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, min-width, 460px);
+            }
+            i { background-image: url('../img/illustrations-content/tastebud-payments/icon-2x.png'); }
+        }
+    }
+}
+
+.page-icons__TB {
+    color: #fff;
+}
+
+.page-icons__Zello_lg {
+    color: #fff;
+}
+
+.page-icons__FileTouchManager {
+    background-color: #ffe7e2;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffe7e2, 0.1), 0 1px 2px rgba(#ffe7e2, 0.5);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#ffe7e2, 0.5);
+    }
+    ul.details li {
+        color: #da611f !important;
+    }
+    .tabs-content {
+        .i__launchericon-ldpi i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-mdpi.png');
+        }
+        .i__launchericon-mdpi i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-mdpi.png');
+        }
+        .i__launchericon-hdpi i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-hdpi.png');
+        }
+        .i__launchericon-xhdpi i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-xhdpi.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-128.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-128@2x.png');
+        }
+        .i__googleplay-1x i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-gplay512.png');
+        }
+        .i__googleplay-2x i {
+            background-image: url('../img/illustrations-content/filetouchmanager/icon-gplay1024.png');
+        }
+    }
+}
+
+.page-icons__Arex_1 {
+    color: #fff;
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/arex-1/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/arex-1/appstore@1x.png');
+        }
+        .i__springboard-ipad-o-2x i {
+            background-image: url('../img/illustrations-content/arex-1/appicon-ipad@2x.png');
+        }
+        .i__springboard-ipad-o-1x i {
+            background-image: url('../img/illustrations-content/arex-1/appicon-ipad@1x.png');
+        }
+        .i__springboard-o-2x i {
+            background-image: url('../img/illustrations-content/arex-1/appicon@2x.png');
+        }
+        .i__springboard-o-1x i {
+            background-image: url('../img/illustrations-content/arex-1/appicon@1x.png');
+        }
+        .i__spotlight-ipad-o-2x i {
+            background-image: url('../img/illustrations-content/arex-1/spotlighticon-ipad@2x.png');
+        }
+        .i__spotlight-ipad-o-1x i {
+            background-image: url('../img/illustrations-content/arex-1/spotlighticon-ipad@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/arex-1/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/arex-1/settingsicon@1x.png');
+        }
+    }
+}
+
+.page-icons__Arex_2 {
+    color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round-1, .round-2, .round-3 {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/appstore@1x.png');
+        }
+        .i__springboard-ipad-o-2x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/appicon-ipad@2x.png');
+        }
+        .i__springboard-ipad-o-1x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/appicon-ipad@1x.png');
+        }
+        .i__springboard-o-2x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/appicon@2x.png');
+        }
+        .i__springboard-o-1x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/appicon@1x.png');
+        }
+        .i__spotlight-ipad-o-2x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/spotlighticon-ipad@2x.png');
+        }
+        .i__spotlight-ipad-o-1x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/spotlighticon-ipad@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/arex-2/iOS/settingsicon@1x.png');
+        }
+        .a1 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/1.png');
+        }
+        .a2 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/2.png');
+        }
+        .a3 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/3.png');
+        }
+        .a4 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/4.png');
+        }
+        .a5 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/5.png');
+        }
+        .a6 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/6.png');
+        }
+        .a7 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/7.png');
+        }
+        .a8 i {
+            background-image: url('../img/illustrations-content/arex-2/iterations/8.png');
+        }
+    }
+}
+
+.page-icons__Attune {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+            position: relative;
+            padding-top: 2rem;
+            span {
+                margin: .5rem;
+            }
+            h6 {
+                position: absolute;
+                top: 0;
+                left: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/attune/iOS/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/attune/iOS/appstore@1x.png');
+        }
+        .i__springboard-o-2x i {
+            background-image: url('../img/illustrations-content/attune/iOS/appicon@2x.png');
+        }
+        .i__springboard-o-1x i {
+            background-image: url('../img/illustrations-content/attune/iOS/appicon@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/attune/iOS/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/attune/iOS/settingsicon@1x.png');
+        }
+        .a1 i { background-image: url('../img/illustrations-content/attune/iterations/a1.png'); }
+        .a2 i { background-image: url('../img/illustrations-content/attune/iterations/a2.png'); }
+        .a3 i { background-image: url('../img/illustrations-content/attune/iterations/a3.png'); }
+        .a4 i { background-image: url('../img/illustrations-content/attune/iterations/a4.png'); }
+        .a5 i { background-image: url('../img/illustrations-content/attune/iterations/a5.png'); }
+        .b1 i { background-image: url('../img/illustrations-content/attune/iterations/b1.png'); }
+        .b2 i { background-image: url('../img/illustrations-content/attune/iterations/b2.png'); }
+        .b3 i { background-image: url('../img/illustrations-content/attune/iterations/b3.png'); }
+        .b4 i { background-image: url('../img/illustrations-content/attune/iterations/b4.png'); }
+        .b5 i { background-image: url('../img/illustrations-content/attune/iterations/b5.png'); }
+        .b6 i { background-image: url('../img/illustrations-content/attune/iterations/b6.png'); }
+        .b7 i { background-image: url('../img/illustrations-content/attune/iterations/b7.png'); }
+        .b8 i { background-image: url('../img/illustrations-content/attune/iterations/b8.png'); }
+        .b9 i { background-image: url('../img/illustrations-content/attune/iterations/b9.png'); }
+        .c1 i { background-image: url('../img/illustrations-content/attune/iterations/c1.png'); }
+        .c2 i { background-image: url('../img/illustrations-content/attune/iterations/c2.png'); }
+        .d1 i { background-image: url('../img/illustrations-content/attune/iterations/d1.png'); }
+        .d2 i { background-image: url('../img/illustrations-content/attune/iterations/d2.png'); }
+        .d3 i { background-image: url('../img/illustrations-content/attune/iterations/d3.png'); }
+        .d4 i { background-image: url('../img/illustrations-content/attune/iterations/d4.png'); }
+        .d5 i { background-image: url('../img/illustrations-content/attune/iterations/d5.png'); }
+        .e1 i { background-image: url('../img/illustrations-content/attune/iterations/e1.png'); }
+        .e2 i { background-image: url('../img/illustrations-content/attune/iterations/e2.png'); }
+        .e3 i { background-image: url('../img/illustrations-content/attune/iterations/e3.png'); }
+        .e4 i { background-image: url('../img/illustrations-content/attune/iterations/e4.png'); }
+        .e5 i { background-image: url('../img/illustrations-content/attune/iterations/e5.png'); }
+        .e6 i { background-image: url('../img/illustrations-content/attune/iterations/e6.png'); }
+        .e7 i { background-image: url('../img/illustrations-content/attune/iterations/e7.png'); }
+        .e8 i { background-image: url('../img/illustrations-content/attune/iterations/e8.png'); }
+        .e9 i { background-image: url('../img/illustrations-content/attune/iterations/e9.png'); }
+        .e10 i { background-image: url('../img/illustrations-content/attune/iterations/e10.png'); }
+        .e11 i { background-image: url('../img/illustrations-content/attune/iterations/e11.png'); }
+        .e12 i { background-image: url('../img/illustrations-content/attune/iterations/e12.png'); }
+        .e13 i { background-image: url('../img/illustrations-content/attune/iterations/e13.png'); }
+        .e14 i { background-image: url('../img/illustrations-content/attune/iterations/e14.png'); }
+        .e15 i { background-image: url('../img/illustrations-content/attune/iterations/e15.png'); }
+        .e16 i { background-image: url('../img/illustrations-content/attune/iterations/e16.png'); }
+        .e17 i { background-image: url('../img/illustrations-content/attune/iterations/e17.png'); }
+        .e18 i { background-image: url('../img/illustrations-content/attune/iterations/e18.png'); }
+        .e19 i { background-image: url('../img/illustrations-content/attune/iterations/e19.png'); }
+        .e20 i { background-image: url('../img/illustrations-content/attune/iterations/e20.png'); }
+        .e21 i { background-image: url('../img/illustrations-content/attune/iterations/e21.png'); }
+        .e22 i { background-image: url('../img/illustrations-content/attune/iterations/e22.png'); }
+        .e23 i { background-image: url('../img/illustrations-content/attune/iterations/e23.png'); }
+        .e24 i { background-image: url('../img/illustrations-content/attune/iterations/e24.png'); }
+        .e25 i { background-image: url('../img/illustrations-content/attune/iterations/e25.png'); }
+        .e26 i { background-image: url('../img/illustrations-content/attune/iterations/e26.png'); }
+        .e27 i { background-image: url('../img/illustrations-content/attune/iterations/e27.png'); }
+        .e28 i { background-image: url('../img/illustrations-content/attune/iterations/e28.png'); }
+        .e29 i { background-image: url('../img/illustrations-content/attune/iterations/e29.png'); }
+        .e30 i { background-image: url('../img/illustrations-content/attune/iterations/e30.png'); }
+        .f1 i { background-image: url('../img/illustrations-content/attune/iterations/f1.png'); }
+        .f2 i { background-image: url('../img/illustrations-content/attune/iterations/f2.png'); }
+        .f3 i { background-image: url('../img/illustrations-content/attune/iterations/f3.png'); }
+        .f4 i { background-image: url('../img/illustrations-content/attune/iterations/f4.png'); }
+        .f5 i { background-image: url('../img/illustrations-content/attune/iterations/f5.png'); }
+        .g1 i { background-image: url('../img/illustrations-content/attune/iterations/g1.png'); }
+        .g2 i { background-image: url('../img/illustrations-content/attune/iterations/g2.png'); }
+    }
+}
+
+
+.page-icons__Juliette_1 {
+    background-color: #fff;
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/juliette-1/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/juliette-1/appstore@1x.png');
+        }
+        .i__springboard-2x i {
+            background-image: url('../img/illustrations-content/juliette-1/appicon@2x.png');
+        }
+
+    }
+}
+
+.page-icons__Juliette_2 {
+    background-color: #fff;
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/juliette-2/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/juliette-2/appstore@1x.png');
+        }
+        .i__springboard-o-2x i {
+            background-image: url('../img/illustrations-content/juliette-2/appicon@2x.png');
+        }
+        .i__springboard-o-1x i {
+            background-image: url('../img/illustrations-content/juliette-2/appicon@1x.png');
+        }
+        .i__settings-2x i {
+            background-image: url('../img/illustrations-content/juliette-2/settingsicon@2x.png');
+        }
+        .i__settings-1x i {
+            background-image: url('../img/illustrations-content/juliette-2/settingsicon@1x.png');
+        }
+    }
+}
+
+.page-icons__Juliette_3 {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+
+    .tabs-content {
+        .a1 i { background-image: url('../img/illustrations-content/juliette-3/1.png'); }
+        .a2 i { background-image: url('../img/illustrations-content/juliette-3/2.png'); }
+        .a3 i { background-image: url('../img/illustrations-content/juliette-3/3.png'); }
+        .a4 i { background-image: url('../img/illustrations-content/juliette-3/4.png'); }
+        .a5 i { background-image: url('../img/illustrations-content/juliette-3/5.png'); }
+        .a6 i { background-image: url('../img/illustrations-content/juliette-3/6.png'); }
+        .a7 i { background-image: url('../img/illustrations-content/juliette-3/7.png'); }
+        .a8 i { background-image: url('../img/illustrations-content/juliette-3/8.png'); }
+        .a9 i { background-image: url('../img/illustrations-content/juliette-3/9.png'); }
+        .a10 i { background-image: url('../img/illustrations-content/juliette-3/10.png'); }
+        .a11 i { background-image: url('../img/illustrations-content/juliette-3/11.png'); }
+    }
+}
+
+.page-icons__FiveSquare {
+    background-color: #fff;
+    .level-2 {
+        padding-left: 0 !important;
+    }
+    .tabs-content {
+        .i__appstore-2x i {
+            background-image: url('../img/illustrations-content/fivesquare/appstore@2x.png');
+        }
+        .i__appstore i {
+            background-image: url('../img/illustrations-content/fivesquare/appstore@1x.png');
+        }
+        .i__springboard-ipad-o-2x i {
+            background-image: url('../img/illustrations-content/fivesquare/appicon-ipad@2x.png');
+        }
+        .i__springboard-ipad-o-1x i {
+            background-image: url('../img/illustrations-content/fivesquare/appicon-ipad@1x.png');
+        }
+        .i__springboard-o-2x i {
+            background-image: url('../img/illustrations-content/fivesquare/appicon@2x.png');
+        }
+        .i__springboard-o-1x i {
+            background-image: url('../img/illustrations-content/fivesquare/appicon@1x.png');
+        }
+    }
+}
+
+.page-icons__iOS {
+    color: #fff;
+}
+
+.page-icons__Scala {
+    //color: #e1e5e5;
+    background-color: #f4f8f8;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#f4f8f8, 0.025), 0 1px 2px rgba(#f4f8f8, 0.125);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#f4f8f8, 0.125);
+    }
+    ul.details li {
+        color: #3b3c44 !important;
+    }
+}
+
+.page-icons__Eames_Elephant {
+    background-color: #ffd3bf;
+    &:hover {
+        box-shadow: 0 .25rem 0.5rem rgba(#ffd3bf, 0.1), 0 1px 2px rgba(#ffd3bf, 0.5);
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(#ffd3bf, 0.5);
+    }
+    ul.details li {
+        color: #c42b20 !important;
+    }
+}
+
+.page-icons__TO {
+    .tabs-content {
+        i {
+            background-size: contain;
+        }
+        .a1 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/TO/1.png');
+            }
+        }
+    }
+}
+
+.page-icons__Pico {
+    background-color: #faffff;
+    ul.details li {
+        color: #45454a !important;
+    }
+}
+
+.page-icons__Studio {
+    color: #000;
+}
+
+.page-icons__xMod {
+    background-color: #000;
+    ul.details li { 
+        color: #fff !important; 
+    }
+    .level-2 {
+        padding-left: 0 !important;
+    }
+    i {
+        background-color: #000;
+        box-shadow: 0 0 0 1px #000;
+    }
+    .tabs-content {
+        .i__256-2x i { background-image: url('../img/illustrations-content/xmod/256@2x.png'); }
+        .i__128-2x i { background-image: url('../img/illustrations-content/xmod/128@2x.png'); }
+        .i__128 i { background-image: url('../img/illustrations-content/xmod/128.png'); }
+        .i__48 i { background-image: url('../img/illustrations-content/xmod/48.png'); }
+        .i__16-2x i { background-image: url('../img/illustrations-content/xmod/16@2x.png'); }
+    }
+}
+
+.page-icons__goodies {
+    color: #fff;
+}
+
+.page-icons__Slack {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/slack/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/slack/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/slack/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/slack/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/slack/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/slack/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/slack/16.png');
+        }
+    }
+}
+
+.page-icons__Byword {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/byword/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/byword/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/byword/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/byword/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/byword/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/byword/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/byword/16.png');
+        }
+    }
+}
+
+.page-icons__Dashboard {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/dashboard/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/dashboard/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/dashboard/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/dashboard/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/dashboard/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/dashboard/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/dashboard/16.png');
+        }
+    }
+}
+
+.page-icons__Movist {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/movist/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/movist/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/movist/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/movist/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/movist/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/movist/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/movist/16.png');
+        }
+    }
+}
+
+.page-icons__Dashboard_2 {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(center);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/dashboard-2/sizes/16.png');
+        }
+        .a1.i__128-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/vars/1.png');
+        }
+        .a2.i__128-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/vars/2.png');
+        }
+        .a3.i__128-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/vars/3.png');
+        }
+        .a4.i__128-2x i {
+            background-image: url('../img/illustrations-content/dashboard-2/vars/4.png');
+        }
+    }
+}
+
+.page-icons__Globe {
+    background-color: #fff;
+    .tabs-content {
+        .Var-1 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/globe/a-512@2x.png');
+            }
+            .i__256-2x i {
+                background-image: url('../img/illustrations-content/globe/a-256@2x.png');
+            }
+            .i__128-2x i {
+                background-image: url('../img/illustrations-content/globe/a-128@2x.png');
+            }
+            .i__128 i {
+                background-image: url('../img/illustrations-content/globe/a-128.png');
+            }
+            .i__48 i {
+                background-image: url('../img/illustrations-content/globe/a-48.png');
+            }
+            .i__16-2x i {
+                background-image: url('../img/illustrations-content/globe/a-16@2x.png');
+            }
+            .i__16 i {
+                background-image: url('../img/illustrations-content/globe/a-16.png');
+            }
+        }
+        .Var-2 {
+            .i__512-2x i {
+                background-image: url('../img/illustrations-content/globe/b-512@2x.png');
+            }
+            .i__256-2x i {
+                background-image: url('../img/illustrations-content/globe/b-256@2x.png');
+            }
+            .i__128-2x i {
+                background-image: url('../img/illustrations-content/globe/b-128@2x.png');
+            }
+            .i__128 i {
+                background-image: url('../img/illustrations-content/globe/b-128.png');
+            }
+            .i__48 i {
+                background-image: url('../img/illustrations-content/globe/b-48.png');
+            }
+            .i__16-2x i {
+                background-image: url('../img/illustrations-content/globe/b-16@2x.png');
+            }
+            .i__16 i {
+                background-image: url('../img/illustrations-content/globe/b-16.png');
+            }
+        }
+    }
+    i.v1 {
+        left: 4px;
+        top: -2px;
+        position: absolute;
+        @include share(width, height, 16px);
+        display: block;
+        background-image: url('../img/illustrations-content/globe/a-16@2x.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations-content/globe/a-16.png') 1x,
+                      url('../img/illustrations-content/globe/a-16@2x.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations-content/globe/a-16.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations-content/globe/a-16.png') 1x,
+                    url('../img/illustrations-content/globe/a-16@2x.png') 2x);
+        }
+    }
+    i.v2 {
+        left: 4px;
+        top: -2px;
+        position: absolute;
+        @include share(width, height, 16px);
+        display: block;
+        background-image: url('../img/illustrations-content/globe/b-16@2x.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations-content/globe/b-16.png') 1x,
+                      url('../img/illustrations-content/globe/b-16@2x.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations-content/globe/b-16.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations-content/globe/b-16.png') 1x,
+                    url('../img/illustrations-content/globe/b-16@2x.png') 2x);
+        }
+    }
+}
+
+.page-icons__Disks {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            .i__128-2x {
+               @include share(width, min-width, 128px);
+            }
+        }
+        .a1.i__128-2x i {
+            background-image: url('../img/illustrations-content/disks/vars/1@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/disks/vars/1@1x.png') 1x,
+                      url('../img/illustrations-content/disks/vars/1@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/disks/vars/1@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/disks/vars/1@1x.png') 1x,
+                        url('../img/illustrations-content/disks/vars/1@2x.png') 2x);
+            }
+        }
+        .a2.i__128-2x i {
+            background-image: url('../img/illustrations-content/disks/vars/2@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/disks/vars/2@1x.png') 1x,
+                      url('../img/illustrations-content/disks/vars/2@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/disks/vars/2@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/disks/vars/2@1x.png') 1x,
+                        url('../img/illustrations-content/disks/vars/2@2x.png') 2x);
+            }
+        }
+        .a3.i__128-2x i {
+            background-image: url('../img/illustrations-content/disks/vars/3@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/disks/vars/3@1x.png') 1x,
+                      url('../img/illustrations-content/disks/vars/3@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/disks/vars/3@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/disks/vars/3@1x.png') 1x,
+                        url('../img/illustrations-content/disks/vars/3@2x.png') 2x);
+            }
+        }
+        .a4.i__128-2x i {
+            background-image: url('../img/illustrations-content/disks/vars/4@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/disks/vars/4@1x.png') 1x,
+                      url('../img/illustrations-content/disks/vars/4@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/disks/vars/4@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/disks/vars/4@1x.png') 1x,
+                        url('../img/illustrations-content/disks/vars/4@2x.png') 2x);
+            }
+        }
+        .a5.i__128-2x i {
+            background-image: url('../img/illustrations-content/disks/vars/5@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/disks/vars/5@1x.png') 1x,
+                      url('../img/illustrations-content/disks/vars/5@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/disks/vars/5@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/disks/vars/5@1x.png') 1x,
+                        url('../img/illustrations-content/disks/vars/5@2x.png') 2x);
+            }
+        }
+    }
+}
+
+.page-icons__Borderlands {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(center);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .icongrid.Mac .level-5 {
+        width: calc(100% + 2rem) !important;
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/2/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/2/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/2/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/Borderlands/2/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/2/32@2x.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/Borderlands/2/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/2/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/Borderlands/2/16.png');
+        }
+        .a1.i__128-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/1/128@2x.png');
+        }
+        .a2.i__128-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/2/128@2x.png');
+        }
+        .a3.i__128-2x i {
+            background-image: url('../img/illustrations-content/Borderlands/pre-sequel/128@2x.png');
+        }
+    }
+}
+
+.page-icons__Stores {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            .a1.i__128-2x, .a2.i__128-2x, .a3.i__128-2x, .a4.i__128-2x {
+               @include share(width, min-width, 128px);
+            }
+        }
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/stores/sizes/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/stores/sizes/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/stores/sizes/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/stores/sizes/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/stores/sizes/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/stores/sizes/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/stores/sizes/16.png');
+        }
+
+        .a1.i__128-2x i {
+            background-image: url('../img/illustrations-content/stores/vars/1@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/stores/vars/1@1x.png') 1x,
+                      url('../img/illustrations-content/stores/vars/1@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/stores/1@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/stores/vars/1@1x.png') 1x,
+                        url('../img/illustrations-content/stores/vars/1@2x.png') 2x);
+            }
+        }
+        .a2.i__128-2x i {
+            background-image: url('../img/illustrations-content/stores/vars/2@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/storess/vars/2@1x.png') 1x,
+                      url('../img/illustrations-content/stores/vars/2@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/stores/2@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/stores/vars/2@1x.png') 1x,
+                        url('../img/illustrations-content/stores/vars/2@2x.png') 2x);
+            }
+        }
+        .a3.i__128-2x i {
+            background-image: url('../img/illustrations-content/stores/vars/3@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/stores/vars/3@1x.png') 1x,
+                      url('../img/illustrations-content/stores/vars/3@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/stores/vars/3@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/stores/vars/3@1x.png') 1x,
+                        url('../img/illustrations-content/stores/vars/3@2x.png') 2x);
+            }
+        }
+        .a4.i__128-2x i {
+            background-image: url('../img/illustrations-content/stores/vars/4@2x.png');
+            background-image: -webkit-image-set(
+                      url('../img/illustrations-content/stores/vars/4@1x.png') 1x,
+                      url('../img/illustrations-content/stores/vars/4@2x.png') 2x);
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                background-image: url('../img/illustrations-content/stores/vars/4@1x.png');
+                background-image: -webkit-image-set(
+                        url('../img/illustrations-content/stores/vars/4@1x.png') 1x,
+                        url('../img/illustrations-content/stores/vars/4@2x.png') 2x);
+            }
+        }
+    }
+}
+
+.page-icons__Sparrow {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(center);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/sparrow/sizes/16.png');
+        }
+        .a1.i__128-2x i {
+            background-image: url('../img/illustrations-content/sparrow/vars/1.png');
+        }
+        .a2.i__128-2x i {
+            background-image: url('../img/illustrations-content/sparrow/vars/2.png');
+        }
+        .a3.i__128-2x i {
+            background-image: url('../img/illustrations-content/sparrow/vars/3.png');
+        }
+        .a4.i__128-2x i {
+            background-image: url('../img/illustrations-content/sparrow/vars/4.png');
+        }
+    }
+}
+
+.page-icons__Metallen {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(center);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/metallen/sizes/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/metallen/sizes/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/metallen/sizes/128.png');
+        }
+        .i__48 i {
+            background-image: url('../img/illustrations-content/metallen/sizes/48.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/metallen/sizes/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/metallen/sizes/16.png');
+        }
+        .a1.i__128-2x i {
+            background-image: url('../img/illustrations-content/metallen/vars/1@2x.png');
+        }
+        .a2.i__128-2x i {
+            background-image: url('../img/illustrations-content/metallen/vars/2@2x.png');
+        }
+        .a3.i__128-2x i {
+            background-image: url('../img/illustrations-content/metallen/vars/3@2x.png');
+        }
+        .a4.i__128-2x i {
+            background-image: url('../img/illustrations-content/metallen/vars/4@2x.png');
+        }
+    }
+}
+
+.page-icons__Alumin {
+    background-color: #fff;
+    .iterations {
+        max-width: 52rem;
+        padding: 1rem 0;
+        .round {
+            @include display(flex);
+            @include flex-direction(row);
+            //@include justify-content(space-between);
+            @include flex-wrap(wrap);
+            @include justify-content(center);
+            position: relative;
+            span {
+                margin: .5rem;
+            }
+        }
+    }
+    .tabs-content {
+        .a1.i__128 i {
+            background-image: url('../img/illustrations-content/alumin/1.png');
+        }
+        .a2.i__128 i {
+            background-image: url('../img/illustrations-content/alumin/2.png');
+        }
+        .a3.i__128 i {
+            background-image: url('../img/illustrations-content/alumin/3.png');
+        }
+        .a4.i__128 i {
+            background-image: url('../img/illustrations-content/alumin/4.png');
+        }
+        .a5.i__128 i {
+            background-image: url('../img/illustrations-content/alumin/5.png');
+        }
+        .a6.i__128 i {
+            background-image: url('../img/illustrations-content/alumin/6.png');
+        }
+    }
+}
+
+.page-icons__Aqua_Folder {
+    background-color: #fff;
+    .tabs-content {
+        .i__512-2x i {
+            background-image: url('../img/illustrations-content/aqua_folder/512@2x.png');
+        }
+        .i__256-2x i {
+            background-image: url('../img/illustrations-content/aqua_folder/256@2x.png');
+        }
+        .i__128-2x i {
+            background-image: url('../img/illustrations-content/aqua_folder/128@2x.png');
+        }
+        .i__128 i {
+            background-image: url('../img/illustrations-content/aqua_folder/128.png');
+        }
+        .i__32-2x i {
+            background-image: url('../img/illustrations-content/aqua_folder/32@2x.png');
+        }
+        .i__16-2x i {
+            background-image: url('../img/illustrations-content/aqua_folder/16@2x.png');
+        }
+        .i__16 i {
+            background-image: url('../img/illustrations-content/aqua_folder/16.png');
+        }
+    }
+}
+// Illustrations Index
+
+.i__Pride {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Pride_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Pride_!256.png') 1x,
+                      url('../img/illustrations/Icons_Pride_!256@2x.png') 2x);
+   
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Pride_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Pride_!128.png') 1x,
+                        url('../img/illustrations/Icons_Pride_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Pride_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Pride_!128.png') 1x,
+                    url('../img/illustrations/Icons_Pride_!256.png') 2x);
+        }
+    }
+}  
+
+.i__Keycard {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Keycard_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Keycard_!256.png') 1x,
+                      url('../img/illustrations/Icons_Keycard_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Keycard_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Keycard_!128.png') 1x,
+                        url('../img/illustrations/Icons_Keycard_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Keycard_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Keycard_!128.png') 1x,
+                    url('../img/illustrations/Icons_Keycard_!256.png') 2x);
+        }
+    }
+}
+
+.i__Keycard_iOS {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Keycard_iOS_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Keycard_iOS_!256.png') 1x,
+                      url('../img/illustrations/Icons_Keycard_iOS_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Keycard_iOS_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Keycard_iOS_!128.png') 1x,
+                        url('../img/illustrations/Icons_Keycard_iOS_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Keycard_iOS_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Keycard_iOS_!128.png') 1x,
+                    url('../img/illustrations/Icons_Keycard_iOS_!256.png') 2x);
+        }
+    }
+}
+
+.i__Analog {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Analog_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Analog_!256.png') 1x,
+                      url('../img/illustrations/Icons_Analog_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Analog_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Analog_!128.png') 1x,
+                        url('../img/illustrations/Icons_Analog_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Analog_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Analog_!128.png') 1x,
+                    url('../img/illustrations/Icons_Analog_!256.png') 2x);
+        }
+    }
+}
+
+.i__Analog_iOS {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Analog_iOS_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Analog_iOS_!256.png') 1x,
+                      url('../img/illustrations/Icons_Analog_iOS_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Analog_iOS_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Analog_iOS_!128.png') 1x,
+                        url('../img/illustrations/Icons_Analog_iOS_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Analog_iOS_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Analog_iOS_!128.png') 1x,
+                    url('../img/illustrations/Icons_Analog_iOS_!256.png') 2x);
+        }
+    }
+}
+
+.i__Dell {
+    height: 8rem;
+    width: 24rem;
+    background-image: url('../img/illustrations/Icons_Dell_284x128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Dell_284x128.png') 1x,
+                      url('../img/illustrations/Icons_Dell_284x128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Dell_284x128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Dell_284x128.png') 1x, 
+                      url('../img/illustrations/Icons_Dell_284x1282x.png') 2x);    
+    }
+}
+
+.i__SmallChange {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_SmallChange_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_SmallChange_!256.png') 1x,
+                      url('../img/illustrations/Icons_SmallChange_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_SmallChange_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_SmallChange_!256.png') 1x, 
+                      url('../img/illustrations/Icons_SmallChange_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_SmallChange_!256.png');
+        background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_SmallChange_!256.png') 1x,
+                          url('../img/illustrations/Icons_SmallChange_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_SmallChange_!256.png');
+            background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_SmallChange_!256.png') 1x, 
+                          url('../img/illustrations/Icons_SmallChange_!256.png') 2x);    
+        }
+    }
+}
+
+.i__Kismet {
+    height: 16rem;
+    width: 24rem;
+    background-image: url('../img/illustrations/Icons_Kismet_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Kismet_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Kismet_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Kismet_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Kismet_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Kismet_!256@2x.png') 2x);    
+    }
+}
+
+.i__Rougemark_Bow {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Rougemark_Bow_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Rougemark_Bow_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Rougemark_Bow_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Rougemark_Bow_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Rougemark_Bow_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Rougemark_Bow_!256@2x.png') 2x);    
+    }
+}
+
+.i__Rougemark {
+    height: 16rem;
+    width: 24rem;
+    background-size: contain;
+    background-image: url('../img/illustrations/Icons_Rougemark_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Rougemark_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Rougemark_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Rougemark_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Rougemark_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Rougemark_!256@2x.png') 2x);    
+    }
+}
+
+.i__Zello_Web {
+    height: 16rem;
+    width: 24.25rem;
+    background-image: url('../img/illustrations/Icons_Zello_Web_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Zello_Web_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        height: 8rem;
+        width: 12.125rem;
+        background-image: url('../img/illustrations/Icons_Zello_Web_!256.png');
+        background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_Zello_Web_!256.png') 1x,
+                          url('../img/illustrations/Icons_Zello_Web_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Zello_Web_!256.png');
+            background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_Zello_Web_!256.png') 1x, 
+                          url('../img/illustrations/Icons_Zello_Web_!256.png') 2x);    
+        }
+    }
+}
+
+.i__Zello_Iconsys {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Zello_iconsys_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_iconsys_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_iconsys_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Zello_iconsys_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_iconsys_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_iconsys_!256@2x.png') 2x);    
+    }
+}
+
+.i__Zello_Accessories {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Zello_Accessories_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Accessories_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Accessories_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Zello_Accessories_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Accessories_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Accessories_!256@2x.png') 2x);    
+    }
+}
+
+.i__toolbaricons {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_toolbaricons_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_toolbaricons_!256.png') 1x, 
+                      url('../img/illustrations/Icons_toolbaricons_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_toolbaricons_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_toolbaricons_!256.png') 1x, 
+                      url('../img/illustrations/Icons_toolbaricons_!256@2x.png') 2x);    
+    }
+}
+
+.i__Flaunt {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Flaunt_1_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Flaunt_1_!256.png') 1x,
+                      url('../img/illustrations/Icons_Flaunt_1_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Flaunt_1_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Flaunt_1_!128.png') 1x,
+                        url('../img/illustrations/Icons_Flaunt_1_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Flaunt_1_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Flaunt_1_!128.png') 1x,
+                    url('../img/illustrations/Icons_Flaunt_1_!256.png') 2x);
+        }
+    }
+}
+
+.i__PicPicBoom {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_PicPicBoom_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_PicPicBoom_!256.png') 1x,
+                      url('../img/illustrations/Icons_PicPicBoom_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_PicPicBoom_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_PicPicBoom_!128.png') 1x,
+                        url('../img/illustrations/Icons_PicPicBoom_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_PicPicBoom_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_PicPicBoom_!128.png') 1x,
+                    url('../img/illustrations/Icons_PicPicBoom_!256.png') 2x);
+        }
+    }
+}
+
+.i__Social_1 {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_Social_1_!120.png');
+}
+
+.i__Social_2 {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_Social_2_!120.png');
+}
+
+.i__Azul {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_Azul_!120.png');
+}
+
+.i__FailureGames {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_FailureGames_!120.png');
+}
+
+.i__Invite {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_Invite_!120.png');
+}
+
+.i__OnTap {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_OnTap_!120.png');
+}
+
+.i__Flaunt_2 {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_Flaunt_2_!120.png');
+}
+
+.i__Shuzzle {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_Shuzzle_!120.png');
+}
+
+.i__TasteBud_Icon {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_TasteBud_!120.png');
+}
+
+.i__TasteBud_Icon_Internal {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_TasteBud_internal_!120.png');
+}
+
+.i__PicPicBoom_2 {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_PicPicBoom_2_!120.png');
+}
+
+.i__MediaPlayer {
+    @extend %s-120;
+    background-image: url('../img/illustrations/Icons_MediaPlayer_!120.png');
+}
+
+.i__TB_Cards {
+    width: 16rem;
+    height: 8rem;
+    background-image: url('../img/illustrations/Icons_TasteBud_creditcards_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_creditcards_!128.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_creditcards_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TasteBud_creditcards_!128.png');
+    }
+}
+
+.i__Groupchat {
+    @include share(width, height, 16rem);
+    background-size: contain;
+    background-image: url('../img/illustrations/Icons_Groupchat_!Dribbble@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Groupchat_!Dribbble.png') 1x, 
+                      url('../img/illustrations/Icons_Groupchat_!Dribbble@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Groupchat_!Dribbble.png');
+        background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_Elephant_!Dribbble.png') 1x, 
+                          url('../img/illustrations/Icons_Elephant_!Dribbble@2x.png') 2x);
+    }
+}
+
+.i__TasteBud_Glyphs {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_TasteBud_Glyphs@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Glyphs.png') 1x,
+                      url('../img/illustrations/Icons_TasteBud_Glyphs@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TasteBud_Glyphs.png');
+        background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_TasteBud_Glyphs.png') 1x, 
+                          url('../img/illustrations/Icons_TasteBud_Glyphs@2x.png') 2x);
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        margin-bottom: -2rem;
+    }
+}
+
+.i__GCC {
+    height: 16rem;
+    width: 24rem;
+    background-image: url('../img/illustrations/Icons_GCC_!384x256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_GCC_!384x256.png') 1x,
+                      url('../img/illustrations/Icons_GCC_!384x256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        height: 8rem;
+        width: 12rem;
+        background-image: url('../img/illustrations/Icons_GCC_!192x128.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_GCC_!192x128.png') 1x,
+                        url('../img/illustrations/Icons_GCC_!384x256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_GCC_!192x128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_GCC_!192x128.png') 1x,
+                    url('../img/illustrations/Icons_GCC_!384x256.png') 2x);
+        }
+    }
+}
+
+.i__Instawink {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Instawink_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Instawink_!256.png') 1x,
+                      url('../img/illustrations/Icons_Instawink_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Instawink_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Instawink_!128.png') 1x,
+                        url('../img/illustrations/Icons_Instawink_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Instawink_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Instawink_!128.png') 1x,
+                    url('../img/illustrations/Icons_Instawink_!256.png') 2x);
+        }
+    }
+}
+
+.i__FreeBee {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_FreeBee_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FreeBee_!256.png') 1x,
+                      url('../img/illustrations/Icons_FreeBee_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_FreeBee_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_FreeBee_!128.png') 1x,
+                        url('../img/illustrations/Icons_FreeBee_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_FreeBee_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_FreeBee_!128.png') 1x,
+                    url('../img/illustrations/Icons_FreeBee_!256.png') 2x);
+        }
+    }
+}
+
+.i__Answers {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Answers_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Answers_!256.png') 1x,
+                      url('../img/illustrations/Icons_Answers_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Answers_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Answers_!128.png') 1x,
+                        url('../img/illustrations/Icons_Answers_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Answers_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Answers_!128.png') 1x,
+                    url('../img/illustrations/Icons_Answers_!256.png') 2x);
+        }
+    }
+}
+
+.i__Thoughts {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Thoughts_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Thoughts_!256.png') 1x,
+                      url('../img/illustrations/Icons_Thoughts_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Thoughts_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Thoughts_!128.png') 1x,
+                        url('../img/illustrations/Icons_Thoughts_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Thoughts_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Thoughts_!128.png') 1x,
+                    url('../img/illustrations/Icons_Thoughts_!256.png') 2x);
+        }
+    }
+}
+
+.i__Notepad {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Notepad_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Notepad_!256.png') 1x,
+                      url('../img/illustrations/Icons_Notepad_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Notepad_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Notepad_!128.png') 1x,
+                        url('../img/illustrations/Icons_Notepad_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Notepad_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Notepad_!128.png') 1x,
+                    url('../img/illustrations/Icons_Notepad_!256.png') 2x);
+        }
+    }
+}
+
+.i__Diligence {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Diligence_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Diligence_!256.png') 1x,
+                      url('../img/illustrations/Icons_Diligence_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Diligence_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Diligence_!128.png') 1x,
+                        url('../img/illustrations/Icons_Diligence_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Diligence_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Diligence_!128.png') 1x,
+                    url('../img/illustrations/Icons_Diligence_!256.png') 2x);
+        }
+    }
+}
+
+.i__Battery_Monitor {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Battery_Monitor_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Battery_Monitor_!256.png') 1x,
+                      url('../img/illustrations/Icons_Battery_Monitor_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Battery_Monitor_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Battery_Monitor_!128.png') 1x,
+                        url('../img/illustrations/Icons_Battery_Monitor_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Battery_Monitor_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Battery_Monitor_!128.png') 1x,
+                    url('../img/illustrations/Icons_Battery_Monitor_!256.png') 2x);
+        }
+    }
+}
+
+.i__FavBook {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_FavBook_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FavBook_!128.png') 1x,
+                      url('../img/illustrations/Icons_FavBook_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Favbook_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Favbook_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Favbook_!128@2x.png') 2x);    
+    }
+}
+
+.i__Iconstructor {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Iconstructor_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Iconstructor_!128.png') 1x,
+                      url('../img/illustrations/Icons_Iconstructor_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Iconstructor_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Iconstructor_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Iconstructor_!128@2x.png') 2x);    
+    }
+}
+
+.i__Plugin {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Plugin_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Plugin_!128.png') 1x,
+                      url('../img/illustrations/Icons_Plugin_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Plugin_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Plugin_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Plugin_!128@2x.png') 2x);    
+    }
+}
+
+.i__Ghost {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Ghost_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Ghost_!128.png') 1x,
+                      url('../img/illustrations/Icons_Ghost_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Ghost_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Ghost_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Ghost_!128@2x.png') 2x);    
+    }
+}
+
+.i__Ghost_Alt {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Ghost_Alt_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Ghost_Alt_!128.png') 1x,
+                      url('../img/illustrations/Icons_Ghost_Alt_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Ghost_Alt_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Ghost_Alt_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Ghost_Alt_!128@2x.png') 2x);    
+    }
+}
+
+.i__Compteur {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Compteur_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Compteur_!128.png') 1x,
+                      url('../img/illustrations/Icons_Compteur_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Compteur_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Compteur_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Compteur_!128@2x.png') 2x);    
+    }
+}
+
+.i__Stickies {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Stickies_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Stickies_!128.png') 1x,
+                      url('../img/illustrations/Icons_Stickies_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Stickies_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Stickies_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Stickies_!128@2x.png') 2x);    
+    }
+}
+
+.i__TB_MustachesAndMargaritas {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!256@2x.png');
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!128.png') 1x,
+                        url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!128.png') 1x,
+                    url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!256.png') 2x);
+        }
+    }
+}
+
+.i__TB_Giftbox {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_TasteBud_Giftbox_!256@2x.png');
+    background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_TasteBud_Giftbox_!256.png') 1x,
+                        url('../img/illustrations/Icons_TasteBud_Giftbox_!256@2x.png') 2x);
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_TasteBud_Giftbox_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_TasteBud_Giftbox_!128.png') 1x,
+                        url('../img/illustrations/Icons_TasteBud_Giftbox_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_TasteBud_Giftbox_!128.png') 1x,
+                    url('../img/illustrations/Icons_TasteBud_Giftbox_!256.png') 2x);
+        }
+    }
+}
+
+.i__TB_Fork {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_TasteBud_Fork_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Fork_!256.png') 1x,
+                      url('../img/illustrations/Icons_TasteBud_Fork_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TasteBud_Fork_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Fork_!256.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Fork_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_TasteBud_Fork_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Fork_!256.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Fork_!256@2x.png') 2x);    
+    }
+}
+
+.i__TB_Star {
+    @include share(width, height, 22.5em);
+    background-image: url('../img/illustrations/Icons_TasteBud_Star_!360@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Star_!360.png') 1x,
+                      url('../img/illustrations/Icons_TasteBud_Star_!360@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TasteBud_Star_!360.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Star_!360.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Star_!360@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 11.25rem);
+        background-image: url('../img/illustrations/Icons_TasteBud_Star_!360.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Star_!360.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Star_!360@2x.png') 2x);     
+    }
+}
+
+.i__TB_Purchases {
+    @include share(width, height, 22.5em);
+    background-image: url('../img/illustrations/Icons_TasteBud_Purchases_!360@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Purchases_!360.png') 1x,
+                      url('../img/illustrations/Icons_TasteBud_Purchases_!360@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TasteBud_Purchases_!360.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Purchases_!360.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Purchases_!360@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 11.25rem);
+        background-image: url('../img/illustrations/Icons_TasteBud_Purchases_!360.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Purchases_!360.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Purchases_!360@2x.png') 2x);    
+    }
+}
+
+.i__TB_Wallet {
+    @include share(width, height, 22.5em);
+    background-image: url('../img/illustrations/Icons_TasteBud_Wallet_!360@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Wallet_!360.png') 1x,
+                      url('../img/illustrations/Icons_TasteBud_Wallet_!360@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TasteBud_Wallet_!360.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Wallet_!360.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Wallet_!360@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 11.25rem);
+        background-image: url('../img/illustrations/Icons_TasteBud_Wallet_!360.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TasteBud_Wallet_!360.png') 1x, 
+                      url('../img/illustrations/Icons_TasteBud_Wallet_!360@2x.png') 2x);      
+    }
+}
+
+.i__FileTouchManager_1 {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_FileTouchManager_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FileTouchManager_!256.png') 1x,
+                      url('../img/illustrations/Icons_FileTouchManager_!256@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_FileTouchManager_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FileTouchManager_!256.png') 1x, 
+                      url('../img/illustrations/Icons_FileTouchManager_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_FileTouchManager_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FileTouchManager_!256.png') 1x, 
+                      url('../img/illustrations/Icons_FileTouchManager_!256@2x.png') 2x);       
+    }
+}
+
+.i__Zello_lg1 {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Zello_Web_lg1_!256@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg1_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg1_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg1_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg1_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg1_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg1_!256@2x.png') 2x);         
+    }
+}
+
+.i__Zello_lg2 {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Zello_Web_lg2_!256@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg2_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg2_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg2_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg2_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg2_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg2_!256@2x.png') 2x);         
+    }
+}
+
+.i__Zello_lg3 {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Zello_Web_lg3_!256@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg3_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg3_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg3_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg3_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg3_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg3_!256@2x.png') 2x);         
+    }
+}
+
+.i__Zello_lg4 {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Zello_Web_lg4_!256@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        //@include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg4_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg4_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg4_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8rem);
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg4_!256.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Zello_Web_lg4_!256.png') 1x, 
+                      url('../img/illustrations/Icons_Zello_Web_lg4_!256@2x.png') 2x);         
+    }
+}
+
+.i__FileTouchManager_2 {
+    // because no 1x/2x diff
+    width: 280px;
+    height: 140px;
+    background-image: url('../img/illustrations/Icons_FileTouchManager_2.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        width: 560px;
+        height: 280px;  
+    }
+}
+
+.i__Arex_1 {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Arex_1_!512@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Arex_1_!512.png') 1x,
+                      url('../img/illustrations/Icons_Arex_1_!512@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Arex_1_!512.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Arex_1_!512.png') 1x, 
+                      url('../img/illustrations/Icons_Arex_1_!512@2x.png') 2x);    
+    }
+}
+
+.i__Arex_2 {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Arex_2_!512@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Arex_2_!512.png') 1x,
+                      url('../img/illustrations/Icons_Arex_2_!512@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Arex_2_!512.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Arex_2_!512.png') 1x, 
+                      url('../img/illustrations/Icons_Arex_2_!512@2x.png') 2x);    
+    }
+}
+
+.i__Attune {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Attune_!512@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Attune_!512.png') 1x,
+                      url('../img/illustrations/Icons_Attune_!512@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Attune_!512.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Attune_!512.png') 1x, 
+                      url('../img/illustrations/Icons_Attune_!512@2x.png') 2x);    
+    }
+}
+
+.i__Juliette_1 {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Juliette_1_!512@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Juliette_1_!512.png') 1x,
+                      url('../img/illustrations/Icons_Juliette_1_!512@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Juliette_1_!512.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Juliette_1_!512.png') 1x, 
+                      url('../img/illustrations/Icons_Juliette_1_!512@2x.png') 2x);    
+    }
+}
+
+.i__Juliette_2 {
+    @include share(width, height, 114px);
+    background-image: url('../img/illustrations/Icons_Juliette_2_!114@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Juliette_2_!114.png') 1x,
+                      url('../img/illustrations/Icons_Juliette_2_!114@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Juliette_2_!114.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Juliette_2_!114.png') 1x, 
+                      url('../img/illustrations/Icons_Juliette_2_!114@2x.png') 2x);    
+    }
+}
+
+.i__Juliette_3 {
+    @include share(width, height, 114px);
+    background-image: url('../img/illustrations/Icons_Juliette_3_!114@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Juliette_3_!114.png') 1x,
+                      url('../img/illustrations/Icons_Juliette_3_!114@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Juliette_3_!114.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Juliette_3_!114.png') 1x, 
+                      url('../img/illustrations/Icons_Juliette_3_!114@2x.png') 2x);    
+    }
+}
+
+.i__FiveSquare {
+    @include share(width, height, 114px);
+    background-image: url('../img/illustrations/Icons_FiveSquare_!114@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FiveSquare_!114.png') 1x,
+                      url('../img/illustrations/Icons_FiveSquare_!114@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_FiveSquare_!114.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_FiveSquare_!114.png') 1x, 
+                      url('../img/illustrations/Icons_FiveSquare_!114@2x.png') 2x);    
+    }
+}
+
+.i__Scala {
+    height: 18.75em;
+    width: 56.25em;
+    background-size: contain;
+    background-image: url('../img/illustrations/Icons_LamyScala_!900x300@2x.png');
+    background-size: contain;
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_LamyScala_!900x300.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_LamyScala_!900x300.png') 1x, 
+                      url('../img/illustrations/Icons_LamyScala_!900x300@2x.png') 2x);    
+    }
+}
+
+.i__Eames_Elephant {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_Elephant_!Dribbble@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Elephant_!Dribbble.png') 1x, 
+                      url('../img/illustrations/Icons_Elephant_!Dribbble@2x.png') 2x);
+    background-size: contain;
+    @media screen and (-min-device-pixel-ratio: 1.5) { 
+        background-image: url('../img/illustrations/Icons_Elephant_!Dribbble.png');
+        background-image: -webkit-image-set(
+                          url('../img/illustrations/Icons_Elephant_!Dribbble.png') 1x, 
+                          url('../img/illustrations/Icons_Elephant_!Dribbble@2x.png') 2x);
+    }
+}
+
+.i__Pico {
+    height: 18.75em;
+    width: 56.25em;
+    background-size: contain;
+    background-image: url('../img/illustrations/Icons_LamyPico_!900x300@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_LamyPico_!900x300.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_LamyPico_!900x300.png') 1x, 
+                      url('../img/illustrations/Icons_LamyPico_!900x300@2x.png') 2x);    
+    }
+}
+
+.i__Studio {
+    height: 18.75em;
+    width: 56.25em;
+    background-size: contain;
+    background-image: url('../img/illustrations/Icons_LamyStudio_!900x300@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_LamyStudio_!900x300.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_LamyStudio_!900x300.png') 1x, 
+                      url('../img/illustrations/Icons_LamyStudio_!900x300@2x.png') 2x);    
+    }
+}
+
+.i__xMod {
+    @include share(width, height, 16rem);
+    background-image: url('../img/illustrations/Icons_xMod_!256@2x.png');
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_xMod_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_xMod_!128.png') 1x,
+                        url('../img/illustrations/Icons_xMod_!256.png') 2x);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_TasteBud_Mustaches&Margaritas_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_xMod_!128.png') 1x,
+                    url('../img/illustrations/Icons_xMod_!256.png') 2x);
+            // ADD ASSET
+        }
+    }
+}
+
+.i__old_iOS {
+    //this one is different because there's no 2x image
+    height: 150px;
+    width: 200px;
+    background-image: url('../img/illustrations/Icons_old_iOS_!Dribbble.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        height: 300px;
+        width: 400px;
+    }
+}
+
+.i__Slack {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Slack_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Slack_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Slack_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Slack_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Slack_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Slack_!128@2x.png') 2x);    
+    }
+}
+
+.i__Byword {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Byword_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Byword_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Byword_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Byword_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Byword_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Byword_!128@2x.png') 2x);    
+    }
+}
+
+.i__Borderlands {
+    height: 8rem;
+    width: 12rem;
+    background-image: url('../img/illustrations/Icons_Borderlands_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Borderlands_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Borderlands_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Borderlands_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Borderlands_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Borderlands_!128@2x.png') 2x);    
+    }
+}
+
+.i__Dashboard {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Dashboard_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Dashboard_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Dashboard_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Dashboard_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Dashboard_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Dashboard_!128@2x.png') 2x);    
+    }
+}
+
+.i__Globe {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Globe_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Globe_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Globe_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Globe_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Globe_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Globe_!128@2x.png') 2x);    
+    }
+}
+
+.i__Movist {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Movist_128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Movist_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Movist_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Movist_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Movist_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Movist_!128@2x.png') 2x);    
+    }
+}
+
+.i__Dashboard_2 {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_Dashboard_2_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Dashboard_2_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Dashboard_2_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Dashboard_2_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Dashboard_2_!128.png') 1x, 
+                      url('../img/illustrations/Icons_Dashboard_2_!128@2x.png') 2x);    
+    }
+}
+
+.i__Disc {
+    @include share(width, height, 4rem);
+    background-image: url('../img/illustrations/Icons_Disc_!64@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Disc_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Disc_!64@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Disc_!64.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Disc_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Disc_!64@2x.png') 2x);    
+    }
+}
+
+.i__Sparrow {
+    @include share(width, height, 4rem);
+    background-image: url('../img/illustrations/Icons_Sparrow_!64@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Sparrow_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Sparrow_!64@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Sparrow_!64.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Sparrow_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Sparrow_!64@2x.png') 2x);    
+    }
+}
+
+.i__TO {
+    @include share(width, height, 8rem);
+    background-image: url('../img/illustrations/Icons_TO_!128@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TO_!128.png') 1x, 
+                      url('../img/illustrations/Icons_TO_!128@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_TO_!128.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_TO_!128.png') 1x, 
+                      url('../img/illustrations/Icons_TO_!128@2x.png') 2x);    
+    }
+}
+
+.i__Stores {
+    @include share(width, height, 4rem);
+    background-image: url('../img/illustrations/Icons_Stores_!64@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Stores_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Stores_!64@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Stores_!64.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Stores_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Stores_!64@2x.png') 2x);    
+    }
+}
+
+.i__Aqua_Folders {
+    @include share(width, height, 4rem);
+    background-image: url('../img/illustrations/Icons_Folder_!64@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Folder_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Folder_!64@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Folder_!64.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Folder_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Folder_!64@2x.png') 2x);    
+    }
+}
+
+.i__Alumin {
+    @include share(width, height, 4rem);
+    background-image: url('../img/illustrations/Icons_Alumin_!64@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Alumin_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Alumin_!64@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Alumin_!64.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Alumin_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Alumin_!64@2x.png') 2x);    
+    }
+}
+
+.i__Metallen {
+    @include share(width, height, 4rem);
+    background-image: url('../img/illustrations/Icons_Metallen_!64@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Metallen_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Metallen_!64@2x.png') 2x);
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        background-image: url('../img/illustrations/Icons_Metallen_!64.png');
+        background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Metallen_!64.png') 1x, 
+                      url('../img/illustrations/Icons_Metallen_!64@2x.png') 2x);    
+    }
+}
+
+// not-content
+.mosaic__panel a {
+    padding: 2rem 0 0 0;
+    width: 100%;
+    height: calc(100% + 2rem);
+    margin-top: -2rem;
+    @include display(inline-flex);
+    @include justify-content(center);
+    @include align-items(center);
+    cursor: pointer;
+    cursor: zoom-in;
+    cursor: url('../img/cursor-zoom@2x.png');
+    @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+        cursor: url('../img/cursor-zoom.png');
+    }
+    cursor: -webkit-image-set(
+            url('../img/cursor-zoom.png') 1x,
+            url('../img/cursor-zoom@2x.png') 2x),
+            zoom-in;
+
+}
+.click-to-zoom {
+    padding: 0;
+}

@@ -1,0 +1,6 @@
+<svg width="32" height="32">
+    <g class="icon">
+        <rect id="_1" data-name="1" width="30" height="30" rx="3" ry="3"  stroke-width="2" transform="translate(1 1)"/>
+        <path id="_2" data-name="2"  d="M25,4a1,1,0,1,1-1,1A1,1,0,0,1,25,4Zm4,0a1,1,0,1,1-1,1A1,1,0,0,1,29,4Zm4,0a1,1,0,1,1-1,1A1,1,0,0,1,33,4ZM22,8H50V9H22V8ZM49,27l-2,2H46l3-3v1Zm0-4-6,6H42l7-7v1Z" transform="translate(-20)"/>
+    </g>
+</svg>

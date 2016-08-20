@@ -1,0 +1,388 @@
+@import "bourbon/bourbon";
+@import "_common";
+
+.illustration-grid__type-new-ios-icon {}
+.illustration-grid__type-old-mac-icon {}
+.illustration-grid__type-older-mac-icon {}
+        
+.tabs-content {
+    .icongrid {
+        text-align: left;
+        padding: 0;
+        position: relative;
+        width: auto;
+        max-width: 100%;
+    }
+    & > div:not(.icongrid) {
+        padding: 1rem 0;
+    }
+    & > .icongrid {
+        padding-bottom: 1rem;
+    }
+    h6 {
+        display: inline-block;
+        height: 1rem;
+        margin-bottom: .5rem;
+        margin-top: .5rem;
+        width: auto;
+        text-align: left;
+    }
+    //Mac Grid 1
+    .icongrid.Mac {
+        &.level-1 {
+            @include display(flex);
+            @include flex-direction(row);
+            box-sizing: content-box;
+            @media screen and (max-width: 52rem), screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
+                @include flex-direction(column);  
+            }
+        }
+        .level-2 {
+            max-width: 256px;
+            width: 256px;
+            box-sizing: content-box;
+            padding-left: 2rem;
+            @media screen and (max-width: 52rem) {
+                padding-left: 0; 
+                @include display(flex);
+                @include flex-direction(row);
+                @include justify-content(space-between);
+                max-width: intrinsic;
+                width: 100%;
+            }
+            @media screen and (max-width: 34rem) {
+                @include flex-direction(column);  
+                margin: 0 auto;
+                width: 256px;
+            }
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include display(flex);
+                @include flex-direction(row);
+                @include justify-content(center);
+                padding-left: 0;
+                max-width: 100%;
+                width: 1024px;
+            }
+        }
+        .level-3 {
+            @include display(flex);
+            @include flex-direction(row);
+            box-sizing: content-box;
+            @media screen and (max-width: 52rem), screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
+                padding-left: 2rem;
+            }
+            @media screen and (max-width: 34rem) {
+                padding-left: 1rem;
+            }
+        }
+        .level-4 {
+            width: 64px;
+            box-sizing: content-box;
+            padding-left: 2rem;
+            @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+                @include share(width, max-width, 128px);
+            }
+        }
+        .level-5 {
+            width: 100%;
+            @include display(flex);
+            @include flex-direction(row);
+            box-sizing: content-box;
+            padding-top: 2rem;
+            @include justify-content(space-between);
+        }
+    }
+    //iOS Grid 1
+    .icongrid.iOS, .icongrid.Android {
+        &.level-1 {
+            @include display(flex);
+            @include flex-direction(row);
+            box-sizing: content-box;
+            @media screen and (max-width: 52rem), screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
+                @include flex-direction(column);  
+            }
+        }
+        .level-2 {
+            max-width: 256px;
+            width: 256px;
+            box-sizing: content-box;
+            padding-left: 2rem;
+            @media screen and (max-width: 52rem), screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
+                padding-left: 0; 
+                @include display(flex);
+                @include flex-direction(column);
+                @include align-items(center);
+                max-width: intrinsic;
+                width: 100%;
+                max-width: 100%;
+            }
+
+        }
+        .level-3, .level-4 {
+            @include display(flex);
+            @include flex-direction(row);
+            box-sizing: content-box;
+            padding-top: 2rem;
+            h6 {
+                position: absolute;
+                margin-top: -1.5rem;
+            }
+            span:not(:first-of-type) {
+                margin-left: 1rem;
+            }
+        }
+    }
+    .array {
+        @include display(flex);
+        @include flex-direction(row);
+        @include align-content(center);
+        @include align-items(center);
+        @include justify-content(center);
+        max-width: 100%;
+        @include flex-wrap(wrap);
+        max-width: 34rem;
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
+            max-width: 66rem;
+        }
+        &.level-1 {
+            @include display(flex);
+            @include flex-direction(column);
+            .level-2 {
+                @include display(flex);
+                @include flex-direction(row);
+            }
+        }
+    }
+    // Image-wells 
+    span {
+        display: block;
+        i {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            padding-bottom: 100%;
+            background-size: contain
+        }
+    }
+    .i__512-2x {
+        width: 512px;
+        max-width: 100%;
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            width: 1024px;
+        }
+    }
+    .i__256-2x {
+        @include share(width, min-width, 256px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 512px);
+        }
+    }
+    .i__128-2x {
+        @include share(width, min-width, 128px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 256px);
+        }
+    }
+    .i__128 {
+        @include share(width, min-width, 64px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 128px);
+        }
+    }
+    .i__48 {
+        @include share(width, min-width, 24px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 48px);
+        }
+    }
+    .i__32-2x {
+        @include share(width, min-width, 32px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 64px);
+        }
+    }
+    .i__16-2x {
+        @include share(width, min-width, 16px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 32px);
+        }
+    }
+    .i__16 {
+        @include share(width, min-width, 8px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 16px);
+        }
+    }
+    .i__appstore-2x {
+        width: 512px;
+        max-width: 100%;
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            width: 1024px;
+        }
+    }
+    .i__appstore {
+        @include share(width, min-width, 256px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 512px);
+        }
+    }
+    .i__springboard-3x {
+        @include share(width, min-width, 90px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 180px);
+        }
+    }
+    .i__spotlight-3x {
+        @include share(width, min-width, 60px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 120px);
+        }
+    }
+    .i__settings-3x {
+        @include share(width, min-width, 44px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 88px);
+        }
+    }
+    .i__springboard-2x {
+        @include share(width, min-width, 60px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 120px);
+        }
+    }
+    .i__springboard-o-2x {
+        @include share(width, min-width, 57px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 114px);
+        }
+    }
+    .i__springboard-ipad-2x {
+        @include share(width, min-width, 76px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 152px);
+        }
+    }
+    .i__springboard-ipad-o-2x {
+        @include share(width, min-width, 72px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 144px);
+        }
+    }
+    .i__spotlight-ipad-o-2x {
+        @include share(width, min-width, 50px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 100px);
+        }
+    }
+    .i__spotlight-2x {
+        @include share(width, min-width, 40px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 80px);
+        }
+    }
+    .i__settings-2x {
+        @include share(width, min-width, 29px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 58px);
+        }
+    }
+    .i__springboard-1x {
+        @include share(width, min-width, 30px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 60px);
+        }
+    }
+    .i__springboard-o-1x {
+        @include share(width, min-width, 29px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 58px);
+        }
+    }
+    .i__springboard-ipad-1x {
+        @include share(width, min-width, 38px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 76px);
+        }
+    }
+    .i__springboard-ipad-o-1x {
+        @include share(width, min-width, 36px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 72px);
+        }
+    }
+    .i__spotlight-ipad-o-1x {
+        @include share(width, min-width, 25px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 50px);
+        }
+    }
+    .i__spotlight-1x {
+        @include share(width, min-width, 20px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 40px);
+        }
+    }
+    .i__settings-1x {
+        @include share(width, min-width, 15px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 30px);
+        }
+    }
+    .i__googleplay-2x {
+        width: 512px;
+        max-width: 100%;
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            width: 1024px;
+        }
+    }
+    .i__googleplay-1x {
+        @include share(width, min-width, 256px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 512px);
+        }
+    }
+    .i__launchericon-xxxhdpi {
+        @include share(width, min-width, 96px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 192px);
+        }
+    }
+    .i__launchericon-xxhdpi {
+        @include share(width, min-width, 72px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 144px);
+        }
+    }
+    .i__launchericon-xhdpi {
+        @include share(width, min-width, 48px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 96px);
+        }
+    }
+    .i__launchericon-hdpi {
+        @include share(width, min-width, 36px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 72px);
+        }
+    }
+    .i__launchericon-mdpi {
+        @include share(width, min-width, 24px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 48px);
+        }
+    }
+    .i__launchericon-ldpi {
+        @include share(width, min-width, 18px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 36px);
+        }
+    }
+    // not icons
+    .i__110-2x {
+        @include share(width, min-width, 110px);
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            @include share(width, min-width, 220px);
+        }
+    }
+}

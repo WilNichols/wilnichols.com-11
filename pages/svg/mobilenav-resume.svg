@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="Résumé_2x_" data-name="Résumé (2x)">
+    <path class="cls-1" d="M1339,529h-30a2,2,0,0,1-2-2V487a2,2,0,0,1,2-2h30a2,2,0,0,1,2,2v40A2,2,0,0,1,1339,529Zm-28-4h13v-2h-13v2Zm0-6h9v-2h-9v2Zm0-6h7v-2h-7v2Zm0-6h13v-2h-13v2Zm0-6h11v-2h-11v2Zm19-11h-12v4h12v-4Zm7,9h-9v2h9v-2Zm0,6h-7v2h7v-2Zm0,6h-13v2h13v-2Zm0,6h-11v2h11v-2Zm0,6h-7v2h7v-2Z" transform="translate(-1300 -483)"/>
+  </g>
+</svg>

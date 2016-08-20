@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="illustrations_2x_" data-name="illustrations (2x)">
+    <path class="cls-1" d="M1147.64,485.341c2.69,2.695-10.84,17.709-12.73,19.6s-10.56,12.333-14.87,8.02,6.12-12.986,8.01-14.881S1144.95,482.645,1147.64,485.341Zm-29.07,37.093a11.3,11.3,0,0,1-18.47,3.055c-0.04-.043-0.07-0.1-0.11-0.141a5.273,5.273,0,0,0,4.97-5.279h0A7.02,7.02,0,1,1,1118.57,522.434Z" transform="translate(-1100 -483)"/>
+  </g>
+</svg>

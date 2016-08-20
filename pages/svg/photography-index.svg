@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="photography-index">
+    <path id="_bg" data-name=" bg" class="cls-1" d="M517,309V295h14v14H517Zm0-32h14v14H517V277Zm-18,18h14v14H499V295Zm0-18h14v14H499V277Z" transform="translate(-499 -277)"/>
+  </g>
+</svg>
