@@ -24,26 +24,17 @@ $DE-breakpoint-medium: 750px !default;
 $DE-breakpoint-small: 320px !default;
 
 $rem: 16px;
-$red: #e16070;
-$orange: #ff7640;
-$yellow: #ffc640;
-$green: #60bf7f;
-$bluelight: #189afa;
-$blue: #2c97de;
-$purple: #b780ff;
-$pink: #f261b8;
 
-$blue3: #39d7e6;
-$green3: #60bf7f;
-$yellow3: #60bf7f;
-$orange3: #ff7640;
-$red3: #ff737e;
-$pink3: #f261b8;
-$purple3: #b780ff;
-
-$background: #f5f6f7;
-$slate: rgba(255,255,255,0.81);
-$slatetext: rgba(255,255,255,0.61);
+$c__red: #f26161;
+$c__orange: #ff9966;
+$c__yellow: #ffca80;
+$c__green: #77a58b;
+$c__teal: #84b5c4;
+$c__blue: #529bbb;
+$c__purple: #9f99b5;
+$c__pink: #dc6d8e;
+$c__slate: #8fa7bf;
+$c__slate_dark: #607080;
 $fonts: "proxima-nova", proxima nova, helvetica, arial, sans-serif;
 
 //this one exists in main.js too
