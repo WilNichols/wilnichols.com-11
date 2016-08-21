@@ -160,7 +160,7 @@ img {
     @include display(flex);
     @include align-items(center);
     @include align-content(justify);
-    min-height: 100vh;
+    min-height: 100%;
     
 }
 
@@ -255,7 +255,7 @@ nav {
             z-index: 0;
             a {
                 margin: 26px 0 25px 0;
-                padding: 1px .75rem 0 .75rem;
+                padding: 0 .75rem;
                 font-size: .875rem;
                 font-weight: 400;
                 height: 12px;
@@ -270,6 +270,12 @@ nav {
                     text-decoration: underline;
                 }
             }
+            &:first-of-type a {
+                padding: 0 .75rem 0 0;
+            }
+            &:last-of-type a {
+                padding: 0 0 0 .75rem;
+            }
         }
     }
 } 
@@ -280,7 +286,6 @@ nav {
     height: calc(100vh - 54px - 95px);
     z-index: 100;
     background: transparent;
-    //overflow: hidden;
     &.u__animate-in {
         background-color: rgba(255,255,255,1);
         pointer-events: all !important;
