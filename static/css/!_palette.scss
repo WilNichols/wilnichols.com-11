@@ -1,0 +1,420 @@
+@import "_common";
+
+/* Thank God for StackOverflow amirite */
+
+$scheme1: a #fff #C98B81 #AA01E6 url("../img/bg-a.jpg") url("../img/bg-a-s.jpg");
+$scheme2: b #fff #d7bbb1 #a6abaf url("../img/bg-b.jpg") url("../img/bg-b-s.jpg");
+$scheme3: c #fff #bf606e #262626 url("../img/bg-c.jpg") url("../img/bg-c-s.jpg");
+$scheme4: d #fff #da5230 #406a91 url("../img/bg-d.jpg") url("../img/bg-d-s.jpg");
+$scheme5: e #fff #00b6bf #3b393b url("../img/bg-e.jpg") url("../img/bg-e-s.jpg");
+$scheme6: f #fff #cf2a80 #e77436 url("../img/bg-f.jpg") url("../img/bg-f-s.jpg");
+
+
+$schemes: $scheme1 $scheme2 $scheme3 $scheme4 $scheme5 $scheme6;
+$pages: index products illustrations photography resume contact;
+
+@each $scheme in $schemes {
+    ##{nth($scheme, 1)}.index, ##{nth($scheme, 1)}.products, ##{nth($scheme, 1)}.illustrations, ##{nth($scheme, 1)}.resume, ##{nth($scheme, 1)}.contact {
+        .print-header {
+            @media print {
+                h1, h6 {
+                    color: nth($scheme, 3) !important;
+                }
+                .print-logo {
+                    svg path {
+                        fill: nth($scheme, 3);
+                    }
+                }
+            }
+        }
+        .portrait:after {
+            background-image: nth($scheme, 5);
+            @media only screen and (max-width: $m__viewport-med) {
+                opacity: 0.1;
+            }
+            @media screen and (-webkit-max-device-pixel-ratio: 1), (max-resolution: 96dpi) { 
+                background-image: nth($scheme, 6);
+            }
+        }
+        background-color: nth($scheme, 2);
+        color: nth($scheme, 4);
+        // b/c the cascade is genuinely easier to understand than this JS at this point
+        @each $page in $pages {
+            &.#{$page} {
+                ul.tabs a.#{$page}.path {
+                    background-color: rgba(nth($scheme, 3), 0.5); 
+                    color: #fff;
+                    &:hover {
+                        background-color: rgba(nth($scheme, 3), 0.5); 
+                    }
+                }
+                ul.ellipses li.popover a.#{$page}.path {
+                    background-color: rgba(nth($scheme, 3), 0.75); 
+                    color: #fff;
+                    box-shadow: inset 0 -1px 0 rgba(nth($scheme, 3), 0.5), inset 0 1px 0 rgba(nth($scheme, 3), 0.5);
+                }
+            }
+        }
+        .i__separator {
+            background-color: rgba(nth($scheme, 3), 0.5);
+        }
+        .pageloadanim {
+            background-color: nth($scheme, 2);
+        }
+        a, .mobile-menu-link {
+            color: nth($scheme, 3);
+        }
+        input, textarea, select {
+            color: rgba(0,0,0,0.4);
+            box-shadow: 0 1px 0 rgba(nth($scheme, 3), 0.5);
+            &:focus {
+                color: rgba(nth($scheme, 3), 1);
+                box-shadow: 0 1px 0 rgba(nth($scheme, 3), 1);
+            }
+            &[type=submit] {
+                box-shadow: none;
+            }
+        }
+        select:focus {
+            color: rgba(0,0,0,0.4);
+        }
+        input#submit {
+            color: rgba(nth($scheme, 3), 0.5);
+        }
+        .contact_send  {
+            color: rgba(nth($scheme, 3), 0.5);
+            &:hover{
+                color: rgba(nth($scheme, 3), 1);
+            }
+        }
+        g {
+            path {
+                fill: nth($scheme, 3);
+            }
+        }
+        .caret {
+            fill: nth($scheme, 3);
+        }
+        input#submit:hover {
+            color: nth($scheme, 3); 
+        }
+        // all SVGs in <a>s that aren't buttons
+        a:not(.button) {
+            path {
+                fill: rgba(nth($scheme, 3), 0.25);
+                &.icon-logo {
+                    fill: rgba(nth($scheme, 3), 0.5);
+                }
+            }
+            &:hover {
+                path {
+                    fill: rgba(nth($scheme, 3), 0.5);
+                    &.icon-logo {
+                        fill: rgba(nth($scheme, 3), 0.75);
+                    }
+                }                        
+            }
+        }
+        .slick-slide svg path {
+            fill: currentcolor !important;
+        }
+        ul.tabs, ul.select, ul.select.off {
+            //background-color: rgba(nth($scheme, 3), 0.1);
+            background-color: mix(nth($scheme, 3), #fff, 10%);
+            a.active {
+                background-color: rgba(nth($scheme, 3), 0.5); 
+                color: #fff;
+                &:hover {
+                    background-color: rgba(nth($scheme, 3), 0.5); 
+                }
+            }
+            li {
+                a {
+                    border-right: 1px solid mix(nth($scheme, 3), #fff, 50%);
+                    box-shadow: -1px 0 0 mix(nth($scheme, 3), #fff, 50%);
+                }
+                &.active, &.active:hover {
+                    background-color: rgba(nth($scheme, 3), 0.75);
+                    box-shadow: -1px 0 0 mix(nth($scheme, 3), #fff, 90%);
+                    border-right: 1px solid mix(nth($scheme, 3), #fff, 90%);
+                }
+                &:hover {
+                    background-color: rgba(nth($scheme, 3), 0.125);
+                    border-right: 1px solid mix(nth($scheme, 3), #fff, 33%);
+                    box-shadow: -1px 0 0 mix(nth($scheme, 3), #fff, 33%);
+                }
+            }
+            //lang sel 9removed)
+            &.select.on {
+                li {
+                    &:first-of-type {
+                        border-bottom: 1px solid mix(nth($scheme, 3), #fff, 33%);
+                    }
+                    &:not(:first-of-type):hover {
+                        box-shadow: 0 -2px 0 rgba(nth($scheme, 3), .125);
+                    }
+                }
+
+            }
+        }
+        
+        // not sure that this one still exists
+        
+        nav.mobile-nav {
+            ul {
+                li {
+                    a { 
+                        color: nth($scheme, 4);
+                        li.active & {
+                            color: nth($scheme, 3);
+                        } 
+                    }
+                }
+            }
+        }
+        
+        //this one definitely still exists
+        .mobile-menu {
+            a:hover, li.active a {
+                background-color: rgba(nth($scheme, 3), 0.75);
+                border-bottom-color: nth($scheme, 3);   
+            }
+            li:not(:first-of-type):hover {
+                box-shadow: 0 -1px 0 nth($scheme, 3);
+            }
+            a path {
+                fill: currentcolor !important;
+            }
+        }
+       article header {
+            background-image: linear-gradient(to top, mix(nth($scheme, 3), #fff, 2.5%), #fff);
+            box-shadow: 0 1px 0 0 rgba(nth($scheme, 3),0.125);
+            ul.tabs, ul.buttons {
+                box-shadow: inset 0 0 0 1px rgba(nth($scheme, 3),0.0625), 0 1px 1px 0 rgba(nth($scheme, 3),0.03125);
+            }
+        }
+        footer {
+            color: nth($scheme, 3); 
+        }
+        // buttons
+        .button {
+            background-color: rgba(nth($scheme, 3), 0.1);
+            &:hover {
+                background-color: rgba(nth($scheme, 3), 0.225);
+            }
+        }
+        ul.details li {
+            color: nth($scheme, 3);
+        }
+        .modal {
+            h1 {
+                color: nth($scheme, 3);
+            }
+            svg path {
+                fill: rgba(nth($scheme, 3), 0.75) !important;
+            }
+            a:hover {
+                svg path {
+                    fill: rgba(nth($scheme, 3), 1) !important;
+                }
+            }
+        }
+    }
+}
+
+// exceptions
+#a.index, #a.products, #a.illustrations, #a.contact {
+    color: #444 !important;
+    main p a {
+        color: #AA01E6 !important;
+    }
+}
+
+body.photography, body#photography {
+    background-color: #000;
+    color: rgba(#fff, 0.75);
+    // b/c the cascade is genuinely easier to understand than this JS at this point
+    .i__separator {
+        background-color: rgba(#fff, 0.5);
+    }
+    .pageloadanim {
+        background-color: #000 ;
+    }
+    a, .mobile-menu-link {
+        color: #fff;
+    }
+    g {
+        path {
+            fill: #000;
+        }
+    }
+
+    // all SVGs in <a>s that aren't buttons
+    a:not(.button) {
+        path {
+            fill: rgba(#fff, 0.75);
+            &.icon-logo {
+                fill: rgba(#fff, 0.75);
+            }
+        }
+        &:hover {
+            path {
+                fill: #fff;
+                &.icon-logo {
+                    fill: #fff;
+                }
+            }                        
+        }
+    }
+    nav {
+        background-color: rgba(0,0,0,0.5);
+        box-shadow: inset 0 1px 0 rgba(0,0,0,0.25), inset 0 2px 1px rgba(255, 255, 255, 0.125), inset 0 -1px 0 rgba(0, 0, 0, 0.125), 0 2px 4px rgba(0, 0, 0, 0.125);
+        -webkit-backdrop-filter: blur(1rem);
+        background-image: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.125));
+    }
+    ul.tabs {
+        background-image: linear-gradient(to top, transparent, rgba(255,255,255,0.25));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.125), 0 1px 2px rgba(0,0,0,0.25);
+    }
+    ul.tabs, ul.select, ul.select.off {
+        background-color: rgba(#fff, 0.25);
+        a.active {
+            background-color: #fff; 
+            color: #000;
+            &:hover {
+                background-color: rgba(#fff, 0.875); 
+            }
+        }
+        li {
+            a {
+                border-right: 1px solid mix(#000, #fff, 33%);
+                box-shadow: -1px 0 0 mix(#000, #fff, 33%);
+            }
+            &.active, &.active:hover {
+                background-color: rgba(#fff, 0.33);
+                box-shadow: -1px 0 0 mix(#000, #fff, 20%);
+                border-right: 1px solid mix(#000, #fff, 20%);
+            }
+            &:hover {
+                background-color: rgba(#fff, 0.125);
+                border-right: 1px solid mix(#000, #fff, 33%);
+                box-shadow: -1px 0 0 mix(#000, #fff, 33%);
+            }
+        }
+        //lang sel 9removed)
+        &.select.on {
+            li {
+                &:first-of-type {
+                    border-bottom: 1px solid mix(#000, #fff, 33%);
+                }
+                &:not(:first-of-type):hover {
+                    box-shadow: 0 -2px 0 rgba(#000, .125);
+                }
+            }
+
+        }
+    }
+    //this one definitely still exists
+    .mobile-menu {
+        a {
+            color: rgba(#000, 0.75);
+        }
+        a:hover, li.active a {
+            background-color: rgba(#000, 0.75);
+            border-bottom-color: #000;   
+        }
+        li:not(:first-of-type):hover {
+            box-shadow: 0 -1px 0 #000;
+        }
+        a path {
+            fill: currentcolor !important;
+        }
+    }
+    
+    footer {
+        color: #fff; 
+    }
+    // buttons
+    .button {
+        background-color: rgba(#fff, 0.1);
+        &:hover {
+            background-color: rgba(#fff, 0.225);
+        }
+    }
+}
+ /*body.illustrations, body#illustations {
+    nav span.logo a.home svg path {
+        fill: rgba(#d8f9ff, 0.5);
+    }
+    nav span.logo a.home:hover svg path {
+        fill: rgba(#d8f9ff, 0.75);
+    }
+    nav ul.tabs, ul.select, ul.select.off {
+        background-color: rgba(#d8f9ff, 0.25) !important;
+        a.active {
+            background-color: #fff; 
+            color: #000;
+            &:hover {
+                background-color: rgba(#d8f9ff, 0.875); 
+            }
+        }
+        li {
+            a {
+                border-right: 1px solid mix(#405580, #d8f9ff, 50%);
+                box-shadow: -1px 0 0 mix(#405580, #d8f9ff, 50%);
+                color: #d8f9ff;
+            }
+            &.active, &.active:hover {
+                background-color: rgba(#d8f9ff, 0.33) !important;
+                box-shadow: -1px 0 0 mix(#405580, #d8f9ff, 33%);
+                border-right: 1px solid mix(#405580, #d8f9ff, 33%);
+            }
+            &:hover {
+                background-color: rgba(#d8f9ff, 0.125) !important;
+                border-right: 1px solid mix(#405580, #d8f9ff, 50%) ;
+                box-shadow: -1px 0 0 mix(#405580, #d8f9ff, 50%);
+            }
+        }
+        //lang sel 9removed)
+        &.select.on {
+            li {
+                &:first-of-type {
+                    border-bottom: 1px solid mix(#405580, #d8f9ff, 33%);
+                }
+                &:not(:first-of-type):hover {
+                    box-shadow: 0 -2px 0 rgba(#405580, .125);
+                }
+            }
+
+        }
+    }
+    //this one definitely still exists
+    .mobile-menu {
+        a {
+            color: rgba(#000, 0.75);
+        }
+        a:hover, li.active a {
+            background-color: rgba(#000, 0.75);
+            border-bottom-color: #000;   
+        }
+        li:not(:first-of-type):hover {
+            box-shadow: 0 -1px 0 #000;
+        }
+        a path {
+            fill: currentcolor !important;
+        }
+    }
+    .mobile-menu-link {
+        color: #fff;
+    }
+    footer {
+        color: #fff; 
+    }
+    // buttons
+    .button {
+        background-color: rgba(#fff, 0.1);
+        &:hover {
+            background-color: rgba(#fff, 0.225);
+        }
+    }
+} */

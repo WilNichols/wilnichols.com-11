@@ -3,8 +3,6 @@
 
 @import "_keyframes";
 
-@import "_palette";
-
 @page {
     size: auto;   /* auto is the initial value */
     margin: 0;  /* this affects the margin in the printer settings */
@@ -866,6 +864,8 @@ html.no-js {
     display: block;
     content: '';
     z-index: -1;
+    background-image: url('../img/portrait.jpg');
+    opacity: 0.5;
     @media print {
         display: none;
     }
