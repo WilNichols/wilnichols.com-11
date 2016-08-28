@@ -1,0 +1,170 @@
+@import "bourbon/bourbon";
+@import "_common";
+
+body.contact {
+    span.logo {
+        background-color: $c__pink;
+    }
+    .wrapper.u__align-items-center {
+        @media screen and (max-height: 52rem) {
+            @include align-items(flex-start);
+            padding: 54px 1rem;
+        }
+    }
+    .load {
+        min-height: 35rem;
+    }
+    .fixed-width-centered-container {
+        margin: 0 auto;
+        padding: 0 $DE-gutter-width;
+        max-width: 480px;
+        width: 100%;
+        min-width: 320px;
+        box-sizing: border-box;
+    }
+    form#contact {
+        position: relative; 
+        display: block; 
+        text-align: left;
+        top: 0;
+        width: 100%;
+        font-size: 2rem;
+        @include animation(fade-in $duration ease-out);
+        .fieldset {
+            position: relative;
+        }
+        input:not([type="submit"]), textarea, select {
+            background-color: #fff;
+            border: none;
+            outline: none;
+            height: 3rem;
+            vertical-align: middle;
+            font-family: $fonts;
+            width: 100%;
+            padding: 0;
+            margin: .25rem 0;
+            box-sizing: border-box;
+            display: block;
+            font-size: 1rem;
+            box-shadow: 0 1px 0 0 rgba($c__slate, 0.25);
+            &:focus {
+                outline: none;
+                box-shadow: 0 1px 0 0 $c__pink;
+                color: $c__pink;
+            }
+        }
+        textarea {
+            width: 100%;
+            height: 9rem;
+            background: transparent;
+            margin-top: 2rem;
+            font-size: 1rem;
+            resize: none; 
+        }
+        .contact_send {
+            display: inline-block;
+            position: relative;
+            height: 2rem;
+            text-align: right;
+            margin: 1rem 0
+        }
+        svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            path {
+                fill: $c__slate;
+            }
+        }
+        input[name=email] {
+                width: calc(50% - 10px);
+                display: inline-block;
+            }
+        select[name=budget] {
+            width: calc(50% - 10px);
+            margin-left: 10px;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0;
+            background-image: url("/static/img/caret.svg");
+            background-repeat: no-repeat;
+            background-size: 17px 10px;
+            background-position: right center;
+             ::-webkit-input-placeholder {
+                 color: #ff0000;
+             }
+            
+        }
+        input#submit {
+            line-height: 2rem;
+            height: 2rem;
+            vertical-align: middle;
+            font-family: $fonts;
+            font-size: 1rem;
+            font-weight: 600;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            width: 11rem;
+            text-indent: 0;
+            &:hover {
+                & ~ svg path {
+                    &#stroke {
+                        fill: transparent;
+                    }
+                    &#fill {
+                        fill: currentcolor;
+                    }
+                }
+            }
+        }
+        input:invalid, textarea:invalid {
+            & ~ .contact_send {
+                opacity: .5;
+                pointer-events: none;
+            }
+            & ~ input#submit {
+                opacity: .5;
+                pointer-events: none;
+            }
+        }
+        input.error {
+            box-shadow: 0 1px 0 rgba($c__red, 0.5);
+            &:focus + label.error {
+                display: none;
+                
+            }
+        }
+        label.error {
+            font-size: 1rem;
+            font-weight: 600;
+            color: $c__red;
+            position: absolute;
+            border-radius: .25rem;
+            right: 0;
+            bottom: 1.375rem;
+            margin-top: .625rem;
+            &:nth-of-type(2) {
+                margin-bottom: -2rem;
+            }
+            &:nth-of-type(3) {
+                margin-bottom: -4rem;
+            }
+        }
+    }
+    #error, #success {
+        display: none;
+    }
+    #footer-fragment-contact {
+        li a:hover {
+            svg path { fill: $c__pink; }
+        }
+    }
+}

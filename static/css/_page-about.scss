@@ -2,11 +2,11 @@
 @import "_common";
 
 body.index {
-    span.logo svg .outer {
-        fill: $c__yellow;
+    span.logo {
+        background-color: $c__yellow;
     }
-    nav ul li a:hover {
-        color: $c__yellow;
+    .load {
+        min-height: 8rem;
     }
     .portrait:after {
         background-size: auto 100%;
