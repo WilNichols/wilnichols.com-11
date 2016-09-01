@@ -2,8 +2,14 @@
 @import "_common";
 
 body.contact {
-    span.logo {
+    header {
         background-color: $c__pink;
+    }
+    span.logo {
+        background-color: #fff;
+        path.glyph {
+            fill: $c__pink;
+        }
     }
     .wrapper.u__align-items-center {
         @media screen and (max-height: 52rem) {
@@ -11,8 +17,19 @@ body.contact {
             padding: 54px 1rem;
         }
     }
+    .header-text {
+        margin: 0 auto;
+        padding: 0 20px 3rem 20px;
+        max-width: 480px;
+        width: 100%;
+        min-width: 320px;
+        box-sizing: border-box;
+        color: #fff;
+    }
     .load {
-        min-height: 35rem;
+        min-height: 25rem;
+        @include display(flex);
+        @include flex-grow(1);
     }
     .fixed-width-centered-container {
         margin: 0 auto;
@@ -22,6 +39,17 @@ body.contact {
         min-width: 320px;
         box-sizing: border-box;
     }
+    nav ul li {
+        &.products, &.illustrations, &.photography, &.resume, &.contact {
+            & a, &.active a, & a:hover, &.active a:hover {
+                color: #fff;
+                &:before {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+
     form#contact {
         position: relative; 
         display: block; 

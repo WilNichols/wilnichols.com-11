@@ -2,9 +2,6 @@
 // 
 var duration = 200;
 var longduration = 800;
-var palettes = [ 'a', 'b', 'c', 'd', 'e', 'f' ];
-var randomnumber = Math.floor(Math.random()*palettes.length);
-var palette = [ 'a', 'b', 'c', 'd', 'e', 'f' ][randomnumber];
 
 //local var base = "http://localhost:8000";
 var base = "http://localhost:8000";
@@ -48,8 +45,10 @@ function setSubPageLinks () {
 }
 
 function pageChange (thisPageTemplate, thisPageName){
+    
+    
     console.log(thisPageName);
-    $("body").removeClass("loaded").addClass("loading").attr("id", palette);
+    $("body").removeClass("loaded").addClass("loading");
     $("footer .footer-load *").remove();
     $.get(thisPageTemplate, function(thisPageContents) {
         var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
@@ -57,7 +56,7 @@ function pageChange (thisPageTemplate, thisPageName){
         $("nav ul li a").parent("li").removeClass("active");
         $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         setTimeout(function(){
-            $("body").attr("class", "loaded " + thisPageName).attr("id", palette);
+            $("body").attr("class", "loaded " + thisPageName);
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
@@ -105,8 +104,9 @@ function carousel () {
 var router = new Navigo(root=null, useHash=false);
 
 $(document).ready(function() {
+    var navtemplate = base + "/components/component-nav.html"
+    
     console.log("Document Ready");
-    $("body").attr("id", palette);
     $('.mobile-menu-link').funcToggle('click', 
         function(event) {
             event.stopPropagation();
@@ -127,14 +127,16 @@ $(document).ready(function() {
             $('.mobile-menu').removeClass('visible u__anim-out');
         }, duration);
     });
-    //scope to nav; nav isn't dynalically loaded (yet).
-    $("nav a[data-navigo]").click(function() {
-        event.preventDefault();
-        router.navigate($(this).attr("href"));
+    
+    $.get(navtemplate, function(thisPageNav) {
+        console.log('inserted nav');
+        $("header").html(thisPageNav);
+        $("nav a[data-navigo]").click(function() {
+            event.preventDefault();
+            router.navigate($(this).attr("href"));
+        });
     });
-});
-
-    router.on({
+router.on({
         // PRODUCTS 
         
         '/products/': function () {
@@ -159,7 +161,7 @@ $(document).ready(function() {
             document.title = "Wil Nichols : Illustrations : " + thisSubPageName;
             
             // TO-DO: if hash matches id in tab-content, add active/inactive class there and in ul.tabs
-            $("body").attr("id", palette).removeClass("loaded").addClass(thisPageName + " illustration loading-sub " + thisSubPageName);
+            $("body").removeClass("loaded").addClass(thisPageName + " illustration loading-sub " + thisSubPageName);
             console.log(params.illustration);
             $.get(thisSubPageTemplate , function(thisSubPageContents) {
                 var thisSubPageMain = $(thisSubPageContents).filter("#pagejs-load-in-sub");
@@ -239,7 +241,28 @@ $(document).ready(function() {
             var thisPageName = "illustrations"
             
             document.title = "Wil Nichols : Illustrations";
-            pageChange(thisPageTemplate, thisPageName);
+            
+            $("body").removeClass("loaded").addClass("loading");
+            $("footer .footer-load *").remove();
+            $.get(thisPageTemplate, function(thisPageContents) {
+                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+                $("nav ul li a").parent("li").removeClass("active");
+                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+                setTimeout(function(){
+                    $("body").attr("class", "loaded " + thisPageName);
+                     console.log("headertext" + $(thisPageHeader).html());
+                    $("#pageheader-load").html(thisPageHeader);
+                    $(".load").html(thisPageMain);
+                    $("footer .footer-load").html(thisPageFooter);
+                    setSubPageLinks();
+                    carousel();
+                    setTimeout(function(){
+                        $("main").removeClass("from-sub");
+                    }, longduration);   
+                }, duration);  
+            });
         },
         
         // INDIVIUAL PHOTO
@@ -347,7 +370,28 @@ $(document).ready(function() {
             var thisPageName = "resume"
             
             document.title = "Wil Nichols : Résumé";
-            pageChange(thisPageTemplate, thisPageName);
+            
+            $("body").removeClass("loaded").addClass("loading");
+            $("footer .footer-load *").remove();
+            $.get(thisPageTemplate, function(thisPageContents) {
+                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+                $("nav ul li a").parent("li").removeClass("active");
+                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+                setTimeout(function(){
+                    $("body").attr("class", "loaded " + thisPageName);
+                     console.log("headertext" + $(thisPageHeader).html());
+                    $("#pageheader-load").html(thisPageHeader);
+                    $(".load").html(thisPageMain);
+                    $("footer .footer-load").html(thisPageFooter);
+                    setSubPageLinks();
+                    carousel();
+                    setTimeout(function(){
+                        $("main").removeClass("from-sub");
+                    }, longduration);   
+                }, duration);  
+            });
         },
         
         // CONTACT
@@ -358,7 +402,29 @@ $(document).ready(function() {
             var thisPageName = "contact"
             
             document.title = "Wil Nichols : Contact";
-            pageChange(thisPageTemplate, thisPageName);
+            
+            $("body").removeClass("loaded").addClass("loading");
+            $("footer .footer-load *").remove();
+            $.get(thisPageTemplate, function(thisPageContents) {
+                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+                $("nav ul li a").parent("li").removeClass("active");
+                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+                setTimeout(function(){
+                    $("body").attr("class", "loaded " + thisPageName);
+                    console.log("headertext" + $(thisPageHeader).html());
+                    $("#pageheader-load").html(thisPageHeader);
+                    $(".load").html(thisPageMain);
+                    $("footer .footer-load").html(thisPageFooter);
+                    setSubPageLinks();
+                    carousel();
+                    setTimeout(function(){
+                        $("main").removeClass("from-sub");
+                    }, longduration);   
+                }, duration);  
+            });
+
         },
         
         // LANDING
@@ -377,3 +443,7 @@ $(document).ready(function() {
     });
 
 
+
+});
+
+    

@@ -2,8 +2,14 @@
 @import "_common";
 
 body.resume {
-    span.logo {
+    header {
         background-color: $c__blue;
+    }
+    span.logo {
+        background-color: #fff;
+        path.glyph {
+            fill: $c__blue;
+        }
     }
     .wrapper.u__align-items-center {
         @media screen and (max-height: 52rem) {
@@ -13,158 +19,203 @@ body.resume {
     }
     .load {
         height: auto;
+         @media print {
+            padding-bottom: 0;
+        }
     }
-    .fixed-width-centered-container {
-        margin: 0 auto;
-        padding: 0 $DE-gutter-width;
-        max-width: 480px;
-        width: 100%;
-        min-width: 320px;
-        box-sizing: border-box;
-    }
-    form#contact {
-        position: relative; 
-        display: block; 
-        text-align: left;
-        top: 0;
-        width: 100%;
-        font-size: 2rem;
-        @include animation(fade-in $duration ease-out);
-        .fieldset {
-            position: relative;
-        }
-        input:not([type="submit"]), textarea, select {
-            background-color: #fff;
-            border: none;
-            outline: none;
-            height: 3rem;
-            vertical-align: middle;
-            font-family: $fonts;
-            width: 100%;
-            padding: 0;
-            margin: .25rem 0;
-            box-sizing: border-box;
-            display: block;
-            font-size: 1rem;
-            box-shadow: 0 1px 0 0 rgba($c__slate, 0.25);
-            &:focus {
-                outline: none;
-                box-shadow: 0 1px 0 0 $c__pink;
-                color: $c__pink;
-            }
-        }
-        textarea {
-            width: 100%;
-            height: 9rem;
-            background: transparent;
-            margin-top: 2rem;
-            font-size: 1rem;
-            resize: none; 
-        }
-        .contact_send {
-            display: inline-block;
-            position: relative;
-            height: 2rem;
-            text-align: right;
-            margin: 1rem 0
-        }
-        svg {
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: -1;
-            path {
-                fill: $c__slate;
-            }
-        }
-        input[name=email] {
-                width: calc(50% - 10px);
-                display: inline-block;
-            }
-        select[name=budget] {
-            width: calc(50% - 10px);
-            margin-left: 10px;
-            display: inline-block;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            border-radius: 0;
-            background-image: url("/static/img/caret.svg");
-            background-repeat: no-repeat;
-            background-size: 17px 10px;
-            background-position: right center;
-             ::-webkit-input-placeholder {
-                 color: #ff0000;
-             }
-            
-        }
-        input#submit {
-            line-height: 2rem;
-            height: 2rem;
-            vertical-align: middle;
-            font-family: $fonts;
-            font-size: 1rem;
-            font-weight: 600;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            border: 0;
-            background: transparent;
-            cursor: pointer;
-            position: absolute;
-            top: 0;
-            width: 11rem;
-            text-indent: 0;
-            &:hover {
-                & ~ svg path {
-                    &#stroke {
-                        fill: transparent;
-                    }
-                    &#fill {
-                        fill: currentcolor;
-                    }
+    nav ul li {
+        &.products, &.illustrations, &.photography, &.resume, &.contact {
+            & a, &.active a, & a:hover, &.active a:hover {
+                color: #fff;
+                &:before {
+                    background-color: #fff;
                 }
             }
         }
-        input:invalid, textarea:invalid {
-            & ~ .contact_send {
-                opacity: .5;
-                pointer-events: none;
-            }
-            & ~ input#submit {
-                opacity: .5;
-                pointer-events: none;
-            }
-        }
-        input.error {
-            box-shadow: 0 1px 0 rgba($c__red, 0.5);
-            &:focus + label.error {
-                display: none;
-                
-            }
-        }
-        label.error {
-            font-size: 1rem;
-            font-weight: 600;
-            color: $c__red;
-            position: absolute;
-            border-radius: .25rem;
-            right: 0;
-            bottom: 1.375rem;
-            margin-top: .625rem;
-            &:nth-of-type(2) {
-                margin-bottom: -2rem;
-            }
-            &:nth-of-type(3) {
-                margin-bottom: -4rem;
-            }
-        }
     }
-    #error, #success {
+    .print-header {
         display: none;
     }
-    #footer-fragment-contact {
-        li a:hover {
-            svg path { fill: $c__pink; }
+    p {
+        font-size: 1rem;
+        color: $c__slate;
+        line-height: 1.75rem;
+        margin-bottom: 2.75rem;
+        position: relative;
+        em, h6, time {
+            color: $c__slate_dark !important;
+        }
+        time {
+            float: right;
+        }
+    }
+    h6 {
+        color: $c__slate_dark;
+        line-height: 1.75rem;
+        margin-bottom: 2.75rem;
+        margin-left: -2*$DE-gutter-width;
+        width: calc(100% + 20px);
+    }
+    .small-time {
+        display: none;
+    }
+    @media print {
+        
+        .print-header {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            font-size: 10pt !important;
+            margin: 30pt 0;
+            .paper__col--1-of-5 {
+                margin-left: -$DE-gutter-width;
+                height: 75pt;
+            }
+            .print-logo {
+                position: relative;
+                overflow: hidden;
+                text-align: right;
+                padding: 5.5pt 0;
+                svg {
+                    width: 64pt;
+                    height: 64pt;
+                }
+            }
+            
+            h1 {
+                display: block;
+                height: 75pt;
+                line-height: 75pt;
+                font-size: 32pt;
+                vertical-align: middle;
+                text-align: left;
+                padding-left: $DE-gutter-width;
+            }
+            .address:before, .citystatezip:before, .cell:before, .email:before, .homepage:before {
+                font-size: 10pt;
+                display: block;
+                height: 15pt;
+                color: $c__slate_dark;
+                text-align: right;
+                margin-right: -15px;
+                padding-top: 0 !important;
+                margin-top: 0;
+            }
+            .address:before {
+                content:'1506 Elm ST';
+                margin-top: -5pt;
+            }
+            .citystatezip:before {
+                content:'Georgetown, TX 78626';
+            }
+            .cell:before {
+                content:'512 . 635 . 3434';
+            }
+            .email:before {
+                content:'desk@wilnichols.com';
+            }
+            .homepage:before {
+                content:'www.wilnichols.com';
+                margin-bottom: 0;
+            }
+        }
+        a.linkedin {
+            display: none;
+        }
+        .reference-email {
+            display: block;
+        }
+        .reference-email:before,{
+            font-size: 10pt;
+            display: block;
+            height: 15pt;
+            width: 100%;
+            color: $c__slate_dark;
+        }
+        
+        .matt.reference-email:before {
+            content: 'mattpetri@gmail.com';
+        }
+        .sriram.reference-email:before {
+            content: 'sriram@trytastebud.com';
+        }
+        .allen.reference-email:before {
+            content: 'allenytsai@gmail.com';
+        }
+        p, h6 {
+           font-size: 10pt !important;
+           line-height: 15pt !important;
+           margin-bottom: 30pt !important;
+        }
+        em {
+            color: $c__slate_dark;
+            width: auto;
+            display: inline-block;
+        }
+        p {
+            color: rgba(0,0,0,0.5);
+        }
+        .heading {
+            margin-bottom: 7.5pt;
+        }
+        h6 {
+            padding: 0 !important;
+            vertical-align: top;
+
+        }
+        .small-time {
+            display: inline-block;
+            width: auto;
+            color: $c__slate_dark !important;
+            float: right;
+        }
+        .grid__col {
+            margin-bottom: 0;
+        }
+        .grid__col--2-of-12 {
+            display: none;
+            &.paper__col--1-of-5 {
+                display: inline-block;
+            }
+        }
+        .paper-footer {
+            position: absolute;
+            width: calc(100% - 1in);
+            height: 15pt;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            text-align: center;
+            margin-bottom: -30pt;
+            p {
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+    @media only screen and (max-width: $m__viewport-med) {
+        h6 {
+            text-align: left;
+            border-bottom: 1px solid rgba($c__slate,0.5);
+            padding-bottom: .5rem;
+            margin-bottom: 1rem;
+            margin-left: inherit;
+            width: 100%;
+        }
+        p {
+            padding-left: initial;
+        }
+        .grid__col {
+            margin-bottom: 0;
+        }
+        .grid__col--2-of-12 {
+            display: none;
+        }
+        .small-time {
+            display: block;
+            width: 100%;
+            color: rgba(0,0,0,0.75) !important;
         }
     }
 }

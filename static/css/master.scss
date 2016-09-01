@@ -8,6 +8,9 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 }
+p:empty, span:empty, div:empty {
+    display: none;
+}
 
 :root {
     overflow-x: hidden !important;
@@ -329,13 +332,19 @@ nav {
         }
     }
 } 
-   
+
+main {
+    @include display(flex);
+    @include flex-direction(column);
+    min-height: 100vh;
+}
+
 .load {
     position: static;
     /* viewport height minus footer height minue top nav height */
-    height: calc(100vh - 54px - 95px);
     z-index: 100;
     background: transparent;
+    height: auto;
     &.u__animate-in {
         background-color: rgba(255,255,255,1);
         pointer-events: all !important;
@@ -615,9 +624,6 @@ html.no-js {
 
 // products index 
 body.products {
-    main {
-        min-height: 100vh;
-    }
     nav, .load, {
         position: static;
     }
@@ -1246,215 +1252,6 @@ body.photography:not(.photography-sub) {
     }
 }
 
-// resume
-
-body.resume {
-    nav {
-//        -webkit-backdrop-filter: blur(.25rem);
-//        background-image: linear-gradient(to top, rgba(255,255,255,0), rgba(255, 255, 255, 0.75));
-    }
-    .load {
-        padding-bottom: 2rem;
-        position: static;
-        @media print {
-            padding-bottom: 0;
-        }
-    }
-    footer {
-        position: relative;
-        height: auto;
-        line-height: auto;
-        bottom: 0;
-    }
-    .print-header {
-        display: none;
-    }
-    p {
-        font-size: 1rem;
-        color: #808080;
-        line-height: 1.75rem;
-        margin-bottom: 2.75rem;
-        position: relative;
-        em, h6, time {
-            color: #000 !important;
-        }
-        time {
-            float: right;
-        }
-    }
-    .grid__col--2-of-12 {
-//        white-space: nowrap;
-    }
-    h6 {
-        color: #000;
-        line-height: 1.75rem;
-        margin-bottom: 2.75rem;
-        margin-left: -2*$DE-gutter-width;
-        width: calc(100% + 20px);
-    }
-    .small-time {
-        display: none;
-    }
-    @media print {
-        
-        .print-header {
-            display: inline-block;
-            position: relative;
-            width: 100%;
-            font-size: 10pt !important;
-            margin: 30pt 0;
-            .paper__col--1-of-5 {
-                margin-left: -$DE-gutter-width;
-                height: 75pt;
-            }
-            .print-logo {
-                position: relative;
-                overflow: hidden;
-                text-align: right;
-                padding: 5.5pt 0;
-                svg {
-                    width: 64pt;
-                    height: 64pt;
-                }
-            }
-            
-            h1 {
-                display: block;
-                height: 75pt;
-                line-height: 75pt;
-                font-size: 32pt;
-                vertical-align: middle;
-                text-align: left;
-                padding-left: $DE-gutter-width;
-            }
-            .address:before, .citystatezip:before, .cell:before, .email:before, .homepage:before {
-                font-size: 10pt;
-                display: block;
-                height: 15pt;
-                color: #000;
-                text-align: right;
-                margin-right: -15px;
-                padding-top: 0 !important;
-                margin-top: 0;
-            }
-            .address:before {
-                content:'1506 Elm ST';
-                margin-top: -5pt;
-            }
-            .citystatezip:before {
-                content:'Georgetown, TX 78626';
-            }
-            .cell:before {
-                content:'512 . 635 . 3434';
-            }
-            .email:before {
-                content:'desk@wilnichols.com';
-            }
-            .homepage:before {
-                content:'www.wilnichols.com';
-                margin-bottom: 0;
-            }
-        }
-        a.linkedin {
-            display: none;
-        }
-        .reference-email {
-            display: block;
-        }
-        .reference-email:before,{
-            font-size: 10pt;
-            display: block;
-            height: 15pt;
-            width: 100%;
-            color: #000;
-        }
-        
-        .matt.reference-email:before {
-            content: 'mattpetri@gmail.com';
-        }
-        .sriram.reference-email:before {
-            content: 'sriram@trytastebud.com';
-        }
-        .allen.reference-email:before {
-            content: 'allenytsai@gmail.com';
-        }
-        p, h6 {
-           font-size: 10pt !important;
-           line-height: 15pt !important;
-           margin-bottom: 30pt !important;
-        }
-        em {
-            color: #000;
-            width: auto;
-            display: inline-block;
-        }
-        p {
-            color: rgba(0,0,0,0.5);
-        }
-        .heading {
-            margin-bottom: 7.5pt;
-        }
-        h6 {
-            padding: 0 !important;
-            vertical-align: top;
-
-        }
-        .small-time {
-            display: inline-block;
-            width: auto;
-            color: #000 !important;
-            float: right;
-        }
-        .grid__col {
-            margin-bottom: 0;
-        }
-        .grid__col--2-of-12 {
-            display: none;
-            &.paper__col--1-of-5 {
-                display: inline-block;
-            }
-        }
-        .paper-footer {
-            position: absolute;
-            width: calc(100% - 1in);
-            height: 15pt;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: block;
-            text-align: center;
-            margin-bottom: -30pt;
-            p {
-                padding: 0;
-                margin: 0;
-            }
-        }
-    }
-    @media only screen and (max-width: $m__viewport-med) {
-        h6 {
-            text-align: left;
-            border-bottom: 1px solid rgba(0,0,0,0.125);
-            padding-bottom: .5rem;
-            margin-bottom: 1rem;
-            margin-left: inherit;
-            width: 100%;
-        }
-        p {
-            padding-left: initial;
-        }
-        .grid__col {
-            margin-bottom: 0;
-        }
-        .grid__col--2-of-12 {
-            display: none;
-        }
-        .small-time {
-            display: block;
-            width: 100%;
-            color: rgba(0,0,0,0.75) !important;
-        }
-    }
-}
 
 nav, nav *, footer, footer *, .head {
     -webkit-user-select: none !important;

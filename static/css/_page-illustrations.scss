@@ -1,7 +1,42 @@
 @import "bourbon/bourbon";
 @import "_common";
 
-
+body.illustrations {
+    header {
+        background-color: $c__orange;
+    }
+    span.logo {
+        background-color: #fff;
+        path.glyph {
+            fill: $c__orange;
+        }
+    }
+    nav ul li {
+        &.products, &.illustrations, &.photography, &.resume, &.contact {
+            & a, &.active a, & a:hover, &.active a:hover {
+                color: #fff;
+                &:before {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+    #pageheader-load {
+        text-align: center;
+    }
+    .header-text {
+        margin: 0 auto;
+        padding: 0 20px 3rem 20px;
+        width: auto;
+        box-sizing: border-box;
+        color: #fff;
+        display: inline-block;
+        text-align: left;
+        a {
+            font-weight: 600;
+        }
+    }
+}
 %s-120 {
     @include share(width, height, background-size, 3.75rem);
     // 1x break on viewport
