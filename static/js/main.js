@@ -354,10 +354,30 @@ router.on({
             var thisPageTemplate = base + "/components/page-photography.html"
             var thisPageName = "photography"
             
+            
             document.title = "Wil Nichols : Photography";
-            pageChange(thisPageTemplate, thisPageName);
-            $("body").attr("id", "photography");
-           
+            
+            $("body").removeClass("loaded").addClass("loading");
+            $("footer .footer-load *").remove();
+            $.get(thisPageTemplate, function(thisPageContents) {
+                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+                $("nav ul li a").parent("li").removeClass("active");
+                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+                setTimeout(function(){
+                    $("body").attr("class", "loaded " + thisPageName);
+                     console.log("headertext" + $(thisPageHeader).html());
+                    $("#pageheader-load").html(thisPageHeader);
+                    $(".load").html(thisPageMain);
+                    $("footer .footer-load").html(thisPageFooter);
+                    setSubPageLinks();
+                    carousel();
+                    setTimeout(function(){
+                        $("main").removeClass("from-sub");
+                    }, longduration);   
+                }, duration);  
+            });
         },
         
         // INDIVIUAL PHOTO
