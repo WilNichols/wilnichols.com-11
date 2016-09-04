@@ -2,6 +2,15 @@
 @import "_common";
 
 body.illustrations {
+    figure {
+        display: block;
+        @include share(width, height, 100%);
+        text-align: center;
+        @include display(inline-flex);
+        @include justify-content(center);
+        @include align-items(center);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03125)
+    }
     header {
         background-color: $c__orange;
     }
@@ -65,10 +74,10 @@ ul.details {
     bottom: 0;
     height: 1rem;
     line-height: 1rem;
+    left: 1rem;
     right: 0;
-    left: 0;
     margin: 0 auto;
-    width: calc(100% - 2rem);
+    width: calc(100% - 3rem);
     box-sizing: content-box;
     opacity: 0;
     padding: 1rem;
@@ -112,33 +121,16 @@ ul.details {
 }
 .mosaic__panel {
     background-color: #fff; 
-    @include transition(box-shadow 0.2s ease-out, transform 0.2s ease-out);
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(0,0,0,0.025), 0 1px 2px rgba(0,0,0,0.125);
-        z-index: 100;
-        @include transition(box-shadow 0.2s ease-out, transform 0.2s ease-out);
-        //transform: scale(1.01);
-        ul.details {
-            opacity: 1;
-            @include transition(opacity 0.2s ease-out, transform 0.2s ease-out);
-        }
-    }
-    &:active {
-        @include transition(box-shadow 0.2s ease-out, transform 0.2s ease-out);
-        box-shadow: 0 1px 2px rgba(0,0,0,0.125);
-        z-index: 100;
-        //transform: scale(0.99);
+    color: $c__slate;
+    &:hover ul.details {
+        opacity: 1;
     }
 }
 
 // backgrounds, palettes 
 .page-icons__Keycard {
-    background-color: #405580;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#405580, 0.1), 0 1px 2px rgba(#405580, 0.5);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#405580, 0.5);
+    figure {
+        background-color: #405580;
     }
     ul.details li { 
         color: #fff !important; 
@@ -193,12 +185,8 @@ ul.details {
 }
 
 .page-icons__Analog {
-    background-color: #373949;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#373949, 0.025), 0 1px 2px rgba(#373949, 0.125);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#373949, 0.125);
+    figure {
+        background-color: #373949;
     }
     ul.details li { 
         color: #fff !important; 
@@ -310,28 +298,20 @@ ul.details {
 }
 
 .page-icons__Kismet {
-    background-color: #1d1d1e;
+    figure {
+        background-color: #1d1d1e;
+    }
     ul.details li { 
         color: #fbcb74 !important; 
-    }
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#1d1d1e, 0.025), 0 1px 2px rgba(#1d1d1e, 0.125);
-    }
-    &:active {
-        box-shadow: 0 .25rem 0.5rem rgba(#1d1d1e, 0.025), 0 1px 2px rgba(#1d1d1e, 0.125);
     }
 }
 
 .page-icons__Rougemark_Bow {
-    background-color: #f0796c;
+    figure {
+        background-color: #f0796c;
+    }
     ul.details li { 
         color: #FFF !important; 
-    }
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#f0796c, 0.2), 0 1px 2px rgba(#000, 0.25);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#000, 0.25);
     }
 }
 
@@ -359,12 +339,8 @@ ul.details {
 }
 
 .page-icons__Flaunt {
-    background-color: #ffd7f8;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffd7f8, 0.5), 0 1px 2px rgba(#f3a4e4, 0.25);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#f3a4e4, 0.25);
+    figure {
+        background-color: #ffd7f8;
     }
     ul.details li { 
         color: #d33bf1 !important; 
@@ -428,12 +404,8 @@ ul.details {
     #a7 & { background-color: #44cef9; }
 }
 .page-icons__PicPicBoom {
-    background-color: #ffb7d3;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffb7d3, 0.5), 0 1px 2px rgba(#ffb7d3, 0.25);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#ffb7d3, 0.25);
+    figure {
+        background-color: #ffb7d3;
     }
     ul.details li { 
         color: #e02040 !important; 
@@ -736,12 +708,8 @@ ul.details {
 }
 
 .page-icons__GCC {
-    background-color: #d9f9ff;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#d9f9ff, 0.1), 0 1px 2px rgba(#65d2e5, 0.5);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#65d2e5, 0.5);
+    figure {
+        background-color: #d9f9ff;
     }
     ul.details li {
         color: #57deff !important;
@@ -749,12 +717,8 @@ ul.details {
 }
 
 .page-icons__Instawink {
-    background-color: #fff280;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffbb00, 0.1), 0 1px 2px rgba(#c79200, 0.5);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#c79200, 0.5);
+    figure {
+        background-color: #fff280;
     }
     ul.details li {
         color: #e5a800 !important;
@@ -762,12 +726,8 @@ ul.details {
 }
 
 .page-icons__FreeBee {
-    background-color: #ffbc00;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffbc00, 0.1), 0 1px 2px rgba(#ffbc00, 0.5);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#ffbc00, 0.5);
+    figure {
+        background-color: #ffbc00;
     }
     ul.details li {
         color: #402f05 !important;
@@ -853,12 +813,8 @@ ul.details {
 }
 
 .page-icons__Answers {
-    background-color: #7ec8fc;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#7ec8fc, 0.5), 0 1px 2px rgba(#7ec8fc, 0.1);
-    }
-    &:active {
-        box-shadow:0 1px 2px rgba(#7ec8fc, 0.1);
+    figure {
+        background-color: #7ec8fc;
     }
     ul.details li { 
         color: #fff !important; 
@@ -889,12 +845,8 @@ ul.details {
 }
 
 .page-icons__Thoughts {
-    background-color: #fafcff;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#000, 0.025), 0 1px 2px rgba(#b7d3e8, 0.125);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#b7d3e8, 0.125);
+    figure {
+        background-color: #fafcff;
     }
     ul.details li {
         color: #7ec8fc !important;
@@ -1172,12 +1124,8 @@ ul.details {
 }
 
 .page-icons__TB_MM {
-    background-color: #e0ffec;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#2cbf6d, 0.125), 0 1px 2px rgba(#2cbf6d, 0.25);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#2cbf6d, 0.25);
+    figure {
+        background-color: #e0ffec;
     }
     ul.details li {
         color: #22ab68 !important;
@@ -1185,12 +1133,8 @@ ul.details {
 }
 
 .page-icons__TB_Giftbox {
-    background-color: #fff6e5;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffa700, 0.05), 0 1px 2px rgba(#ffa700, 0.25);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#ffa700, 0.25);
+    figure {
+        background-color: #fff6e5;
     }
     ul.details li {
         color: #e68948 !important;
@@ -1445,12 +1389,8 @@ ul.details {
 }
 
 .page-icons__FileTouchManager {
-    background-color: #ffe7e2;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffe7e2, 0.1), 0 1px 2px rgba(#ffe7e2, 0.5);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#ffe7e2, 0.5);
+    figure {
+        background-color: #ffe7e2;
     }
     ul.details li {
         color: #da611f !important;
@@ -1804,12 +1744,8 @@ ul.details {
 
 .page-icons__Scala {
     //color: #e1e5e5;
-    background-color: #f4f8f8;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#f4f8f8, 0.025), 0 1px 2px rgba(#f4f8f8, 0.125);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#f4f8f8, 0.125);
+    figure {
+        background-color: #f4f8f8;
     }
     ul.details li {
         color: #3b3c44 !important;
@@ -1817,12 +1753,8 @@ ul.details {
 }
 
 .page-icons__Eames_Elephant {
-    background-color: #ffd3bf;
-    &:hover {
-        box-shadow: 0 .25rem 0.5rem rgba(#ffd3bf, 0.1), 0 1px 2px rgba(#ffd3bf, 0.5);
-    }
-    &:active {
-        box-shadow: 0 1px 2px rgba(#ffd3bf, 0.5);
+    figure {
+        background-color: #ffd3bf;
     }
     ul.details li {
         color: #c42b20 !important;
@@ -1843,7 +1775,9 @@ ul.details {
 }
 
 .page-icons__Pico {
-    background-color: #faffff;
+    figure {
+        background-color: #f7f8fc;
+    }
     ul.details li {
         color: #45454a !important;
     }
@@ -1854,7 +1788,9 @@ ul.details {
 }
 
 .page-icons__xMod {
-    background-color: #000;
+    figure {
+        background-color: #000;
+    }
     ul.details li { 
         color: #fff !important; 
     }
@@ -1879,7 +1815,9 @@ ul.details {
 }
 
 .page-icons__Slack {
-    background-color: #fff;
+    figure {
+        background-color: #fff;
+    }
     .tabs-content {
         .i__512-2x i {
             background-image: url('../img/illustrations-content/slack/512@2x.png');
@@ -2537,29 +2475,18 @@ ul.details {
 }
 // Illustrations Index
 
-.i__Pride {
+.i__Text2Polls {
     @include share(width, height, 16em);
-    background-image: url('../img/illustrations/Icons_Pride_!256@2x.png');
+    background-image: url('../img/illustrations/Icons_Text2Polls_!256@2x.png');
     background-image: -webkit-image-set(
-                      url('../img/illustrations/Icons_Pride_!256.png') 1x,
-                      url('../img/illustrations/Icons_Pride_!256@2x.png') 2x);
-   
+                      url('../img/illustrations/Icons_Text2Polls_!256.png') 1x,
+                      url('../img/illustrations/Icons_Text2Polls_!256@2x.png') 2x);
     @media screen and (max-width: $WN-breakpoint-medium) {
         // dimensions change at breakpoint
         @include share(width, height, 8em);
-        background-image: url('../img/illustrations/Icons_Pride_!256.png');
-        background-image: -webkit-image-set(
-                        url('../img/illustrations/Icons_Pride_!128.png') 1x,
-                        url('../img/illustrations/Icons_Pride_!256.png') 2x);
-        //2x asset
-        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
-            background-image: url('../img/illustrations/Icons_Pride_!128.png');
-            background-image: -webkit-image-set(
-                    url('../img/illustrations/Icons_Pride_!128.png') 1x,
-                    url('../img/illustrations/Icons_Pride_!256.png') 2x);
-        }
+        background-image: url('../img/illustrations/Icons_Text2Polls_!256.png');
     }
-}  
+}
 
 .i__Keycard {
     @include share(width, height, 16em);
@@ -2606,6 +2533,30 @@ ul.details {
         }
     }
 }
+
+.i__Pride {
+    @include share(width, height, 16em);
+    background-image: url('../img/illustrations/Icons_Pride_!256@2x.png');
+    background-image: -webkit-image-set(
+                      url('../img/illustrations/Icons_Pride_!256.png') 1x,
+                      url('../img/illustrations/Icons_Pride_!256@2x.png') 2x);
+   
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        // dimensions change at breakpoint
+        @include share(width, height, 8em);
+        background-image: url('../img/illustrations/Icons_Pride_!256.png');
+        background-image: -webkit-image-set(
+                        url('../img/illustrations/Icons_Pride_!128.png') 1x,
+                        url('../img/illustrations/Icons_Pride_!256.png') 2x);
+        //2x asset
+        @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
+            background-image: url('../img/illustrations/Icons_Pride_!128.png');
+            background-image: -webkit-image-set(
+                    url('../img/illustrations/Icons_Pride_!128.png') 1x,
+                    url('../img/illustrations/Icons_Pride_!256.png') 2x);
+        }
+    }
+}  
 
 .i__Analog {
     @include share(width, height, 16em);
@@ -3393,10 +3344,7 @@ ul.details {
     }
     @media screen and (max-width: $WN-breakpoint-medium) {
         @include share(width, height, 8rem);
-        background-image: url('../img/illustrations/Icons_Zello_Web_lg1_!256.png');
-        background-image: -webkit-image-set(
-                      url('../img/illustrations/Icons_Zello_Web_lg1_!256.png') 1x, 
-                      url('../img/illustrations/Icons_Zello_Web_lg1_!256@2x.png') 2x);         
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg1_!256.png');     
     }
 }
 
@@ -3411,10 +3359,7 @@ ul.details {
     }
     @media screen and (max-width: $WN-breakpoint-medium) {
         @include share(width, height, 8rem);
-        background-image: url('../img/illustrations/Icons_Zello_Web_lg2_!256.png');
-        background-image: -webkit-image-set(
-                      url('../img/illustrations/Icons_Zello_Web_lg2_!256.png') 1x, 
-                      url('../img/illustrations/Icons_Zello_Web_lg2_!256@2x.png') 2x);         
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg2_!256.png');      
     }
 }
 
@@ -3429,10 +3374,7 @@ ul.details {
     }
     @media screen and (max-width: $WN-breakpoint-medium) {
         @include share(width, height, 8rem);
-        background-image: url('../img/illustrations/Icons_Zello_Web_lg3_!256.png');
-        background-image: -webkit-image-set(
-                      url('../img/illustrations/Icons_Zello_Web_lg3_!256.png') 1x, 
-                      url('../img/illustrations/Icons_Zello_Web_lg3_!256@2x.png') 2x);         
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg3_!256.png');   
     }
 }
 
@@ -3448,10 +3390,7 @@ ul.details {
     }
     @media screen and (max-width: $WN-breakpoint-medium) {
         @include share(width, height, 8rem);
-        background-image: url('../img/illustrations/Icons_Zello_Web_lg4_!256.png');
-        background-image: -webkit-image-set(
-                      url('../img/illustrations/Icons_Zello_Web_lg4_!256.png') 1x, 
-                      url('../img/illustrations/Icons_Zello_Web_lg4_!256@2x.png') 2x);         
+        background-image: url('../img/illustrations/Icons_Zello_Web_lg4_!256.png');       
     }
 }
 
@@ -3848,7 +3787,7 @@ ul.details {
 }
 
 // not-content
-.mosaic__panel a {
+.mosaic__panel a, {
     padding: 2rem 0 0 0;
     width: 100%;
     height: calc(100% + 2rem);

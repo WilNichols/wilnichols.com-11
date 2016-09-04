@@ -57,85 +57,113 @@ $WN-col-groups: 2, 3, 4, 5, 6, 8, 12 !default;
 .#{$WN-grid-namespace} {
   list-style: none;
   font-size: 0;
+  margin-left: -1rem;
   
   >.#{$WN-grid-column-namespace}--1-of-1 {
-    width: calc(100vw / 1);
-    height: 512px;
-    max-height: calc(100vw / 2);
+    width: calc(100% / 1);
+    max-height: 512px;
+    height: calc(100% / 2);
+    figure::after {
+        content: '';
+        float: left;
+        padding: 50% 0;
+    }
   }
 
   >.#{$WN-grid-column-namespace}--1-of-2 {
-    width: calc(100vw / 2);
-    max-height: calc(100vw / 2);
-    height: 512px;
+    width: calc(100% / 2);
+    max-height: 512px;
+    figure::after {
+        content: '';
+        float: left;
+        padding: 50% 0;
+    }
   }
   >.#{$WN-grid-column-namespace}--1-of-3 {
-    width: calc(100vw / 3);
-    height: calc(100vw / 3);
+    width: calc(100% / 3);
+    height: calc(100% / 3);
+    figure::after {
+        content: '';
+        float: left;
+        padding: 50% 0;
+    }
   }
   >.#{$WN-grid-column-namespace}--2-of-3 {
-    width: calc(200vw / 3);
-    height: calc(100vw / 3);
+    width: calc(200% / 3);
+    height: calc(100% / 3);
   }
   >.#{$WN-grid-column-namespace}--1-of-4 {
-    width: calc(100vw / 4);
-    height: calc(100vw / 4);
+    width: calc(100% / 4);
+    height: calc(100% / 4);
+    figure::after {
+        content: '';
+        float: left;
+        padding: 50% 0;
+    }
   }
   >.#{$WN-grid-column-namespace}--2-of-4 {
-    width: calc(200vw / 4);
-    height: calc(100vw / 4);
+    width: calc(200% / 4);
+    height: calc(100% / 4);
+    figure::after {
+        content: '';
+        float: left;
+        padding: 25% 0;
+    }
   }
   >.#{$WN-grid-column-namespace}--3-of-4 {
-    width: calc(300vw / 4);
-    height: calc(100vw / 4);
+    width: calc(300% / 4);
+    height: calc(100% / 4);
   }
   >.#{$WN-grid-column-namespace}--1-of-5 {
-    width: calc(100vw / 5);
-    height: calc(100vw / 5);
+    width: calc(100% / 5);
+    height: calc(100% / 5);
   }
   >.#{$WN-grid-column-namespace}--2-of-5 {
-    width: calc(200vw / 5);
-    height: calc(100vw / 5);
+    width: calc(200% / 5);
+    height: calc(100% / 5);
   }
   >.#{$WN-grid-column-namespace}--3-of-5 {
-    width: calc(300vw / 5);
-    height: calc(100vw / 5);
+    width: calc(300% / 5);
+    height: calc(100% / 5);
   }
   >.#{$WN-grid-column-namespace}--4-of-5 {
-    width: calc(400vw / 5);
-    height: calc(100vw / 5);
+    width: calc(400% / 5);
+    height: calc(100% / 5);
   }
   >.#{$WN-grid-column-namespace}--1-of-6 {
-    width: calc(100vw / 6);
-    height: calc(100vw / 6);
+    width: calc(100% / 6);
+    height: calc(100% / 6);
+    figure::after {
+        content: '';
+        float: left;
+        padding: 50% 0;
+    }
   }
   >.#{$WN-grid-column-namespace}--2-of-6 {
-    width: calc(200vw / 6);
-    height: calc(100vw / 6);
+    width: calc(200% / 6);
+    height: calc(100% / 6);
   }
   >.#{$WN-grid-column-namespace}--3-of-6 {
-    width: calc(300vw / 6);
-    height: calc(100vw / 6);
+    width: calc(300% / 6);
+    height: calc(100% / 6);
   }
   >.#{$WN-grid-column-namespace}--4-of-6 {
-    width: calc(400vw / 6);
-    height: calc(100vw / 6);
+    width: calc(400% / 6);
+    height: calc(100% / 6);
   }
   >.#{$WN-grid-column-namespace}--5-of-6 {
-    width: calc(500vw / 6);
-    height: calc(100vw / 6);
+    width: calc(500% / 6);
+    height: calc(100% / 6);
   }
-
-
-
 
    .#{$WN-grid-column-namespace}, {
     @include display(inline-flex);
     @include justify-content(center);
     @include align-items(center);
-    margin: 0;
+    margin: 1rem 0 0 0;
+    
     //height: 512px;
-    padding: 2rem 0;
+    padding: 0 0 0 1rem;
     position: relative;
     box-sizing: border-box;
     vertical-align: top;
@@ -145,20 +173,24 @@ $WN-col-groups: 2, 3, 4, 5, 6, 8, 12 !default;
       }
 
       &.#{$WN-grid-column-namespace}--m-1-of-1 {
-        width: calc(100vw / 1);
-        height: 512px;
-        max-height: calc(100vw / 2);
+        width: calc(100% / 1);
+        max-height: 512px;
+        height: calc(100% / 2);
+        figure::after {
+            content: '';
+            float: left;
+            padding: 50% 0;
+        }
       }
       
       &.#{$WN-grid-column-namespace}--m-1-of-2 {
-        width: calc(100vw / 2);
-        max-height: calc(100vw / 2);
-        height: 512px;
+        width: calc(100% / 2);
+        height: calc(100% / 2);
       }
 
       &.#{$WN-grid-column-namespace}--m-1-of-3 {
-        width: calc(100vw / 3);
-        height: calc(100vw / 3);
+        width: calc(100% / 3);
+        height: calc(100% / 3);
       }
 
       &.#{$WN-grid-column-namespace}--m-2-of-3 {
@@ -185,20 +217,20 @@ $WN-col-groups: 2, 3, 4, 5, 6, 8, 12 !default;
       }
 
       &.#{$WN-grid-column-namespace}--s-1-of-1 {
-        width: calc(100vw / 1);
+        width: calc(100% / 1);
         height: 512px;
-        max-height: calc(100vw / 2);
+        max-height: calc(100% / 2);
       }
 
       &.#{$WN-grid-column-namespace}--s-1-of-2 {
-        width: calc(100vw / 2);
-        max-height: calc(100vw / 2);
+        width: calc(100% / 2);
+        max-height: calc(100% / 2);
         height: 512px;
       }
 
       &.#{$WN-grid-column-namespace}--s-1-of-3 {
-        width: calc(100vw / 3);
-        height: calc(100vw / 3);
+        width: calc(100% / 3);
+        height: calc(100% / 3);
       }
 
       &.#{$WN-grid-column-namespace}--s-2-of-3 {
