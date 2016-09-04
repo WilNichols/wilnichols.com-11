@@ -1810,10 +1810,6 @@ ul.details {
     }
 }
 
-.page-icons__goodies {
-    color: #fff;
-}
-
 .page-icons__Slack {
     figure {
         background-color: #fff;
@@ -3699,6 +3695,7 @@ ul.details {
         background-image: -webkit-image-set(
                       url('../img/illustrations/Icons_Disc_!64.png') 1x, 
                       url('../img/illustrations/Icons_Disc_!64@2x.png') 2x);    
+        @include share(width, height, 3rem);
     }
 }
 
@@ -3769,6 +3766,7 @@ ul.details {
         background-image: -webkit-image-set(
                       url('../img/illustrations/Icons_Alumin_!64.png') 1x, 
                       url('../img/illustrations/Icons_Alumin_!64@2x.png') 2x);    
+        @include share(width, height, 3rem);
     }
 }
 
@@ -3783,6 +3781,7 @@ ul.details {
         background-image: -webkit-image-set(
                       url('../img/illustrations/Icons_Metallen_!64.png') 1x, 
                       url('../img/illustrations/Icons_Metallen_!64@2x.png') 2x);    
+        @include share(width, height, 3rem);
     }
 }
 
