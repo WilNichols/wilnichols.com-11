@@ -1,0 +1,162 @@
+@import "bourbon/bourbon";
+@import "_common";
+
+body.photography {
+    background-color: #000;
+    color: #fff;
+    header {
+        background-color: transparent;
+    }
+    span.logo {
+        background-color: #000;
+        box-shadow: inset 0 0 0 3px #fff;
+        path.glyph {
+            fill: #fff;
+        }
+    }
+    .header-text {
+        margin: 0 auto;
+        padding: 0 20px 3rem 20px;
+        max-width: 480px;
+        width: 100%;
+        min-width: 320px;
+        box-sizing: border-box;
+        color: #fff;
+    }
+    nav ul li {
+        &.products, &.illustrations, &.photography, &.resume, &.contact {
+            & a, &.active a, & a:hover, &.active a:hover {
+                color: #fff;
+                &:before {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+    &:not(.photography-sub) {
+        .head {
+            @media only screen and (max-width: $m__viewport-sm) {
+                width: 100vw;
+                position: relative;
+                margin-left: -1.75rem;
+                p {
+                    max-width: 20.5rem;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+        .u__top-offset-7 {
+            @media only screen and (max-width: $m__viewport-med) {
+                padding-top: 54px !important;
+            }
+        }
+    }
+    .head {
+        width: calc(100% + .75rem);
+        margin-left: -.75rem;
+        line-height: 22px;
+        position: relative;
+        h1 {
+            padding: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            width: auto;
+            display: inline-block;
+            @include share(height, line-height, 3rem);
+        }
+        ul.tabs.small {
+            position: absolute;
+            right: 0;
+            top: .8125rem;
+            li a {
+                padding: 2px 7px 0 7px;
+            }
+            li:first-of-type a svg {
+                margin-right: 1px;
+            }
+            li:last-of-type a svg {
+                margin-left: 1px;
+            }
+        }
+        .backtoindex {
+            position: absolute;
+            left: 0;
+            @include share(height, line-height, width, top, 1rem);
+            padding-top: 0;
+        }
+    }
+    img {
+        width: 100%;
+        display: block;
+    }
+    .load .wrapper {
+        padding: 0 1rem 0 1.75rem;
+    }
+    #subpage-fragment-album {
+        @include display(flex);
+        @include flex-direction(column);
+        @include align-items(center);
+        @include justify-content(center);
+        min-height: calc(100vh - 54px);
+        padding-top: 54px;
+    }
+    .grid__col {
+        padding-left: .5rem;
+        margin-bottom: .5rem;
+    }
+    a.category {
+        position: relative;
+        display: block;
+        .titlecontainer {
+            opacity: 0;
+            @include transition(ease-out $duration opacity);
+            font-size: 1rem;
+            position: absolute;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            text-transform: lowercase;
+            text-align: center;
+            font-weight: 600;
+            font-variant: small-caps;
+            background-color: rgba(0,0,0,0.75);
+            width: 100%;
+            top: 0;
+            .title {
+                height: 1.5rem;
+                line-height: 1.5rem;
+                font-size: 1.5rem;
+                letter-spacing: .25rem;
+                word-spacing: .5rem;
+                position: relative;
+                display: inline-block;
+                top: 50%;
+                @include transform(translateY(-1rem));
+                width: 100%;
+            }
+        }
+        &:hover {
+            .titlecontainer {
+                opacity: 1;
+                @include transition(ease-out $duration opacity);
+            }
+        }
+    }
+    .load {
+        padding-bottom: 2rem;
+        position: static;
+        @media print {
+            padding-bottom: 0;
+        }
+    }
+    .head p {
+        margin-bottom: 5rem;
+    }
+    footer {
+        position: relative;
+        height: auto;
+        line-height: auto;
+        bottom: 0;
+    }
+}
