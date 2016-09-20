@@ -2,6 +2,9 @@
 @import "_common";
 
 body.index {
+    h1 {
+        color: $c__yellow;
+    }
     span.logo {
         background-color: $c__yellow;
     }
@@ -39,8 +42,62 @@ body.index {
                 line-height: 2rem;
             }
             a {
+                font-weight: 600;
                 white-space: nowrap;
                 color: $c__yellow;
+                &.products {
+                    color: $c__red;
+                    opacity: 0.75;
+                }
+                &.illustrations {
+                    color: $c__orange;
+                    opacity: 0.75;
+                }
+            }
+            strong {
+                color: $c__slate;
+            }
+        }
+        ul.elsewhere {
+            list-style: none;
+            display: inline-block;
+            max-width: 8rem;
+            li {
+                color: $c__slate_dark;
+                display: block;
+                width: auto;
+                height: auto;
+                a {
+                    font-size: 1rem;
+                    @include share(height, line-height, 1.5rem);
+                    vertical-align: middle;
+                    display: block;
+                    @include transition(transform 0.2s ease-out);
+                    &:hover {
+                        text-decoration: none;
+                        @include transform(translateX(1rem));
+                        @include transition(transform 0.2s ease-out);
+                    }
+                    svg, svg g, svg path {
+                        fill: currentcolor;
+                    }
+                    svg {
+                        display: inline;
+                        float: left;
+                        margin: .125rem 0 .375rem 0;
+                        height: 1rem;
+                        width: 1.5rem;
+                    }
+                }
+                &.twitter {
+                    color: $c__twitter;
+                }
+                &.dribbble {
+                    color: $c__dribbble;
+                }
+                &.instagram {
+                    color: $c__instagram;
+                }
             }
         }
     }
