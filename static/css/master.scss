@@ -152,6 +152,25 @@ img {
     }
 }
 
+%u__vp-not-max {
+    @media only screen and (min-width: $m__viewport-med) {
+        display: none !important;
+    }
+}
+
+
+%u__vp-not-med {
+    @media only screen and (min-width: $m__viewport-sm) and (max-width: $m__viewport-med) {
+        display: none !important;
+    }
+}
+
+%u__vp-not-sm {
+    @media only screen and (max-width: $m__viewport-sm) {
+        display: none !important;
+    }
+}
+
 .u__textalign-center {
     text-align: center;
 }
@@ -257,11 +276,12 @@ nav {
             }
         }
     }
-    ul {
+    ul.nav-desktop {
         list-style: none;
         position: relative;
         display: inline-block;
         font-size: 0;
+        @extend %u__vp-not-sm;
         li {
             position: relative;
             display: inline-block;
