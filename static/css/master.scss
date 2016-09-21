@@ -181,7 +181,21 @@ img {
 }
 
 //Structure
-
+.animation-layer, .animation-layer:empty {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    @include share(top, right, bottom, left, 0);
+    display: block;
+    background-color: #fff;
+    z-index: 99999999999999999;
+    @include transition(opacity 0.2s ease-out, background-color 0.2s ease-out);
+    .loaded & {
+        @include transition(opacity 0.2s ease-out, background-color 0.2s ease-out);
+        opacity: 0;
+        pointer-events: none;
+    }
+}
 .grid {
     font-size: 0 !important;
 }
