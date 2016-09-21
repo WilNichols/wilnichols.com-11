@@ -2,6 +2,7 @@
 @import "_common";
 
 body.index {
+    overflow-x: hidden;
     main {
         min-height: 640px;
         height: 100vh;
