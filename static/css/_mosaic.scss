@@ -61,18 +61,18 @@ $WN-col-groups: 2, 3, 4, 5, 6, 8, 12 !default;
   
   >.#{$WN-grid-column-namespace}--1-of-1 {
     width: calc(100% / 1);
-    max-height: 512px;
-    height: calc(100% / 2);
     figure::after {
         content: '';
         float: left;
-        padding: 50% 0;
+        padding: 0 0 100% 0;
+        @media only screen and (max-width: $m__viewport-sm) {
+            content: '';
+        }
     }
   }
 
   >.#{$WN-grid-column-namespace}--1-of-2 {
     width: calc(100% / 2);
-    max-height: 512px;
     figure::after {
         content: '';
         float: left;
