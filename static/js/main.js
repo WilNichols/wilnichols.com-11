@@ -439,9 +439,6 @@ router.on({
                     $("footer .footer-load").html(thisPageFooter);
                     setSubPageLinks();
                     carousel();
-                    setTimeout(function(){
-                        $("main").removeClass("from-sub");
-                    }, longduration);   
                 }, duration);  
             });
 
@@ -455,7 +452,24 @@ router.on({
             var thisPageName = "index";
             
             document.title = "Wil Nichols";
-            pageChange(thisPageTemplate, thisPageName);
+            $("body").removeClass("loaded").addClass("loading");
+            $("footer .footer-load *").remove();
+            $.get(thisPageTemplate, function(thisPageContents) {
+                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+                $("nav ul li a").parent("li").removeClass("active");
+                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+                setTimeout(function(){
+                    $("body").attr("class", "loaded " + thisPageName);
+                    console.log("headertext" + $(thisPageHeader).html());
+                    $("#pageheader-load").html(thisPageHeader);
+                    $(".load").html(thisPageMain);
+                    $("footer .footer-load").html(thisPageFooter);
+                    setSubPageLinks();
+                    carousel();
+                }, duration);  
+            });
         },
         '*': function () { 
             window.location = "/home";
