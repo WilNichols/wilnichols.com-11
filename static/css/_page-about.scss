@@ -19,13 +19,15 @@ body.index {
             z-index: -1;
             background-image: url('../img/portrait.jpg');
             opacity: 0.125;
-        @media print {
-            display: none;
+            @media only screen and (max-width: $m__viewport-sm) {
+                content: none;
+            }
+            @media print {
+                display: none;
+            }
         }
     }
-
-    }
-    h1 {
+    h1, .mobile-menu-link {
         color: $c__yellow;
     }
     span.logo {

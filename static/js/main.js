@@ -45,8 +45,6 @@ function setSubPageLinks () {
 }
 
 function pageChange (thisPageTemplate, thisPageName){
-    
-    
     console.log(thisPageName);
     $("body").removeClass("loaded").addClass("loading");
     $("footer .footer-load *").remove();
@@ -107,19 +105,6 @@ $(document).ready(function() {
     var navtemplate = base + "/components/component-nav.html"
     
     console.log("Document Ready");
-    $('.mobile-menu-link').funcToggle('click', 
-        function(event) {
-            event.stopPropagation();
-            $('.mobile-menu-container').addClass('large'); 
-            $('.mobile-menu').addClass('visible');
-        }, 
-        function() {
-            $('.mobile-menu-container').removeClass('large');
-            $('.mobile-menu').addClass('u__anim-out'); 
-            setTimeout(function() {
-                $('.mobile-menu').removeClass('visible u__anim-out');
-            }, duration);
-    });
     $('.load, .mobile-menu li a, .home').click(function() {
         $('.mobile-menu-container').removeClass('large');
         $('.mobile-menu').addClass('u__anim-out'); 
@@ -135,6 +120,35 @@ $(document).ready(function() {
             event.preventDefault();
             router.navigate($(this).attr("href"));
         });
+        
+        // expand menu
+        var menubuttonpressed = false;
+        var teststring = "was false on press";
+        $('.mobile-menu-link').click(function() {
+            menubuttonpressed = !menubuttonpressed;
+            if (menubuttonpressed) {
+                teststring = 'was true on press';
+                console.log(teststring);
+                $('.mobile-menu-container').addClass('large'); 
+                $('.mobile-menu').addClass('visible');
+            } else {
+                teststring = 'was false on press';
+                console.log(teststring);
+                $('.mobile-menu-container').removeClass('large');
+                $('.mobile-menu').addClass('u__anim-out'); 
+                setTimeout(function() {
+                    $('.mobile-menu').removeClass('visible u__anim-out');
+                }, duration);
+            }
+        });
+        $('.mobile-menu li').click(function() {
+            menubuttonpressed = !menubuttonpressed;
+            $('.mobile-menu-container').removeClass('large');
+            $('.mobile-menu').addClass('u__anim-out'); 
+            setTimeout(function() {
+                $('.mobile-menu').removeClass('visible u__anim-out');
+            }, duration);
+        })
     });
 router.on({
         // PRODUCTS 

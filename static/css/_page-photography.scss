@@ -14,6 +14,9 @@ body.photography {
             fill: #fff;
         }
     }
+    .mobile-menu-link li {
+        background-color: #fff;
+    }
     .header-text {
         margin: 0 auto;
         padding: 0 20px 3rem 20px;
@@ -23,7 +26,7 @@ body.photography {
         box-sizing: border-box;
         color: #fff;
     }
-    nav ul li {
+    nav ul.nav-desktop li {
         &.products, &.illustrations, &.photography, &.resume, &.contact {
             & a, &.active a, & a:hover, &.active a:hover {
                 color: #fff;
@@ -35,6 +38,12 @@ body.photography {
     }
     footer {
         color: #fff;
+        span {
+            color: #fff;
+        }
+        svg path {
+            fill: #fff;
+        }
     }
     .head {
         width: calc(100% + .75rem);

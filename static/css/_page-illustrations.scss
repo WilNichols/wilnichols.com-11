@@ -32,13 +32,13 @@ body.illustrations {
     header {
         background-color: $c__orange;
     }
-    span.logo {
+    span.logo, .mobile-menu-link li {
         background-color: #fff;
         path.glyph {
             fill: $c__orange;
         }
     }
-    nav ul li {
+    nav ul.nav-desktop li {
         &.products, &.illustrations, &.photography, &.resume, &.contact {
             & a, &.active a, & a:hover, &.active a:hover {
                 color: #fff;
@@ -2495,11 +2495,11 @@ ul.details {
     background-image: -webkit-image-set(
                       url('../img/illustrations/Icons_Text2Polls_!256.png') 1x,
                       url('../img/illustrations/Icons_Text2Polls_!256@2x.png') 2x);
-    @media screen and (max-width: $WN-breakpoint-medium) {
+ /*   @media screen and (max-width: $WN-breakpoint-medium) {
         // dimensions change at breakpoint
         @include share(width, height, 8em);
         background-image: url('../img/illustrations/Icons_Text2Polls_!256.png');
-    }
+    }   */
 }
 
 .i__Keycard {
@@ -2557,11 +2557,11 @@ ul.details {
    
     @media screen and (max-width: $WN-breakpoint-medium) {
         // dimensions change at breakpoint
-        @include share(width, height, 8em);
+    /*    @include share(width, height, 8em);
         background-image: url('../img/illustrations/Icons_Pride_!256.png');
         background-image: -webkit-image-set(
                         url('../img/illustrations/Icons_Pride_!128.png') 1x,
-                        url('../img/illustrations/Icons_Pride_!256.png') 2x);
+                        url('../img/illustrations/Icons_Pride_!256.png') 2x);   */
         //2x asset
         @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
             background-image: url('../img/illustrations/Icons_Pride_!128.png');
@@ -2646,11 +2646,11 @@ ul.details {
                       url('../img/illustrations/Icons_SmallChange_!256@2x.png') 2x);    
     }
     @media screen and (max-width: $WN-breakpoint-medium) {
-        @include share(width, height, 8rem);
+       /* @include share(width, height, 8rem);
         background-image: url('../img/illustrations/Icons_SmallChange_!256.png');
         background-image: -webkit-image-set(
                           url('../img/illustrations/Icons_SmallChange_!256.png') 1x,
-                          url('../img/illustrations/Icons_SmallChange_!256.png') 2x);
+                          url('../img/illustrations/Icons_SmallChange_!256.png') 2x); */
         @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
             background-image: url('../img/illustrations/Icons_SmallChange_!256.png');
             background-image: -webkit-image-set(
@@ -2687,6 +2687,9 @@ ul.details {
                       url('../img/illustrations/Icons_Rougemark_Bow_!256.png') 1x, 
                       url('../img/illustrations/Icons_Rougemark_Bow_!256@2x.png') 2x);    
     }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        @include share(width, height, 8em);
+    }
 }
 
 .i__Rougemark {
@@ -2702,6 +2705,10 @@ ul.details {
         background-image: -webkit-image-set(
                       url('../img/illustrations/Icons_Rougemark_!256.png') 1x, 
                       url('../img/illustrations/Icons_Rougemark_!256@2x.png') 2x);    
+    }
+    @media screen and (max-width: $WN-breakpoint-medium) {
+        height: 8rem;
+        width: 12rem;
     }
 }
 
@@ -3338,13 +3345,13 @@ ul.details {
                       url('../img/illustrations/Icons_FileTouchManager_!256.png') 1x, 
                       url('../img/illustrations/Icons_FileTouchManager_!256@2x.png') 2x);    
     }
-    @media screen and (max-width: $WN-breakpoint-medium) {
+/*    @media screen and (max-width: $WN-breakpoint-medium) {
         @include share(width, height, 8rem);
         background-image: url('../img/illustrations/Icons_FileTouchManager_!256.png');
         background-image: -webkit-image-set(
                       url('../img/illustrations/Icons_FileTouchManager_!256.png') 1x, 
                       url('../img/illustrations/Icons_FileTouchManager_!256@2x.png') 2x);       
-    }
+    }   */
 }
 
 .i__Zello_lg1 {

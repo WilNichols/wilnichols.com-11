@@ -1,0 +1,8 @@
+@import "bourbon/bourbon";
+@import "_common";
+
+:root.touchevents {
+    .mosaic__panel ul.details {
+        display: none;
+    }
+}

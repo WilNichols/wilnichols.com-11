@@ -11,6 +11,12 @@ body.contact {
             fill: $c__pink;
         }
     }
+    .mobile-menu-link li {
+        background-color: #fff;
+    }
+    h1 {
+        color: $c__pink;
+    }
     .wrapper.u__align-items-center {
         @media screen and (max-height: 52rem) {
             @include align-items(flex-start);
@@ -39,7 +45,7 @@ body.contact {
         min-width: 320px;
         box-sizing: border-box;
     }
-    nav ul li {
+    nav ul.nav-desktop li {
         &.products, &.illustrations, &.photography, &.resume, &.contact {
             & a, &.active a, & a:hover, &.active a:hover {
                 color: #fff;
