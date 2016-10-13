@@ -6,6 +6,11 @@ var longduration = 800;
 //local var base = "http://localhost:8000";
 var base = "http://localhost:8000";
 
+var externalref = true;
+var externalrefstring = 'external referrer';
+var fromparent = false;
+
+//scroll code for illustrations detail pages
 function lockScroll(){
     $html = $('html'); 
     $body = $('body'); 
@@ -36,11 +41,14 @@ function unlockScroll(){
 function pageSetup () {
     var thisPageContents = undefined; 
     $(".load #no-js").remove();
+    console.log(externalrefstring);
 }
+
 function setSubPageLinks () {
     $("a[data-navigo].data-navigo-sub").click(function() {
         event.preventDefault();
         router.navigate($(this).attr("href"));
+        var fromparent = true;
     });
 }
 
@@ -66,45 +74,13 @@ function pageChange (thisPageTemplate, thisPageName){
     });
 }
 
-function carousel () {
-    $('.carousel').slick({
-        centerMode: true,
-        centerPadding: '0',
-        slidesToShow: 3,
-        arrows: true,
-        focusOnSelect: true,
-        infinite: false,
-        variableWidth: true,
-        easing: 'ease-out',
-        speed: duration,
-    });
-    $('.slick-center').focus();
-    $('.slick-arrow').click(function() {
-        $(event.target).focusout();
-        $('.slick-center').focus();
-    })
-    $('.slick-prev').hover(function() {
-        $('.slick-current').prev().addClass('button-hover');
-    }, function() {
-        $('.slick-current').prev().removeClass('button-hover');
-    });
-    $('.slick-next').hover(function() {
-        $('.slick-current').next().addClass('button-hover');
-    }, function() {
-        $('.slick-current').next().removeClass('button-hover');
-    });
-    $('.carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-        console.log(nextSlide);
-        $('.button-hover').removeClass('button-hover');
-    });
-}
-
 var router = new Navigo(root=null, useHash=false);
 
 $(document).ready(function() {
     var navtemplate = base + "/components/component-nav.html"
     
     console.log("Document Ready");
+    
     $('.load, .mobile-menu li a, .home').click(function() {
         $('.mobile-menu-container').removeClass('large');
         $('.mobile-menu').addClass('u__anim-out'); 
@@ -117,23 +93,20 @@ $(document).ready(function() {
         console.log('inserted nav');
         $("header").html(thisPageNav);
         $("nav a[data-navigo]").click(function() {
+            externalref = false;
+            externalrefstring = 'not external referrer';
             event.preventDefault();
             router.navigate($(this).attr("href"));
         });
         
         // expand menu
         var menubuttonpressed = false;
-        var teststring = "was false on press";
         $('.mobile-menu-link').click(function() {
             menubuttonpressed = !menubuttonpressed;
             if (menubuttonpressed) {
-                teststring = 'was true on press';
-                console.log(teststring);
                 $('.mobile-menu-container').addClass('large'); 
                 $('.mobile-menu').addClass('visible');
             } else {
-                teststring = 'was false on press';
-                console.log(teststring);
                 $('.mobile-menu-container').removeClass('large');
                 $('.mobile-menu').addClass('u__anim-out'); 
                 setTimeout(function() {
@@ -159,7 +132,6 @@ router.on({
             var thisPageName = "products"
             
             document.title = "Wil Nichols : Products";
-            pageChange(thisPageTemplate, thisPageName);
             
         },
         
@@ -271,7 +243,6 @@ router.on({
                     $(".load").html(thisPageMain);
                     $("footer .footer-load").html(thisPageFooter);
                     setSubPageLinks();
-                    carousel();
                     setTimeout(function(){
                         $("main").removeClass("from-sub");
                     }, longduration);   
@@ -364,7 +335,6 @@ router.on({
         
         '/photography/': function () {
             pageSetup();
-            
             var thisPageTemplate = base + "/components/page-photography.html"
             var thisPageName = "photography"
             
@@ -390,7 +360,7 @@ router.on({
                     setTimeout(function(){
                         $("main").removeClass("from-sub");
                     }, longduration);   
-                }, duration);  
+                }, duration); 
             });
         },
         
@@ -420,10 +390,7 @@ router.on({
                     $(".load").html(thisPageMain);
                     $("footer .footer-load").html(thisPageFooter);
                     setSubPageLinks();
-                    carousel();
-                    setTimeout(function(){
-                        $("main").removeClass("from-sub");
-                    }, longduration);   
+                    carousel(); 
                 }, duration);  
             });
         },
@@ -452,7 +419,6 @@ router.on({
                     $(".load").html(thisPageMain);
                     $("footer .footer-load").html(thisPageFooter);
                     setSubPageLinks();
-                    carousel();
                 }, duration);  
             });
 
@@ -481,7 +447,6 @@ router.on({
                     $(".load").html(thisPageMain);
                     $("footer .footer-load").html(thisPageFooter);
                     setSubPageLinks();
-                    carousel();
                 }, duration);  
             });
         },
