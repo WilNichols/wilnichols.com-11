@@ -30,7 +30,6 @@ body {
     background-position: 125% bottom;
     background-size: auto 100vh;
     background-attachment: fixed;
-    background-color: #fff;
     @include transition(background-color linear $duration);
 }
 
@@ -389,6 +388,7 @@ nav {
         position: relative;
         right: .375rem;
         float: right;
+        cursor: pointer;
         li {
             position: absolute;
             background-color: $c__slate_dark;

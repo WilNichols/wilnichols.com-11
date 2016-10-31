@@ -3,35 +3,67 @@
 
 body.index {
     overflow-x: hidden;
+    background-color: $c__tan;
+    @media only screen and (max-width: $m__viewport-med) {
+        background-color: #fff;
+    }
+    &:after {
+        content: '';
+        position: fixed;
+        height: 100vh;
+        width: 38.2vw;
+        top: 0;
+        bottom: 0;
+        right: -5%;
+        background-color: $c__slate_darker;
+        z-index: -1;
+        @include transform(skewX(-5deg));
+        @media only screen and (max-width: $m__viewport-med) {
+            display: none;
+        }
+    }
+    .nav-desktop li a {
+        color: $c__brown;
+    }
     main {
         min-height: 640px;
         height: 100vh;
-        &:after {
-            background-size: auto 100%;
-            background-repeat: no-repeat;
-            position: absolute;
-            @include share(width, height, 100%);
-            right: 0;
-            left:  66.6vw;
-            bottom: 0;
-            display: block;
-            content: '';
-            z-index: -1;
-            background-image: url('../img/portrait.jpg');
-            opacity: 0.125;
-            @media only screen and (max-width: $m__viewport-sm) {
-                content: none;
-            }
-            @media print {
-                display: none;
-            }
+    }
+    #portrait {
+        display: inline-block;
+        float: right;
+        background-image: url('../img/bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-bottom: 41.2%;
+        box-shadow: 0 4rem 12rem rgba(0,0,0,0.125);
+        position: absolute;
+        width: 61.8%;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        margin-top: -20.6%;
+        z-index: -1;
+        @media only screen and (max-width: $m__viewport-med) {
+            height: 100vh;
+            width: 100vw;
+            @include share(top, right, bottom, left, 0);
+            background-position: center;
+            opacity: .0625;
+            margin-top: 0;
+            padding-bottom: 0;
+            position: fixed;
         }
+        @media only screen and (max-width: $m__viewport-sm) {
+            background-position: -50vw;
+        }
+        
     }
     h1, .mobile-menu-link {
-        color: $c__yellow;
+        color: $c__brown;
     }
     span.logo {
-        background-color: $c__yellow;
+        background-color: $c__brown;
     }
     .load {
         min-height: 8rem;
@@ -43,6 +75,14 @@ body.index {
         p {
             font-size: 1.4375rem;
             line-height: 2.25rem;
+            &:after {
+                display: block;
+                float: right;
+                margin-right: -5%;
+                @include transform(skew(-5%));
+                content: '';
+                height: 100%;
+            }
             @media only screen and (max-width: $m__viewport-sm) {
                 font-size: 1.25rem;
                 line-height: 2rem;
@@ -50,15 +90,7 @@ body.index {
             a {
                 font-weight: 600;
                 white-space: nowrap;
-                color: $c__yellow;
-                &.products {
-                    color: $c__red;
-                    opacity: 0.75;
-                }
-                &.illustrations {
-                    color: $c__orange;
-                    opacity: 0.75;
-                }
+                color: $c__brown;
             }
             strong {
                 color: $c__slate;
