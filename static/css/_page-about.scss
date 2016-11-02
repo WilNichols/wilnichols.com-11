@@ -4,7 +4,7 @@
 body.index {
     overflow-x: hidden;
 //    background-color: $c__tan;
-    background-color: #fff2ef;
+    background-color: #ff0512;
     @media only screen and (max-width: $m__viewport-med) {
         background-color: #fff;
     }
@@ -16,7 +16,7 @@ body.index {
         top: -50vh;
         bottom: 0;
         right: -5%;
-        background-color: #0c5cff;
+        background-color: #05ecff;
         z-index: -1;
         @include transform(skewX(-5deg));
         @media only screen and (max-width: $m__viewport-med) {
@@ -24,7 +24,7 @@ body.index {
         }
     }
     .nav-desktop li a {
-        color: #fdb6c2;
+        color: #fff;
     }
     main {
         min-height: 640px;
@@ -45,6 +45,8 @@ body.index {
         top: 50%;
         margin-top: -20.6%;
         z-index: -1;
+        background-blend-mode: overlay;
+        background-color: #be78ff;
         @media only screen and (max-width: $m__viewport-med) {
             height: 100vh;
             width: 100vw;
@@ -64,10 +66,13 @@ body.index {
         color: #0c5cff;
     }
     h1 {
-        color: #0c5cff;
+        color: #05ecff;
     }
     span.logo {
-        background-color: #0c5cff;
+        background-color: #fff;
+        path.glyph {
+            fill: #ff0512;
+        }
     }
     .load {
         min-height: 8rem;
@@ -79,6 +84,9 @@ body.index {
         p {
             font-size: 1.4375rem;
             line-height: 2.25rem;
+            color: #1e05ff;
+            font-weight: 500;
+            mix-blend-mode: multiply;
             &:after {
                 display: block;
                 float: right;
@@ -94,7 +102,7 @@ body.index {
             a {
                 font-weight: 600;
                 white-space: nowrap;
-                color: #0c5cff;
+                color: #05ecff
             }
             strong {
                 color: $c__slate;
