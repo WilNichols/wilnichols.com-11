@@ -4,7 +4,7 @@
 body.index {
     overflow-x: hidden;
 //    background-color: $c__tan;
-    background-color: #e2f2ff;
+    background-color: #c6edfc;
     @media only screen and (max-width: $m__viewport-med) {
         background-color: #fff;
     }
@@ -16,16 +16,16 @@ body.index {
         top: -50vh;
         bottom: 0;
         right: -5%;
-        background-color: #fecc69;
+        background-color: #fd9080;
         z-index: -1;
         @include transform(skewX(-5deg));
-        box-shadow: inset 2rem 0 5rem 0 #f19d52;
+        box-shadow: inset 2rem 0 5rem 0 #dd3640;
         @media only screen and (max-width: $m__viewport-med) {
             display: none;
         }
     }
     .nav-desktop li a {
-        color: #3e6dff;
+        color: #3ebdd8;
     }
     main {
         min-height: 640px;
@@ -61,11 +61,14 @@ body.index {
         }
         
     }
-    h1, .mobile-menu-link {
-        color: #3e6dff;
+    .mobile-menu-link {
+        color: #3ebdd8;
+    }
+    h1 {
+        color: #3ebdd8;
     }
     span.logo {
-        background-color: #3e6dff;
+        background-color: #3ebdd8;
     }
     .load {
         min-height: 8rem;
@@ -92,7 +95,7 @@ body.index {
             a {
                 font-weight: 600;
                 white-space: nowrap;
-                color: #fecc69;
+                color: #3ebdd8;
             }
             strong {
                 color: $c__slate;
