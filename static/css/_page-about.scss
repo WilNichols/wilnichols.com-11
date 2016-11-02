@@ -3,27 +3,29 @@
 
 body.index {
     overflow-x: hidden;
-    background-color: $c__tan;
+//    background-color: $c__tan;
+    background-color: #e2f2ff;
     @media only screen and (max-width: $m__viewport-med) {
         background-color: #fff;
     }
     &:after {
         content: '';
         position: fixed;
-        height: 100vh;
+        height: 200vh;
         width: 38.2vw;
-        top: 0;
+        top: -50vh;
         bottom: 0;
         right: -5%;
-        background-color: $c__slate_darker;
+        background-color: #fecc69;
         z-index: -1;
         @include transform(skewX(-5deg));
+        box-shadow: inset 2rem 0 5rem 0 #f19d52;
         @media only screen and (max-width: $m__viewport-med) {
             display: none;
         }
     }
     .nav-desktop li a {
-        color: $c__brown;
+        color: #3e6dff;
     }
     main {
         min-height: 640px;
@@ -60,10 +62,10 @@ body.index {
         
     }
     h1, .mobile-menu-link {
-        color: $c__brown;
+        color: #3e6dff;
     }
     span.logo {
-        background-color: $c__brown;
+        background-color: #3e6dff;
     }
     .load {
         min-height: 8rem;
@@ -90,7 +92,7 @@ body.index {
             a {
                 font-weight: 600;
                 white-space: nowrap;
-                color: $c__brown;
+                color: #fecc69;
             }
             strong {
                 color: $c__slate;
