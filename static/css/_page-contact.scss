@@ -2,20 +2,12 @@
 @import "_common";
 
 body.contact {
-    header {
-        background-color: $c__pink;
+    &:before {
+        @include transform(skewX(5deg) translate(40vw));
+        @include transition(transform 2s ease-out, background-color 2s ease-out, box-shadow 2s ease-out);
     }
-    span.logo {
-        background-color: #fff;
-        path.glyph {
-            fill: $c__pink;
-        }
-    }
-    .mobile-menu-link li {
-        background-color: #fff;
-    }
-    h1 {
-        color: $c__pink;
+    &:after {
+        opacity: 0;
     }
     .wrapper.u__align-items-center {
         @media screen and (max-height: 52rem) {
@@ -30,7 +22,6 @@ body.contact {
         width: 100%;
         min-width: 320px;
         box-sizing: border-box;
-        color: #fff;
     }
     .load {
         min-height: 25rem;
@@ -45,17 +36,6 @@ body.contact {
         min-width: 320px;
         box-sizing: border-box;
     }
-    nav ul.nav-desktop li {
-        &.products, &.illustrations, &.photography, &.resume, &.contact {
-            & a, &.active a, & a:hover, &.active a:hover {
-                color: #fff;
-                &:before {
-                    background-color: #fff;
-                }
-            }
-        }
-    }
-
     form#contact {
         position: relative; 
         display: block; 
@@ -83,8 +63,8 @@ body.contact {
             box-shadow: 0 1px 0 0 rgba($c__slate, 0.25);
             &:focus {
                 outline: none;
-                box-shadow: 0 1px 0 0 $c__pink;
-                color: $c__pink;
+                box-shadow: 0 1px 0 0 $c__key-blue;
+                color: $c__key-blue;
             }
         }
         textarea {

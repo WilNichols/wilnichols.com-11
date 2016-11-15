@@ -2,6 +2,10 @@
 @import "_common";
 
 body.illustrations {
+    background-position: 100vh 100vw;
+    &:after {
+        opacity: 0;
+    }
     figure {
         display: block;
         @include share(width, height, 100%);
@@ -9,13 +13,13 @@ body.illustrations {
         @include display(inline-flex);
         @include justify-content(center);
         @include align-items(center);
-        border: 1px solid rgba(0, 0, 0, 0.03125);
+        border: 1px solid rgba(0, 0, 0, 0.0625);
         @media (-webkit-min-device-pixel-ratio: 2) {
             border: .5px solid rgba(0, 0, 0, 0.125);
         }
         box-sizing: border-box;
         background-clip: border-box;
-        
+        position: relative;
     }
     .mosaic__panel--1-of-1 figure {
         min-height: 37rem;
@@ -29,25 +33,6 @@ body.illustrations {
             }
         }
     }
-    header {
-        background-color: $c__orange;
-    }
-    span.logo, .mobile-menu-link li {
-        background-color: #fff;
-        path.glyph {
-            fill: $c__orange;
-        }
-    }
-    nav ul.nav-desktop li {
-        &.products, &.illustrations, &.photography, &.resume, &.contact {
-            & a, &.active a, & a:hover, &.active a:hover {
-                color: #fff;
-                &:before {
-                    background-color: #fff;
-                }
-            }
-        }
-    }
     #pageheader-load {
         text-align: center;
     }
@@ -56,9 +41,9 @@ body.illustrations {
         padding: 0 20px 3rem 20px;
         width: auto;
         box-sizing: border-box;
-        color: #fff;
         display: inline-block;
         text-align: left;
+        @include animation(fade-in 1s ease-out);
         a {
             font-weight: 600;
         }
@@ -92,7 +77,7 @@ ul.details {
     bottom: 0;
     height: 1rem;
     line-height: 1rem;
-    left: 1rem;
+    left: 0;
     right: 0;
     margin: 0 auto;
     width: calc(100% - 3rem);
@@ -132,16 +117,23 @@ ul.details {
         }
     }
 }
+
+.mosaic {
+    @include animation(fade-in 1s ease-out);
+}
+
 .mosaic__panel--1-of-1 {
     ul.details {
         max-width: 512px;
     }
 }
 .mosaic__panel {
-    background-color: #fff; 
     color: $c__slate;
     &:hover ul.details {
         opacity: 1;
+    }
+    figure {
+        background-color: #fff;
     }
 }
 
@@ -308,11 +300,11 @@ ul.details {
 }
 
 .page-icons__Dell {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__SmallChange {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__Kismet {
@@ -341,19 +333,19 @@ ul.details {
 }
 
 .page-icons__Zello_Web {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__Zello_Iconsys {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__Zello_Accessories {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__toolbaricons {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__Flaunt {
@@ -1399,7 +1391,7 @@ ul.details {
 }
 
 .page-icons__TB {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__Zello_lg {
@@ -1442,7 +1434,7 @@ ul.details {
 }
 
 .page-icons__Arex_1 {
-    color: #fff;
+//    color: #fff;
     .tabs-content {
         .i__appstore-2x i {
             background-image: url('../img/illustrations-content/arex-1/appstore@2x.png');
@@ -1757,7 +1749,7 @@ ul.details {
 }
 
 .page-icons__iOS {
-    color: #fff;
+//    color: #fff;
 }
 
 .page-icons__Scala {
@@ -2564,10 +2556,11 @@ ul.details {
                         url('../img/illustrations/Icons_Pride_!256.png') 2x);   */
         //2x asset
         @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
-            background-image: url('../img/illustrations/Icons_Pride_!128.png');
+            @include share(width, height, 16rem);
+            background-image: url('../img/illustrations/Icons_Pride_!256.png');
             background-image: -webkit-image-set(
-                    url('../img/illustrations/Icons_Pride_!128.png') 1x,
-                    url('../img/illustrations/Icons_Pride_!256.png') 2x);
+                    url('../img/illustrations/Icons_Pride_!256.png') 1x,
+                    url('../img/illustrations/Icons_Pride_!256@2x.png') 2x);
         }
     }
 }  
@@ -2910,8 +2903,8 @@ ul.details {
     @media screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) { 
         background-image: url('../img/illustrations/Icons_Groupchat_!Dribbble.png');
         background-image: -webkit-image-set(
-                          url('../img/illustrations/Icons_Elephant_!Dribbble.png') 1x, 
-                          url('../img/illustrations/Icons_Elephant_!Dribbble@2x.png') 2x);
+                          url('../img/illustrations/Icons_Groupchat_!Dribbble.png') 1x, 
+                          url('../img/illustrations/Icons_Groupchat_!Dribbble@2x.png') 2x);
     }
 }
 
@@ -3812,11 +3805,11 @@ ul.details {
 
 // not-content
 .mosaic__panel a, {
-    padding: 2rem 0 0 0;
-    width: 100%;
-    height: calc(100% + 2rem);
-    margin-top: -2rem;
-    @include display(inline-flex);
+    padding: 0;
+    position: absolute;
+    @include share(top, right, bottom, left, 0);
+    @include share(width, height, 100%);
+    @include display(flex);
     @include justify-content(center);
     @include align-items(center);
     cursor: pointer;
@@ -3830,6 +3823,9 @@ ul.details {
             url('../img/cursor-zoom@2x.png') 2x),
             zoom-in;
 
+}
+.mosaic__panel.page-icons__Text2Polls a {
+    cursor: pointer;
 }
 .click-to-zoom {
     padding: 0;

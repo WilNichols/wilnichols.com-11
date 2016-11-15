@@ -1,211 +1,64 @@
 @import "bourbon/bourbon";
 
-@include keyframes(page-load) {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@include keyframes(page-unload) {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@include keyframes(popover-in) {
-  from {
-    opacity: 0;
-    @include transform(scale(0));
-  }
-
-  to {
-    opacity: 1;
-    @include transform(scale(1));
-    @include transform(scale(1));
-  }
-}
-
-@include keyframes(popover-out) {
-  from {
-    opacity: 1;
-    @include transform(scale(1));
-    @include transform(scale(1));
-  }
-
-  to {
-    opacity: 0;
-    @include transform(scale(0));
-    @include transform(scale(0));
-  }
-}
-
-@include keyframes(parent-unload) {
-    from {
-        @include transform(translateY(0));
-
-        opacity: 1;
-    }
-    to {
-        @include transform(translateY(-1vh));
+@include keyframes(fade-in) {
+    0%, 50% {
         opacity: 0;
     }
-}
-
-@include keyframes(sub-loading) {
-    from {
-        @include transform(translateY(1vh));
-        opacity: 0;
-    }
-    to {
-        @include transform(translateY(0));
+    100% {
         opacity: 1;
     }
 }
 
-@include keyframes(sub-unload) {
-    from {
-        @include transform(translateY(0));
-        opacity: 1;
-    }
-    to {
-        @include transform(translateY(1vh));
+@include keyframes(background-page-in) {
+    0% {
         opacity: 0;
     }
-}
-@include keyframes(background-page) {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.125;
+    100% {
+        opacity: .125;
     }
 }
-@include keyframes(background-page-out) {
-    from {
-        opacity: 0.125;
-    }   
-    to {
+@include keyframes(about-text) {
+    0% {
+        @include transform(translateX(-38.8vw));
+        opacity: 0;
+    }
+    100% {
+        @include transform(translateX(0));
         opacity: 1;
     }
 }
+
+@include keyframes(portrait) {
+    0% {
+        @include transform(translateX(38.8vw));
+        opacity: 0;
+    }
+    100% {
+        @include transform(translateX(0));
+        opacity: 1;
+    }
+}
+
 
 @include keyframes(scale-in) {
-  from {
-    @include transform(scale(.975));
-    opacity: 0;
-  }
-
-  to {
-    @include transform(scale(1));
-    opacity: 1;
-  }
+    0% {
+        @include transform(scale(.975));
+        opacity: 0;
+    }
+    100% {
+        @include transform(scale(1));
+        opacity: 1;
+    }
 }
 
-@include keyframes(scale-in-alt) {
-  from {
-    @include transform(scale(1.025));
-    opacity: 0;
-  }
 
-  to {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-}
-
-@include keyframes(scale-out) {
-  from {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-
-  to {
-    @include transform(scale(.975));
-    opacity: 0;
-  }
-}
-
-@include keyframes(scale-out-alt) {
-  from {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-
-  to {
-    @include transform(scale(1.025));
-    opacity: 0;
-  }
-}
-
-@include keyframes(slick-center) {
-  from {
-    @include transform(scale(0.5));
-//    opacity: 0.5;
-  }
-
-  to {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-}
-
-@include keyframes(slick-not-center) {
-  from {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-
-  to {
-      @include transform(scale(0.5));
-      opacity: 0.5;
-  }
-}
-
-@include keyframes(slick-center-sm) {
-  from {
-    @include transform(scale(0.33));
-  }
-
-  to {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-}
-
-@include keyframes(slick-not-center-sm) {
-  from {
-    @include transform(scale(1));
-    opacity: 1;
-  }
-
-  to {
-      @include transform(scale(0.33));
-      opacity: 0.5;
-  }
-}
-
-@include keyframes(slick-down-arrow) {
-  0% {
-      @include transform(translateY(0));
-  }
-  40% {
-      @include transform(translateY(.5rem));
-  }
-  50% {
-      @include transform(translateY(.4rem));
-  }
-  60% {
-      @include transform(translateY(.5rem));
-  }
-  100% {
-      @include transform(translateY(0));
-  }
+@include keyframes(scaleoutn) {
+    0% {
+        @include transform(scale(1));
+        opacity: 1;
+    }
+    100% {
+        @include transform(scale(.975));
+        opacity: 0;
+    }
 }

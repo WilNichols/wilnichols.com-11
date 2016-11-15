@@ -26,11 +26,39 @@ body {
     line-height: 2.25rem;
     color: #000;
     text-align: left;
-    background-repeat: no-repeat;
-    background-position: 125% bottom;
-    background-size: auto 100vh;
-    background-attachment: fixed;
-    @include transition(background-color linear $duration);
+    background-color: #fff;
+    &:before {
+        content: '';
+        position: fixed;
+        height: 200vh;
+        width: 38.2vw;
+        top: -50vh;
+        bottom: -50vh;
+        right: -5vw;
+        z-index: 0;
+        background-color: transparent;
+        box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+        @include transform-origin(left center);
+        @include transform(skewX(5deg) translate(40vw));
+        @include transition(transform 0.5s ease-out, background-color 0.5s ease-out, box-shadow 0.5s ease-out);
+        @media only screen and (max-width: $m__viewport-med) {
+            display: none;
+        }
+    }
+    &:after {
+        content: '';
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        @include share(top, right, bottom, left, 0);
+        background-repeat: no-repeat;
+        @include background-image(linear-gradient(-85deg, $c__key-blue-light 0%, #fff 100%));
+        background-size: cover;
+        background-attachment: fixed;
+        opacity: 0;
+        @include transition(opacity 0.2s ease-out);
+        z-index: -1;
+    }
 }
 
 // typo
@@ -41,6 +69,7 @@ h1 {
     text-align: left;
     margin: .5rem 0 1rem 0;
     vertical-align: middle;
+    color: $c__key-blue;
 }
 
 h2 {
@@ -199,21 +228,6 @@ img {
 }
 
 //Structure
-.animation-layer, .animation-layer:empty {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    @include share(top, right, bottom, left, 0);
-    display: block;
-    background-color: #fff;
-    z-index: 99999999999999999;
-    @include transition(opacity 0.2s ease-out, background-color 0.2s ease-out);
-    .loaded & {
-        @include transition(opacity 0.2s ease-out, background-color 0.2s ease-out);
-        opacity: 0;
-        pointer-events: none;
-    }
-}
 .grid {
     font-size: 0 !important;
 }
@@ -253,6 +267,7 @@ nav {
     width: 100%;
     line-height: 1.25rem;
     height: 63px;
+    @include animation(fade-in 1s ease-out);
     @media print {
         display: none;
     }
@@ -264,8 +279,7 @@ nav {
         position: absolute;
         left: 1rem;
 //        background-color: $c__slate_dark;
-        background-color: #fff;
-        @include transition(background-color 0.2s ease-out);
+        background-color: $c__key-blue;
         svg {
             .outer {
                 fill: transparent;
@@ -302,7 +316,7 @@ nav {
                 box-sizing: border-box;
                 color: $c__slate_dark;
                 font-weight: 600;
-                @include transition(color 0.2s ease-out);
+                color: $c__key-blue;
                 &:before {
                     content: '';
                     display: block;
@@ -318,49 +332,20 @@ nav {
                 &:hover  {
                     text-decoration: none;
                     &:before {
-                        background-color: $c__slate_dark;
+                        background-color: $c__key-blue;
                         @include transform(translateY(0));
                     }
                 }
             }
             &.active a:before {
                 @include transform(translateY(0));
+                background-color: $c__key-blue;
             }
             &:first-of-type {
                 margin: 0 .75rem 0 0;
             }
             &:last-of-type {
                 margin: 0 0 0 .75rem;
-            }
-            &.products a:hover, &.active.products a {
-                color: $c__red;
-                &:before {
-                    background-color: $c__red;
-                }
-            }
-            &.illustrations a:hover, &.active.illustrations a {
-                color: $c__orange;
-                &:before {
-                    background-color: $c__orange;
-                }
-            }
-            &.photography a:hover, &.active.photography a {
-                color: $c__green;
-                &:before {
-                    background-color: $c__green;
-                }
-            }
-            &.resume a:hover, &.active.resume a {
-                color: $c__blue;
-                &:before {
-                    background-color: $c__blue;
-                }
-            }
-            &.contact a:hover, &.active.contact a {
-                color: $c__pink;
-                &:before {
-                    background-color: $c__pink;
-                }
             }
         }
     }
@@ -526,6 +511,7 @@ main {
 }
 
 footer {
+    @include animation(fade-in 1s ease-out);
     position: static;
     display: block;
     z-index: 10000;
@@ -655,21 +641,27 @@ footer {
 //illustrations transitions
 .illustrations.unloading {
     #page-fragment-illustrations {
-        @include animation(illustrations-parent-unload $duration linear);
-    }
-}
-.illustrations.loading-sub {
-   article {
-        @include animation(scale-in $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
-        @include transform(scale(1));
+//        @include animation(illustrations-parent-unload $duration linear);
     }
 }
 .illustrations.loaded-sub {
-    #page-fragment-illustrations {
+   article {
+        @include animation(scale-in $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
+        @include transform(scale(1));
+        opacity: 1;
+    }
+}
+.illustrations.loaded-sub {
+/*    #page-fragment-illustrations, main > header {
         overflow: hidden;
         opacity: 0.125;
         pointer-events: none;
         @include animation(background-page $duration ease-out);
+    }   */
+
+    #page-fragment-illustrations, main > header > nav {
+//        opacity: 0.125;
+//        @include animation(background-page-in $duration ease-out);
     }
 }
 .illustrations.loaded:not(.illustration) {
@@ -693,60 +685,19 @@ footer {
 //main transitions
 .load {
     .unloaded & {
-        @include animation(page-unload $duration linear);
-        opacity: 1 !important;
+//        @include animation(page-unload $duration linear);
+//        opacity: 1 !important;
     }
     .loading & {
-        @include animation(page-load $duration linear);
-        opacity: 0 !important;
+//        @include animation(page-load $duration linear);
+//        opacity: 0 !important;
     } 
     .loaded & , .unloading &, .loaded-sub & {
-        opacity: 1 !important;
-        @include animation(page-unload $duration linear);
+//        opacity: 1 !important;
+//        @include animation(page-unload $duration linear);
     }
 }
 
-
-// this one isn't in use anymore, but keeping in case I broke something terribly
-.pageloadanim {
-    //@include animation(page-load $duration linear);
-    min-height: 100vh;
-    height: 100%;
-    min-width: 100vw;
-    width: 100%;
-    position: absolute;
-    z-index: 999999999;
-    pointer-events: none;
-    background: #fff;
-    //opacity: 0 !important;
-    &.u__anim-in {
-        @include animation(page-unload $duration linear);
-        opacity: 1 !important;
-        pointer-events: default;
-        .lolonpe & {
-            @include animation(none);
-        }
-    }
-    &.u__anim-out {
-        opacity: 0;
-    }
-    .unloaded & {
-        opacity: 1;
-    }
-    .loading & {
-        opacity: 1;
-        @include animation(page-unload $duration linear);
-    }
-    .loaded &, .unloading &, .loaded-sub & {
-        opacity: 0;
-        @include animation(page-load $duration linear);
-    }
-    .illustration & {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        display: none !important;
-    }
-}
 
 html.no-js {
     .pageloadanim {
@@ -774,6 +725,7 @@ html.no-js {
     p {
         display:inline-block;
         text-align: left;
+        color: $c__slate_dark;
     }
 }
 .anim-out {
@@ -989,12 +941,8 @@ body.illustrations.illustration {
         display: block;
         box-shadow: none;
         @include transform(scale(1));
-        background-color: transparent !important;
         background-color: #fff !important;
-        box-shadow: 0 0 0 1px rgba(0,0,0,0.025), 0 2rem 4rem rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.125);
-        &:hover, &:active {
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.025), 0 2rem 4rem rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.125);
-        }
+        box-shadow: 0 2rem 4rem rgba(0,0,0,0.125), 0 .0625rem .125rem 0 rgba(0,0,0,0.125);
         header {
             // @include share(border-top-left-radius, border-top-right-radius, .25rem);
             width: calc(100% - 2rem);
@@ -1005,17 +953,27 @@ body.illustrations.illustration {
             @include share(top, left, right, 0);
             padding: 1rem;
             box-sizing: content-box;
-            a.modal-close {
-                color: #fff !important;
+            box-shadow: 0 1px 0 0 rgba(0,0,0,0.0625);
+            z-index: 1;
+            .modal-close {
                 position: absolute;
-                left: 1rem;
-                @include share(height, width, 1rem);
-                padding: 1px 2px 3px 2px;
+                left: -1rem;
+                top: -1rem;
+                @include share(height, width, 2rem);
+                border-radius: 50%;
+                background-color: rgba($c__key-blue, 0.75);
+                mix-blend-mode: multiply;
+                @include transition(background-color 0.2s ease-out);
                 svg {
                     @include share(height, width, .75rem);
+                    margin: .625rem;
                     path {
-                        fill: currentcolor !important;
+                        fill: #fff !important;
                     }
+                }
+                &:hover {
+                    background-color: $c__key-blue;
+                    @include transition(background-color 0.2s ease-out);
                 }
             }
             h1 {
@@ -1024,14 +982,32 @@ body.illustrations.illustration {
                 width: auto;
                 display: block;
                 top: 1rem;
-                left: 3rem;
+                left: 1rem;
                 position: absolute;
                 z-index: 100;
+                margin: 0;
             }
             ul.tabs {
-                margin: -2px -2px 0 0;
                 position: absolute;
-                right: 1rem;
+                @include share(top, right, 0);
+                margin: 0 .75rem;
+                li {
+                    display: inline-block; 
+                    margin: 0 .75rem;
+                    a {
+                        display: block;
+                        @include share(height, line-height, 3rem);
+                        font-weight: 600;
+                        color: $c__key-blue;
+                        vertical-align: middle;
+                        font-size: .875rem;
+                    }
+                    &.active a, &:hover a {
+                        box-shadow: inset 0 3px 0 0 $c__key-blue;
+                            text-decoration: none;
+
+                    }
+                }
             }
         }
         nav {
@@ -1069,9 +1045,26 @@ body.illustrations.illustration {
                 display: inline-block;
                 position: absolute;
                 right: 1rem;
+                li a {
+                    color: $c__slate_dark;
+                    padding: 0;
+                    padding-right: 1rem;
+                    &:after {
+                        content: '';
+                        background-image: url('../img/button-link.svg');
+                        @include share(width, height, .625rem);
+                        display: inline-block;
+                        margin: 0 -1rem 0rem .25rem;
+                        background-size: 10px 10px;
+                        @media (-webkit-min-device-pixel-ratio: 2) {
+                            background-image: url('../img/button-link@2x.svg');
+                        }
+                    }
+                }
             }
             h2 {
                 font-weight: 600;
+                color: $c__slate_dark;
                 @include share(height, line-height, 1rem);
                 font-size: .875rem;
                 width: auto;

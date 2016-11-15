@@ -3,29 +3,13 @@
 
 body.index {
     overflow-x: hidden;
-//    background-color: $c__tan;
-    background-color: #e2f2ff;
-    @media only screen and (max-width: $m__viewport-med) {
-        background-color: #fff;
+    &:before {
+        background-color: $c__key-yellow;
+        @include transform(skewX(-5deg));
+        box-shadow: inset 2rem 0 5rem 0 $c__key-yellow-dark;
     }
     &:after {
-        content: '';
-        position: fixed;
-        height: 200vh;
-        width: 38.2vw;
-        top: -50vh;
-        bottom: 0;
-        right: -5%;
-        background-color: #fecc69;
-        z-index: -1;
-        @include transform(skewX(-5deg));
-        box-shadow: inset 2rem 0 5rem 0 #f19d52;
-        @media only screen and (max-width: $m__viewport-med) {
-            display: none;
-        }
-    }
-    .nav-desktop li a {
-        color: #3e6dff;
+        opacity: 1;
     }
     main {
         min-height: 640px;
@@ -34,18 +18,19 @@ body.index {
     #portrait {
         display: inline-block;
         float: right;
-        background-image: url('../img/bg.jpg');
+        background-image: url('../img/bg.jpg'), linear-gradient(-85deg, $c__key-blue-light 0%, #fff 100%);
         background-repeat: no-repeat;
         background-size: cover;
         padding-bottom: 41.2%;
-        box-shadow: 0 4rem 12rem rgba(0,0,0,0.125);
+        box-shadow: 0 2rem 4rem rgba(0,0,0,0.125);
         position: absolute;
         width: 61.8%;
-        position: absolute;
         right: 1rem;
         top: 50%;
         margin-top: -20.6%;
         z-index: -1;
+        opacity: 1;
+        @include animation(portrait 0.55s ease-out);
         @media only screen and (max-width: $m__viewport-med) {
             height: 100vh;
             width: 100vw;
@@ -55,17 +40,14 @@ body.index {
             margin-top: 0;
             padding-bottom: 0;
             position: fixed;
+            @include animation(none);
+            &:after {
+                content: none;
+            }
         }
         @media only screen and (max-width: $m__viewport-sm) {
             background-position: -50vw;
         }
-        
-    }
-    h1, .mobile-menu-link {
-        color: #3e6dff;
-    }
-    span.logo {
-        background-color: #3e6dff;
     }
     .load {
         min-height: 8rem;
@@ -73,7 +55,8 @@ body.index {
         @include flex-grow(1);
     }
     section.about {
-        margin: 3.375 0;
+        margin: 3.375rem 0;
+        @include animation(about-text 0.55s ease-out);
         p {
             font-size: 1.4375rem;
             line-height: 2.25rem;

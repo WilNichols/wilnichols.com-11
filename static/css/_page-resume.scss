@@ -2,18 +2,6 @@
 @import "_common";
 
 body.resume {
-    header {
-        background-color: $c__blue;
-    }
-    span.logo, .mobile-menu-link li {
-        background-color: #fff;
-        path.glyph {
-            fill: $c__blue;
-        }
-    }
-    h1 {
-        color: $c__blue;
-    }
     .wrapper.u__align-items-center {
         @media screen and (max-height: 52rem) {
             @include align-items(flex-start);
@@ -24,16 +12,6 @@ body.resume {
         height: auto;
          @media print {
             padding-bottom: 0;
-        }
-    }
-    nav ul.nav-desktop li {
-        &.products, &.illustrations, &.photography, &.resume, &.contact {
-            & a, &.active a, & a:hover, &.active a:hover {
-                color: #fff;
-                &:before {
-                    background-color: #fff;
-                }
-            }
         }
     }
     .print-header {

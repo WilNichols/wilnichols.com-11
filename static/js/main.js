@@ -1,14 +1,11 @@
 // TO-DO change "base" to "http://dznr.me" // NO www.
-// 
+
 var duration = 200;
 var longduration = 800;
 
-//local var base = "http://localhost:8000";
 var base = "http://localhost:8000";
-
-var externalref = true;
-var externalrefstring = 'external referrer';
-var fromparent = false;
+var prevpage = 'none';
+var fromsub = false;
 
 //scroll code for illustrations detail pages
 function lockScroll(){
@@ -38,17 +35,39 @@ function unlockScroll(){
     $body.css({'margin-right': 0, 'margin-bottom': 0});
 }
 
-function pageSetup () {
-    var thisPageContents = undefined; 
-    $(".load #no-js").remove();
-    console.log(externalrefstring);
+function pageSetup (thisPageName) {
+    var thisPageContents
+    if(prevpage === 'home') {
+        console.log("from home")
+    } 
+    if(prevpage === 'illustrations') {
+        console.log("from illustrations")
+    } 
+    if(prevpage === 'photography') {
+        console.log("from photography")
+    } 
+    if(prevpage === 'resume') {
+        console.log("from resume")
+    }
+    if(prevpage === 'contact') {
+        console.log("from contact")
+    }
+    if(prevpage === 'none') {
+        $(".load #no-js").remove();
+        console.log("from none")
+    }
 }
 
+function setLinks() {
+    $("nav a[data-navigo]").click(function() {
+        event.preventDefault();
+        router.navigate($(this).attr("href"));
+    });
+}
 function setSubPageLinks () {
     $("a[data-navigo].data-navigo-sub").click(function() {
         event.preventDefault();
         router.navigate($(this).attr("href"));
-        var fromparent = true;
     });
 }
 
@@ -65,13 +84,271 @@ function pageChange (thisPageTemplate, thisPageName){
             $("body").attr("class", "loaded " + thisPageName);
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
-            setSubPageLinks();
-            carousel();
+            setLinks();
             setTimeout(function(){
                 $("main").removeClass("from-sub");
             }, longduration);   
         }, duration);  
     });
+}
+
+
+// pages 
+
+function makeHome () {
+    pageSetup();
+    var thisPageTemplate = base + "/components/page-index.html";
+    var thisPageName = "index";
+    
+    document.title = "Wil Nichols";
+    $("body").removeClass("loaded").addClass("loading loading-" + thisPageName);
+    $("footer .footer-load *").remove();
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+        var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+        $("nav ul li a").parent("li").removeClass("active");
+        $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+            $("#pageheader-load").html(thisPageHeader);
+            $(".load").html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            setSubPageLinks();
+        }, duration);  
+    });
+    prevpage = "home";
+}
+function makeProducts () {
+    pageSetup();
+    var thisPageTemplate = base + "/components/page-contact.html"
+    var thisPageName = "contact"
+    
+    document.title = "Wil Nichols : Contact";
+
+    $("body").removeClass("loaded").addClass("loading");
+    $("footer .footer-load *").remove();
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+        var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+        $("nav ul li a").parent("li").removeClass("active");
+        $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+            $("#pageheader-load").html(thisPageHeader);
+            $(".load").html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            setSubPageLinks();
+        }, duration);  
+    });
+    prevpage = "contact"
+}
+function makeIllustrations() {
+    pageSetup();
+    var thisPageTemplate = base + "/components/page-illustrations.html"
+    var thisPageName = "illustrations"
+    
+    document.title = "Wil Nichols : Illustrations";
+    
+    if(fromsub === false) {
+        $("body").removeClass("loaded").addClass("loading");
+        $("footer .footer-load *").remove();
+        $.get(thisPageTemplate, function(thisPageContents) {
+            var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+            var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+            var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+            $("nav ul li a").parent("li").removeClass("active");
+            $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+        
+            setTimeout(function(){
+                $("body").attr("class", "loaded " + thisPageName);
+                $("#pageheader-load").html(thisPageHeader);
+                $("footer .footer-load").html(thisPageFooter);
+                $(".load").html(thisPageMain).trigger("insert-page");
+                setSubPageLinks();
+                setTimeout(function(){
+                    $("main").removeClass("from-sub");
+                }, longduration);   
+            }, duration);  
+        });
+    }
+    prevpage = "illustrations"
+}
+
+function makeIllustrationsSub(params) {
+    pageSetup();
+    
+    var thisSubPageName = params.illustration.split('#')[0];
+    var thisSubPageTemplate = base + "/components/illustrations/" + thisSubPageName + ".html";
+    var hash = window.location.href.split('#')[1] || '';
+    function hashroute() {
+        if (location.hash) {
+            console.log("there's a hash");
+            $("a.hash-sub").parent().siblings().removeClass("active");
+            $("a.hash-sub#" + hash).parent().addClass("active");
+            $(".tabs-content *").removeClass("active");
+            $(".tabs-content ." + hash).addClass("active");
+        };
+    }
+    function hashsub() {
+        $("a.hash-sub").click(function(){
+            var value = $(this).attr('id');
+            //prevent reload
+            event.preventDefault();
+            //tabs styling
+            $(this).parent().siblings().removeClass("active");
+            $(this).parent().addClass("active");
+            //make url readable/shareable
+            history.pushState(null, null, '#' + value);
+            $(".tabs-content *").removeClass("active");
+            $(".tabs-content ." + value).addClass("active");
+        });
+    }
+    function modalclose() {
+        $("a.navigo-back-to-parent").click(function() {
+            event.preventDefault();
+            $(".modal.anim-in").removeClass("anim-in");
+            $(".modal-wrapper").remove();
+            unlockScroll();
+            $(window).trigger("modal-close"); 
+            router.navigate('../illustrations');  
+        });
+    }
+    
+    document.title = "Wil Nichols : Illustrations : " + thisSubPageName;
+    console.log(params.illustration);
+    
+    $("body").removeClass("loaded").addClass(prevpage + " illustration loading-sub " + thisSubPageName);
+    $.get(thisSubPageTemplate , function(thisSubPageContents) {
+        var thisSubPageMain = $(thisSubPageContents).filter("#pagejs-load-in-sub");
+        var thisSubPageFooter = $(thisSubPageContents).filter("#pagejs-footer-in");
+        
+        if(prevpage === 'illustrations') {
+            console.log('second');
+            $(".load").prepend(thisSubPageMain);
+            $("body").attr("class", "loaded illustration loaded-sub " + prevpage + " " +thisSubPageName);
+            hashsub();
+            hashroute();
+            modalclose();
+            fromsub = true;
+        } else {
+            console.log('first');
+            makeIllustrations();
+            $(".load").on("insert-page", function () {
+                $("body").attr("class", "loaded illustrations illustration loaded-sub " +thisSubPageName);
+                $(".load").prepend(thisSubPageMain);
+                console.log("inserted modal");
+                hashroute();
+                hashsub();
+                modalclose();
+                fromsub = true;
+            });
+                        
+        }
+        lockScroll();
+    
+        window.onkeypress = function() {
+           if (event.keyCode == 033) {
+               //do it this way so that when the modal is removed, it can't fire again yeh
+              $("a.navigo-back-to-parent").click();
+           }
+        }
+        //tabs on-click
+        
+        //direct linking to tabs
+        // separate animation to new class and remove class after animation duration so no repaint at breakpoints    
+        setTimeout(function(){
+            $(".modal.anim-in").removeClass("anim-in");
+        }, duration);    
+           
+           
+        
+        // so when i change .html to .append, the function fires twice. WHY
+    }).fail(function() {
+        router.navigate('../illustrations')
+    });
+    
+}
+function makePhotography() {
+    pageSetup();
+    var thisPageTemplate = base + "/components/page-photography.html"
+    var thisPageName = "photography"
+    
+    
+    document.title = "Wil Nichols : Photography";
+    
+    $("body").removeClass("loaded").addClass("loading");
+    $("footer .footer-load *").remove();
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+        var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+        $("nav ul li a").parent("li").removeClass("active");
+        $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+            $("#pageheader-load").html(thisPageHeader);
+            $(".load").html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            setSubPageLinks();
+            setTimeout(function(){
+                $("main").removeClass("from-sub");
+            }, longduration);   
+        }, duration); 
+    });
+    prevpage = "photography"
+}
+function makeResume() {
+    pageSetup();
+    var thisPageTemplate = base + "/components/page-resume.html"
+    var thisPageName = "resume"
+    
+    
+    document.title = "Wil Nichols : Résumé";
+    
+    $("body").removeClass("loaded").addClass("loading");
+    $("footer .footer-load *").remove();
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+        var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+        $("nav ul li a").parent("li").removeClass("active");
+        $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+            $("#pageheader-load").html(thisPageHeader);
+            $(".load").html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            setSubPageLinks();
+        }, duration);  
+    });
+    prevpage = "resume"
+}
+function makeContact() {
+    pageSetup();
+    var thisPageTemplate = base + "/components/page-contact.html"
+    var thisPageName = "contact"
+    
+    document.title = "Wil Nichols : Contact";
+
+    $("body").removeClass("loaded").addClass("loading");
+    $("footer .footer-load *").remove();
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
+        var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
+        $("nav ul li a").parent("li").removeClass("active");
+        $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+            $("#pageheader-load").html(thisPageHeader);
+            $(".load").html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            setSubPageLinks();
+        }, duration);  
+    });
+    prevpage = "contact"
 }
 
 var router = new Navigo(root=null, useHash=false);
@@ -92,12 +369,7 @@ $(document).ready(function() {
     $.get(navtemplate, function(thisPageNav) {
         console.log('inserted nav');
         $("header").html(thisPageNav);
-        $("nav a[data-navigo]").click(function() {
-            externalref = false;
-            externalrefstring = 'not external referrer';
-            event.preventDefault();
-            router.navigate($(this).attr("href"));
-        });
+        setLinks();
         
         // expand menu
         var menubuttonpressed = false;
@@ -123,135 +395,20 @@ $(document).ready(function() {
             }, duration);
         })
     });
-router.on({
-        // PRODUCTS 
+    router.on({
+        // LANDING
+        '/home/': function () { makeHome(); },
         
-        '/products/': function () {
-            pageSetup();
-            var thisPageTemplate = base + "/components/page-products.html"
-            var thisPageName = "products"
-            
-            document.title = "Wil Nichols : Products";
-            
-        },
+        // PRODUCTS 
+        '/products/': function () { makeProducts(); },
         
         // INDIVIDUAL ILLUSTRATION
-        '/illustrations/:illustration': function (params) {
-            pageSetup();
-            var thisPageName = "illustrations";
-            var thisPageTemplate = base + "/components/page-" + thisPageName + ".html";
-            var thisSubPageName = params.illustration.split('#')[0];
-            var thisSubPageTemplate = base + "/components/illustrations/" + thisSubPageName + ".html";
-            var hash = window.location.href.split('#')[1] || '';
-            
-            document.title = "Wil Nichols : Illustrations : " + thisSubPageName;
-            
-            // TO-DO: if hash matches id in tab-content, add active/inactive class there and in ul.tabs
-            $("body").removeClass("loaded").addClass(thisPageName + " illustration loading-sub " + thisSubPageName);
-            console.log(params.illustration);
-            $.get(thisSubPageTemplate , function(thisSubPageContents) {
-                var thisSubPageMain = $(thisSubPageContents).filter("#pagejs-load-in-sub");
-                var thisSubPageFooter = $(thisSubPageContents).filter("#pagejs-footer-in");
-                $(".load #no-js").remove();
-                $(".load").prepend(thisSubPageMain);
-                $("nav ul li").removeClass("active");
-                $("a[href='../illustrations/']").parent().addClass("active");
-                lockScroll();
-                $("a[data-navigo]").click(function() {
-                    unlockScroll();
-                });
-                $("a.navigo-back-to-parent").click(function() {
-                    event.preventDefault();
-                    $("body").addClass("unloading-sub");
-                    setTimeout(function(){
-                        $(".modal.anim-in").removeClass("anim-in");
-                        $(".modal-wrapper").remove();
-                    }, duration);  
-                    $("main").addClass("from-sub");  
-                    router.navigate('../illustrations');
-                });
-                window.onkeypress = function() {
-                   if (event.keyCode == 033) {
-                       //do it this way so that when the modal is removed, it can't fire again yeh
-                      $("a.navigo-back-to-parent").click();
-                   }
-                }
-                //tabs on-click
-                $("a.hash-sub").click(function(){
-                    var value = $(this).attr('id');
-                    //prevent reload
-                    event.preventDefault();
-                    //tabs styling
-                    $(this).parent().siblings().removeClass("active");
-                    $(this).parent().addClass("active");
-                    //make url readable/shareableb
-                    history.pushState(null, null, '#' + value);
-                    $(".tabs-content *").removeClass("active");
-                    $(".tabs-content ." + value).addClass("active");
-                });
-                //direct linking to tabs
-                if (location.hash) {
-                    $("a.hash-sub").parent().siblings().removeClass("active");
-                    $("a.hash-sub").css("margin-top", "9px");
-                    $("a.hash-sub#" + hash).parent().addClass("active");
-                    $(".tabs-content *").removeClass("active");
-                    $(".tabs-content ." + hash).addClass("active");
-                };
-                // separate animation to new class and remove class after animation duration so no repaint at breakpoints    
-                setTimeout(function(){
-                    $(".modal.anim-in").removeClass("anim-in");
-                }, duration);       
-                            
-                $("footer .footer-load").html(thisSubPageFooter);
-                // so when i change .html to .append, the function fires twice. WHY
-                $("body").attr("class", "loaded illustration loaded-sub " + thisPageName + " " +thisSubPageName);
-            }).fail(function() {
-                router.navigate('../illustrations')
-            });
-            // if entry point is illustrations, add class. Else, load parent and add class.
-            if ($('#page-fragment-illustrations').length > 0) { } else {
-                $.get(thisPageTemplate , function(thisPageContents) { 
-                    var thisPageMain = $(thisPageContents).filter("#page-fragment-illustrations");
-                    $(".load *").not(".modal-wrapper, .modal-wrapper *").remove();
-                    thisPageMain.addClass("background-page");
-                    $(".load").append(thisPageMain);
-                });
-            };
-        },
+        '/illustrations/:illustration': function (params) { makeIllustrationsSub(params); },
 
         // ILLUSTRATIONS
-        
-        '/illustrations': function () {
-            pageSetup();
-            var thisPageTemplate = base + "/components/page-illustrations.html"
-            var thisPageName = "illustrations"
-            
-            document.title = "Wil Nichols : Illustrations";
-            
-            $("body").removeClass("loaded").addClass("loading");
-            $("footer .footer-load *").remove();
-            $.get(thisPageTemplate, function(thisPageContents) {
-                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
-                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
-                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
-                $("nav ul li a").parent("li").removeClass("active");
-                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-                setTimeout(function(){
-                    $("body").attr("class", "loaded " + thisPageName);
-                     console.log("headertext" + $(thisPageHeader).html());
-                    $("#pageheader-load").html(thisPageHeader);
-                    $(".load").html(thisPageMain);
-                    $("footer .footer-load").html(thisPageFooter);
-                    setSubPageLinks();
-                    setTimeout(function(){
-                        $("main").removeClass("from-sub");
-                    }, longduration);   
-                }, duration);  
-            });
-        },
+        '/illustrations': function () { makeIllustrations(); },
         
         // INDIVIUAL PHOTO
-    
         '/photography/:collection': function (params) {
             pageSetup();
             var url = window.location.pathname;
@@ -331,132 +488,16 @@ router.on({
                 }, duration);
             }); 
         },            
+        
         // PHOTOGRAPHY
-        
-        '/photography/': function () {
-            pageSetup();
-            var thisPageTemplate = base + "/components/page-photography.html"
-            var thisPageName = "photography"
-            
-            
-            document.title = "Wil Nichols : Photography";
-            
-            $("body").removeClass("loaded").addClass("loading");
-            $("footer .footer-load *").remove();
-            $.get(thisPageTemplate, function(thisPageContents) {
-                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
-                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
-                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
-                $("nav ul li a").parent("li").removeClass("active");
-                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-                setTimeout(function(){
-                    $("body").attr("class", "loaded " + thisPageName);
-                     console.log("headertext" + $(thisPageHeader).html());
-                    $("#pageheader-load").html(thisPageHeader);
-                    $(".load").html(thisPageMain);
-                    $("footer .footer-load").html(thisPageFooter);
-                    setSubPageLinks();
-                    carousel();
-                    setTimeout(function(){
-                        $("main").removeClass("from-sub");
-                    }, longduration);   
-                }, duration); 
-            });
-        },
-        
-        // INDIVIUAL PHOTO
+        '/photography/': function () { makePhotography(); },
         
         // RÉSUMÉ
-        
-        '/resume/': function () {
-            pageSetup();
-            var thisPageTemplate = base + "/components/page-resume.html"
-            var thisPageName = "resume"
-            
-            document.title = "Wil Nichols : Résumé";
-            
-            $("body").removeClass("loaded").addClass("loading");
-            $("footer .footer-load *").remove();
-            $.get(thisPageTemplate, function(thisPageContents) {
-                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
-                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
-                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
-                $("nav ul li a").parent("li").removeClass("active");
-                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-                setTimeout(function(){
-                    $("body").attr("class", "loaded " + thisPageName);
-                     console.log("headertext" + $(thisPageHeader).html());
-                    $("#pageheader-load").html(thisPageHeader);
-                    $(".load").html(thisPageMain);
-                    $("footer .footer-load").html(thisPageFooter);
-                    setSubPageLinks();
-                    carousel(); 
-                }, duration);  
-            });
-        },
+        '/resume/': function () { makeResume(); },
         
         // CONTACT
+        '/contact/': function () { makeContact(); },
         
-        '/contact/': function () {
-            pageSetup();
-            var thisPageTemplate = base + "/components/page-contact.html"
-            var thisPageName = "contact"
-            
-            document.title = "Wil Nichols : Contact";
-            
-            $("body").removeClass("loaded").addClass("loading");
-            $("footer .footer-load *").remove();
-            $.get(thisPageTemplate, function(thisPageContents) {
-                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
-                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
-                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
-                $("nav ul li a").parent("li").removeClass("active");
-                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-                setTimeout(function(){
-                    $("body").attr("class", "loaded " + thisPageName);
-                    console.log("headertext" + $(thisPageHeader).html());
-                    $("#pageheader-load").html(thisPageHeader);
-                    $(".load").html(thisPageMain);
-                    $("footer .footer-load").html(thisPageFooter);
-                    setSubPageLinks();
-                }, duration);  
-            });
-
-        },
-        
-        // LANDING
-        
-        '/home/': function () { 
-            pageSetup();
-            var thisPageTemplate = base + "/components/page-index.html";
-            var thisPageName = "index";
-            
-            document.title = "Wil Nichols";
-            $("body").removeClass("loaded").addClass("loading");
-            $("footer .footer-load *").remove();
-            $.get(thisPageTemplate, function(thisPageContents) {
-                var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);
-                var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
-                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
-                $("nav ul li a").parent("li").removeClass("active");
-                $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-                setTimeout(function(){
-                    $("body").attr("class", "loaded " + thisPageName);
-                    console.log("headertext" + $(thisPageHeader).html());
-                    $("#pageheader-load").html(thisPageHeader);
-                    $(".load").html(thisPageMain);
-                    $("footer .footer-load").html(thisPageFooter);
-                    setSubPageLinks();
-                }, duration);  
-            });
-        },
-        '*': function () { 
-            window.location = "/home";
-        },
+        '*': function () { window.location = "/home"; }
     });
-
-
-
 });
-
-    
