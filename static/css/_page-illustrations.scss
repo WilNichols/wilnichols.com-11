@@ -80,7 +80,7 @@ ul.details {
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: calc(100% - 3rem);
+//    width: calc(100% - 3rem);
     box-sizing: content-box;
     opacity: 0;
     padding: 1rem;
@@ -397,14 +397,11 @@ ul.details {
 
 .color-well {
     @include share(width, height, 10px);
-    border-radius: 2px;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.125), 0 1px 2px rgba(0,0,0,0.25);
-    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff, inset 0 0 0 1px rgba(0,0,0,0.125)/*, 0 1px 2px rgba(0,0,0,0.25)*/;
     background-color: transparent;
-    position: absolute;
+//    position: absolute;
     z-index: 999;
-    left: 5px;
-    top: -1px;
     #a1 & { background-color: #d725e3; }
     #a2 & { background-color: #761d35; }
     #a3 & { background-color: #8234a2; }
@@ -412,6 +409,9 @@ ul.details {
     #a5 & { background-color: #def8fc; }
     #a6 & { background-color: #316582; }
     #a7 & { background-color: #44cef9; }
+    .active &, a:hover & {
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px $c__key-blue, inset 0 0 0 1px rgba(0,0,0,0.125);
+    }
 }
 .page-icons__PicPicBoom {
     figure {

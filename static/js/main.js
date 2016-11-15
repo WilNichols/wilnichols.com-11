@@ -172,6 +172,8 @@ function makeIllustrations() {
                 }, longduration);   
             }, duration);  
         });
+    } else {
+        $("body").attr("class", "loaded " + thisPageName);
     }
     prevpage = "illustrations"
 }
@@ -208,16 +210,17 @@ function makeIllustrationsSub(params) {
     function modalclose() {
         $("a.navigo-back-to-parent").click(function() {
             event.preventDefault();
-            $(".modal.anim-in").removeClass("anim-in");
-            $(".modal-wrapper").remove();
-            unlockScroll();
-            $(window).trigger("modal-close"); 
+            $(".modal").addClass("anim-out");
+            setTimeout(function(){
+                $(".modal-wrapper").remove();
+                $("body").removeClass(hash);
+                unlockScroll();
+            }, duration);  
             router.navigate('../illustrations');  
         });
     }
     
     document.title = "Wil Nichols : Illustrations : " + thisSubPageName;
-    console.log(params.illustration);
     
     $("body").removeClass("loaded").addClass(prevpage + " illustration loading-sub " + thisSubPageName);
     $.get(thisSubPageTemplate , function(thisSubPageContents) {
@@ -225,15 +228,13 @@ function makeIllustrationsSub(params) {
         var thisSubPageFooter = $(thisSubPageContents).filter("#pagejs-footer-in");
         
         if(prevpage === 'illustrations') {
-            console.log('second');
             $(".load").prepend(thisSubPageMain);
             $("body").attr("class", "loaded illustration loaded-sub " + prevpage + " " +thisSubPageName);
             hashsub();
             hashroute();
-            modalclose();
+            modalclose(hash);
             fromsub = true;
         } else {
-            console.log('first');
             makeIllustrations();
             $(".load").on("insert-page", function () {
                 $("body").attr("class", "loaded illustrations illustration loaded-sub " +thisSubPageName);
@@ -241,7 +242,7 @@ function makeIllustrationsSub(params) {
                 console.log("inserted modal");
                 hashroute();
                 hashsub();
-                modalclose();
+                modalclose(hash);
                 fromsub = true;
             });
                         
@@ -260,11 +261,7 @@ function makeIllustrationsSub(params) {
         // separate animation to new class and remove class after animation duration so no repaint at breakpoints    
         setTimeout(function(){
             $(".modal.anim-in").removeClass("anim-in");
-        }, duration);    
-           
-           
-        
-        // so when i change .html to .append, the function fires twice. WHY
+        }, duration);
     }).fail(function() {
         router.navigate('../illustrations')
     });

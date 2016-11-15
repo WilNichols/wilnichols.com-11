@@ -644,24 +644,17 @@ footer {
 //        @include animation(illustrations-parent-unload $duration linear);
     }
 }
-.illustrations.loaded-sub {
-   article {
-        @include animation(scale-in $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
-        @include transform(scale(1));
-        opacity: 1;
+.illustrations {
+    main > header, #page-fragment-illustrations {
+        @include transition(opacity 0.2s ease-out, filter 0.2s ease-out);
     }
-}
-.illustrations.loaded-sub {
-/*    #page-fragment-illustrations, main > header {
-        overflow: hidden;
-        opacity: 0.125;
-        pointer-events: none;
-        @include animation(background-page $duration ease-out);
-    }   */
-
-    #page-fragment-illustrations, main > header > nav {
-//        opacity: 0.125;
-//        @include animation(background-page-in $duration ease-out);
+    &.loaded-sub {
+        main > header, #page-fragment-illustrations {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: blur(.5rem);
+            @include transition(opacity 0.2s ease-out, filter 0.2s ease-out);
+        }
     }
 }
 .illustrations.loaded:not(.illustration) {
@@ -935,10 +928,16 @@ body.illustrations.illustration {
     article {      
         &.anim-in {
             @include animation(scale-in $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
+            @include transform(scale(1));
+            opacity: 1;
+        }
+        &.anim-out {
+            @include animation(scale-out $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
         }
         z-index: 1;
         margin: 0 auto;
         display: block;
+        max-width: calc(100vw - 4rem);
         box-shadow: none;
         @include transform(scale(1));
         background-color: #fff !important;
@@ -963,6 +962,7 @@ body.illustrations.illustration {
                 border-radius: 50%;
                 background-color: rgba($c__key-blue, 0.75);
                 mix-blend-mode: multiply;
+                backdrop-filter: blur(.25rem);
                 @include transition(background-color 0.2s ease-out);
                 svg {
                     @include share(height, width, .75rem);
@@ -1001,11 +1001,21 @@ body.illustrations.illustration {
                         color: $c__key-blue;
                         vertical-align: middle;
                         font-size: .875rem;
+                        min-width: 1rem;
+                        text-align: center;
                     }
                     &.active a, &:hover a {
                         box-shadow: inset 0 3px 0 0 $c__key-blue;
-                            text-decoration: none;
+                        text-decoration: none;
 
+                    }
+                }
+                &.no-highlight {
+                    li {
+                        margin: 0 .375rem;
+                        &:hover a, &.active a {
+                            box-shadow: none;        
+                        }
                     }
                 }
             }
@@ -1059,6 +1069,9 @@ body.illustrations.illustration {
                         @media (-webkit-min-device-pixel-ratio: 2) {
                             background-image: url('../img/button-link@2x.svg');
                         }
+                    }
+                    &.download:after {
+                        @include transform(rotate(90deg));
                     }
                 }
             }
