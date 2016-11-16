@@ -40,32 +40,26 @@ function pageSetup (thisPageName) {
     var thisPageContents
     if(prevpage === 'home') {
         console.log("from home")
-        fromillsub = false;
         
     } 
     if(prevpage === 'illustrations') {
         console.log("from illustrations")
-
     } 
     if(prevpage === 'photography') {
         console.log("from photography")
-        fromillsub = false;
     } 
     if(prevpage === 'resume') {
         console.log("from resume")
-        fromillsub = false;
     }
     if(prevpage === 'contact') {
         console.log("from contact")
-        fromillsub = false;
     }
-/*    if(prevpage !== 'none') {
+    if(prevpage !== 'none') {
         referrer = "self-ref from-" + prevpage;
-    }   */
+    }
     if(prevpage === 'none') {
         $(".load #no-js").remove();
         console.log("from none")
-        fromillsub = false;
     }
 }
 
@@ -122,7 +116,7 @@ function makeHome () {
         $("nav ul li a").parent("li").removeClass("active");
         $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         setTimeout(function(){
-            $("body").attr("class", "loaded " + thisPageName);
+            $("body").attr("class", "loaded " + thisPageName + " " + referrer);
             $("#pageheader-load").html(thisPageHeader);
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
@@ -132,6 +126,7 @@ function makeHome () {
     prevpage = "home";
     fromillsub = false;
 }
+
 function makeProducts () {
     pageSetup();
     var thisPageTemplate = base + "/components/page-contact.html"
@@ -148,7 +143,7 @@ function makeProducts () {
         $("nav ul li a").parent("li").removeClass("active");
         $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         setTimeout(function(){
-            $("body").attr("class", "loaded " + thisPageName);
+            $("body").attr("class", "loaded " + thisPageName + " " + referrer);
             $("#pageheader-load").html(thisPageHeader);
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
@@ -157,6 +152,7 @@ function makeProducts () {
     });
     prevpage = "contact"
 }
+
 function makeIllustrations() {
     pageSetup();
     var thisPageTemplate = base + "/components/page-illustrations.html"
@@ -175,7 +171,7 @@ function makeIllustrations() {
             $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         
             setTimeout(function(){
-                $("body").attr("class", "loaded " + thisPageName);
+                $("body").attr("class", "loaded " + thisPageName + " " + referrer);
                 $("#pageheader-load").html(thisPageHeader);
                 $("footer .footer-load").html(thisPageFooter);
                 $(".load").html(thisPageMain).trigger("insert-page");
@@ -186,9 +182,12 @@ function makeIllustrations() {
             }, duration);  
         });
     } else {
-        $("body").attr("class", "loaded " + thisPageName);
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+        }, duration);
     }
     prevpage = "illustrations"
+    
 }
 
 function makeIllustrationsSub(params) {
@@ -237,14 +236,15 @@ function makeIllustrationsSub(params) {
     
     document.title = "Wil Nichols : Illustrations : " + thisSubPageName;
     
-    $("body").removeClass("loaded").addClass(prevpage + " illustration loading-sub " + thisSubPageName);
+    $("body").removeClass("loaded").addClass(prevpage + " illustration loading-sub " + thisSubPageName + " " + referrer);
     $.get(thisSubPageTemplate , function(thisSubPageContents) {
         var thisSubPageMain = $(thisSubPageContents).filter("#pagejs-load-in-sub");
         var thisSubPageFooter = $(thisSubPageContents).filter("#pagejs-footer-in");
         
         if(prevpage === 'illustrations') {
             $(".load").prepend(thisSubPageMain);
-            $("body").attr("class", "loaded illustration loaded-sub " + prevpage + " " +thisSubPageName);
+            $("body").attr("class", "loaded illustration loaded-sub " + prevpage + " " + thisSubPageName + " " + referrer);
+//            $("body").removeClass("loading-sub").addClass("loaded-sub");
             hashsub();
             hashroute();
             modalclose(hash);
@@ -252,8 +252,8 @@ function makeIllustrationsSub(params) {
         } else {
             makeIllustrations();
             $(".load").on("insert-page", function () {
-                $("body").attr("class", "loaded illustrations illustration loaded-sub " +thisSubPageName);
-                $(".load").prepend(thisSubPageMain);
+                $("body").attr("class", "loaded illustrations illustration loaded-sub " + thisSubPageName + " " + referrer);
+                $(".load").prepend(thisSubPageMain)
                 console.log("inserted modal");
                 hashroute();
                 hashsub();
@@ -299,7 +299,7 @@ function makePhotography() {
         $("nav ul li a").parent("li").removeClass("active");
         $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         setTimeout(function(){
-            $("body").attr("class", "loaded " + thisPageName);
+            $("body").attr("class", "loaded " + thisPageName + " " + referrer);
             $("#pageheader-load").html(thisPageHeader);
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
@@ -329,7 +329,7 @@ function makeResume() {
         $("nav ul li a").parent("li").removeClass("active");
         $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         setTimeout(function(){
-            $("body").attr("class", "loaded " + thisPageName);
+            $("body").attr("class", "loaded " + thisPageName + " " + referrer);
             $("#pageheader-load").html(thisPageHeader);
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);

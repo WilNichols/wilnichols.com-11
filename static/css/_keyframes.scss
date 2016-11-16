@@ -8,15 +8,6 @@
         opacity: 1;
     }
 }
-
-@include keyframes(background-page-in) {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: .125;
-    }
-}
 @include keyframes(about-text) {
     0% {
         @include transform(translateX(-38.8vw));

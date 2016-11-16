@@ -8,7 +8,6 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 }
-
 p:empty, span:empty, div:empty {
     display: none;
 }
@@ -16,7 +15,6 @@ p:empty, span:empty, div:empty {
 :root {
     overflow-x: hidden !important;
 }
-
 body { 
     min-height: 100vh;
     min-width: 100vw; 
@@ -144,25 +142,22 @@ img {
 }
 
 // Utils
-
- /* RM .u__visible {
+.u__visible {
     display: inherit;
     opacity: 1 ;
     background-color: transparent !important;
-} */
-
-/* RM .u__anim-in {
+}
+.u__anim-in {
     @include animation(fade-in $duration ease-out);
 }
-
 .u__anim-out {
     @include animation(fade-out $duration ease-out);
-} */
+}
 
-/* RM .u__full-height {
+.u__full-height {
     height: 100vh;
     display: inline-block;
-} */
+}
 
 %u__vp-max {
     display: none;
@@ -191,6 +186,7 @@ img {
     }
 }
 
+
 %u__vp-not-med {
     @media only screen and (min-width: $m__viewport-sm) and (max-width: $m__viewport-med) {
         display: none !important;
@@ -215,22 +211,26 @@ img {
     
 }
 
-
-/* RM .u__opacity-zero {
+.u__opacity-zero {
     opacity: 0;
-} */
-
-/* RM .u__text-align-right {
-    text-align: right;
-} */
-
-//Structure
-
-.grid {
-    font-size: 0 !important;
-
 }
 
+.u__text-align-right {
+    text-align: right;
+}
+
+.u__top-offset-7 {
+    padding-top: 7rem !important;
+    @media print {
+        padding-top: 0 !important;
+    }
+    
+}
+
+//Structure
+.grid {
+    font-size: 0 !important;
+}
 .paper:not(.grid) {
     @media screen {
         display: none;
@@ -255,12 +255,10 @@ html.js {
         display: none;
     }
 }
-
 header {
     @include transition(background-color $duration ease-out, opacity $duration ease-out);
 
 }
-
 nav {
     position: static;
     text-align: right;
@@ -269,6 +267,7 @@ nav {
     width: 100%;
     line-height: 1.25rem;
     height: 63px;
+    @include animation(fade-in 1s ease-out);
     @media print {
         display: none;
     }
@@ -499,11 +498,20 @@ main {
     min-height: 100vh;
 }
 
+.header-text {
+    @include animation(fade-in 1s ease-out);
+}
 .load {
     position: static;
+    /* viewport height minus footer height minue top nav height */
     z-index: 100;
     background: transparent;
     height: auto;
+    @include animation(fade-in 1s ease-out);
+    &.u__animate-in {
+        background-color: rgba(255,255,255,1);
+        pointer-events: all !important;
+    }
 }
 
 footer {
@@ -586,18 +594,8 @@ footer {
 
 // non-content
 
-body {
-    nav {
-        @include animation(fade-in 1s ease-out);
-    }
-    .header-text {
-        @include animation(fade-in 1s ease-out);
-    }
-    .load {
-        @include animation(fade-in 1s ease-out);
-    }
-}
 //photography transitions
+
 
 .photography.unloading {
     #page-fragment-photography {
@@ -606,14 +604,12 @@ body {
         opacity: 0; 
     }
 }
-
 .photography.loading-sub {
     #subpage-fragment-album {
         @include animation(sub-loading $duration linear);
         opacity: 1;
     }
 }
-
 .photography.photography-sub.loaded-sub.unloading-sub {
     #subpage-fragment-album {
         @include animation(scale-out $duration ease-out);
@@ -621,14 +617,12 @@ body {
         opacity: 0;
     }
 }
-
 .photography.unloading.loading-sub, .photography.photography-sub.loaded-sub  {
     #subpage-fragment-album {
         @include animation(scale-in $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
         @include transform(scale(1));
     }
 }
-
 .photography.loaded main.from-sub {
     #page-fragment-photography {
         @include animation(scale-in-alt $duration ease-out);
@@ -637,7 +631,6 @@ body {
 }
 
 //illustrations, illustraiton  transitions
-
 .illustrations {
     #page-fragment-illustrations {
         @include transition(opacity $duration ease-out);
@@ -692,6 +685,7 @@ body {
     }
 }
 
+
 html.no-js {
     .pageloadanim {
         display: none !important;
@@ -706,23 +700,42 @@ html.no-js {
     margin-bottom: -.125em;
 }
 
+
 @import "_page-about";
 
 @import "_page-resume";
-
 @import "_page-contact";
 
-/* RM  .head {
+
+.head {
     text-align: center;
     p {
         display:inline-block;
         text-align: left;
         color: $c__slate_dark;
     }
-} */
+}
+.anim-out {
+    @include transform(translateX(-100vw));
+}
+.modal-wrapper {
+    display: block;
+    min-height: calc(100% - 108px);
+    margin: 54px 0;
+    width: 100vw;
+    position: fixed;
+    z-index: 100000;
+    top: 54px;
+    @include share(top, left, 0);
+    @include display(flex);
+    @include align-items(center);
+    @include align-content(justify);
+    @media screen and (max-width: 52rem), screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
+        @include align-content(flex-start);
+    }
+}
 
 // products index 
-
 body.products {
     nav, .load, {
         position: static;
@@ -904,26 +917,8 @@ body.products {
         } 
     }
 }
-
 // illustration 
-
 body.illustrations.illustration {
-    .modal-wrapper {
-        display: block;
-        min-height: calc(100% - 108px);
-        margin: 54px 0;
-        width: 100vw;
-        position: fixed;
-        z-index: 100000;
-        top: 54px;
-        @include share(top, left, 0);
-        @include display(flex);
-        @include align-items(center);
-        @include align-content(justify);
-        @media screen and (max-width: 52rem), screen and (-webkit-max-device-pixel-ratio: 1), screen and (max-resolution: 96dpi) {
-            @include align-content(flex-start);
-        }
-    }
     article {      
         &.anim-in {
             @include animation(scale-in $duration cubic-bezier(0.175, 0.885, 0.32, 1.275));
@@ -1128,7 +1123,6 @@ body.illustrations.illustration {
 @import "_page-illustration-grids";
 
 // illustrations 
-
 body.illustrations {
     .load {
         position: static;
@@ -1148,15 +1142,10 @@ body.illustrations {
         
     }
 }
-
 @import "_mosaic";
-
 @import "_page-illustrations";
-
 @import "_page-photography";
-
 // photoraphy
-
 body.photography.photography-sub {
     @media only screen and (max-width: $m__viewport-sm) {
         .head {
@@ -1292,7 +1281,6 @@ body.photography.photography-sub {
     }
 
 }
-
 @import "_touchevents";
 
 nav, nav *, footer, footer *, .head {
