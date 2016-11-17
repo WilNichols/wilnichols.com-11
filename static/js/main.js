@@ -173,7 +173,7 @@ function makeIllustrations() {
             var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
             $("nav ul li a").parent("li").removeClass("active");
             $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-        
+            console.log('is anyone listening');
             setTimeout(function(){
                 $("body").attr("class", "loaded " + thisPageName);
                 $("#pageheader-load").html(thisPageHeader);
@@ -186,7 +186,12 @@ function makeIllustrations() {
             }, duration);  
         });
     } else {
-        $("body").attr("class", "loaded " + thisPageName);
+        setTimeout(function(){
+            $("body").attr("class", "loaded " + thisPageName);
+            $(".modal-wrapper").remove();
+        }, duration)
+        console.log('from sub');
+        
     }
     prevpage = "illustrations"
 }
@@ -222,11 +227,11 @@ function makeIllustrationsSub(params) {
     }
     function modalclose() {
         $("a.navigo-back-to-parent").click(function() {
+            $(".load").off();
             event.preventDefault();
             $(".modal").addClass("anim-out");
             $("body").removeClass("loaded-sub").addClass("unloading-sub");
             setTimeout(function(){
-                $(".modal-wrapper").remove();
                 $("body").removeClass(hash);
                 unlockScroll();
                 router.navigate('../illustrations');  
@@ -260,6 +265,7 @@ function makeIllustrationsSub(params) {
                 modalclose(hash);
                 fromillsub = true;
             });
+            
                         
         }
         lockScroll();
