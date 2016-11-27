@@ -3,8 +3,9 @@
 
 body.contact {
     &:before {
-        @include transform(skewX(5deg) translate(40vw));
-        @include transition(transform 2s ease-out, background-color 2s ease-out, box-shadow 2s ease-out);
+        opacity: 0;
+        @include transform(skewX(10deg) translate(35vw));
+        @include transition(transform 2s ease-out, opacity $duration ease-out);
     }
     &:after {
         opacity: 0;

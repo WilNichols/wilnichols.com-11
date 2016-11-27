@@ -195,7 +195,6 @@ function makeIllustrations() {
     }
     prevpage = "illustrations"
 }
-
 function makeIllustrationsSub(params) {
     pageSetup();
     

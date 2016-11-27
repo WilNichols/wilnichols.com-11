@@ -38,11 +38,12 @@ body {
         bottom: -50vh;
         right: -5vw;
         z-index: 0;
-        background-color: transparent;
-        box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+        opacity: 0;
+        box-shadow: inset 2rem 0 5rem 0 $c__key-yellow-dark;
+        background-color: $c__key-yellow;
         @include transform-origin(left center);
-        @include transform(skewX(5deg) translate(40vw));
-        @include transition(transform 0.5s ease-out, background-color 0.5s ease-out, box-shadow 0.5s ease-out);
+        @include transform(skewX(-5deg) translate(5vw));
+        @include transition(transform $duration ease-out, opacity $duration*2.5 ease-out);
         @media only screen and (max-width: $m__viewport-med) {
             display: none;
         }
@@ -593,8 +594,10 @@ body {
     .header-text {
         @include animation(fade-in 1s ease-out);
     }
-    .load {
-        @include animation(fade-in 1s ease-out);
+    &:not(.index) {
+        .load {
+            @include animation(fade-in 1s ease-out);
+        }
     }
 }
 //photography transitions
