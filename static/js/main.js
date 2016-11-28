@@ -475,10 +475,16 @@ $(document).ready(function() {
                         router.navigate($(this).attr("href"));
                         $("main").addClass("from-sub");
                     });
-                    window.onkeypress = function() {
+                    window.onkeydown = function() {
                        if (event.keyCode == 033) {
                            //do it this way so that when the modal is removed, it can't fire again yeh
                           $("a.navigo-back-to-parent").click();
+                       }
+                       if (event.keyCode == 37) {
+                          $("ul.photo-carousel.thumbnails li.active").prev().children().click();
+                       }
+                       if (event.keyCode == 39) {
+                          $("ul.photo-carousel.thumbnails li.active").next().children().click();
                        }
                     }                    
                     if (location.hash) {
