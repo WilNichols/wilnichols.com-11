@@ -3,7 +3,8 @@
 var duration = 200;
 var longduration = 800;
 
-var base = "http://localhost:8000";
+//var base = "http://localhost:8000";
+var base = "http://Wils-MacBook-Pro.local:8000";
 var prevpage = 'none';
 var fromillsub = false;
 var referrer = "";
@@ -292,7 +293,6 @@ function makePhotography() {
     var thisPageTemplate = base + "/components/page-photography.html"
     var thisPageName = "photography"
     
-    
     document.title = "Wil Nichols : Photography";
     
     $("body").removeClass("loaded").addClass("loading");
@@ -316,6 +316,99 @@ function makePhotography() {
     });
     prevpage = "photography";
     fromillsub = false;
+}
+function makePhotographySub(params) {
+    pageSetup();
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf('/')+1);
+    var thisPageName = "photography";
+    var thisSubPageName = params.collection.split('#')[0];
+    var thisPageTemplate = base + "/components/photography/" + thisSubPageName + ".html";
+    var pageTitle = thisSubPageName.replace(/_/g , ". ").replace(/--/g , " : ");
+    var hash = window.location.href.split('#')[1] || '';
+    
+    function albumClose() {
+        $("a.navigo-back-to-parent").click(function() {
+            $("body").addClass("unloading-sub");
+            event.preventDefault();
+            router.navigate($(this).attr("href"));
+            $("main").addClass("from-sub");
+        });
+    }
+
+    function hashPage() {
+        $("a.hash-sub").click(function(){
+            var thisfilename =  $(this).children().attr('alt');
+            //prevent reload
+            event.preventDefault();
+            history.pushState(null, null, '#' + thisfilename);
+            //remove all selections
+            $("ul.photo-carousel li").removeClass("active")
+            //active class on main
+            $("img[alt='" + thisfilename + "']").parent("li").addClass("active");
+            //active class on thumbnail // could do it with .parents(), it'd be less efficient but much more succinct
+            $("a[href='#" + thisfilename + "']").parent("li").addClass("active");
+            document.title = "Wil Nichols : Photography : " + pageTitle + " : " + thisfilename;
+        });
+        if (location.hash) {
+            console.log("hash-val " + hash);
+            //remove all selections
+            $("ul.photo-carousel li").removeClass("active")
+            //active class on main
+            $("img[alt='" + hash + "']").parent("li").addClass("active");
+            //active class on thumbnail // could do it with .parents(), it'd be less efficient but much more succinct
+            $("a[href='#" + hash + "']").parent("li").addClass("active");
+        };
+    }
+    
+    document.title = "Wil Nichols : Photography : " + pageTitle;
+    $("body").attr("class", "photography unloading " + thisPageName + " loading-sub " + thisSubPageName).attr("id", "photography");
+    console.log(thisSubPageName);
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-album");
+        var thisPageMain = $(thisPageContents).filter("#subpage-fragment-album");
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-album");
+        var thumbnails = thisPageMain.find("ul.photo-carousel").children().clone()
+
+        thisPageMain.find("ul.photo-carousel").addClass("masthead").wrap("<div class='photo-carousel'></div>");
+        thisPageMain.find("div.photo-carousel").append("<ul class='photo-carousel thumbnails'></ul>");
+        thisPageMain.find("ul.photo-carousel.thumbnails").append(thumbnails);
+        thisPageMain.find("ul.photo-carousel li:first-of-type").addClass("active");
+        thisPageMain.find("ul.photo-carousel.masthead li img").each(function(thisfilename) {
+            var thisfilename =  $(this).attr('alt');
+            $(this).attr("src", base + "/static/img/" + thisPageName + "/" + thisSubPageName + "/lg/" + thisfilename);
+        });
+        
+        thisPageMain.find("ul.photo-carousel.thumbnails li img").each(function() {
+            var thisfilename =  $(this).attr('alt');
+            $(this).attr("src", base + "/static/img/" + thisPageName + "/" + thisSubPageName + "/sm/" + thisfilename).wrap("<a class='hash-sub' href='#" + thisfilename + "'></a>");
+        });                                      
+        
+        setTimeout(function(){ 
+            $("a[href='../photography/']").parent().addClass("active");
+            $("#pageheader-load").html(thisPageHeader);
+            $(".load").html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            $("body").attr("class", "photography photography-sub loaded-sub " + thisSubPageName); 
+            albumClose();               
+            hashPage();
+            window.onkeydown = function() {
+               if (event.keyCode == 033) {
+                   //do it this way so that when the modal is removed, it can't fire again yeh
+                  $("a.navigo-back-to-parent").click();
+               }
+               if (event.keyCode == 37) {
+                  $("ul.photo-carousel.thumbnails li.active").prev().children().click();
+               }
+               if (event.keyCode == 39) {
+                  $("ul.photo-carousel.thumbnails li.active").next().children().click();
+               }
+            }     
+        }, duration);
+    }).fail(function() {
+        router.navigate('../photography')
+    }); 
+
 }
 function makeResume() {
     pageSetup();
@@ -429,91 +522,7 @@ $(document).ready(function() {
         '/illustrations': function () { makeIllustrations(); },
         
         // INDIVIUAL PHOTO
-        '/photography/:collection': function (params) {
-            pageSetup();
-            var url = window.location.pathname;
-            var filename = url.substring(url.lastIndexOf('/')+1);
-            var thisPageName = "photography";
-            var thisSubPageName = params.collection.split('#')[0];
-            var thisPageTemplate = base + "/components/photography/" + thisSubPageName + ".html";
-            var hash = window.location.href.split('#')[1] || '';
-            
-            document.title = "Wil Nichols : Photography : " + thisSubPageName;
-            $("body").attr("class", "photography unloading " + thisPageName + " loading-sub " + thisSubPageName).attr("id", "photography");
-            console.log(thisSubPageName);
-            $.get(thisPageTemplate, function(thisPageContents) {
-                var thisPageMain = $(thisPageContents).filter("#subpage-fragment-album");
-                var thisPageFooter = $(thisPageContents).filter("#footer-fragment-album");
-                var thumbnails = thisPageMain.find("ul.photo-carousel").children().clone()
-                //for lists
-                thisPageMain.find("ul.photo-list li img").each(function() {
-                    var thisfilename =  $(this).attr('alt');
-                    $(this).attr("src", base + "/static/img/" + thisPageName + "/" + thisSubPageName + "/lg/" + thisfilename);
-                });
-                //for carousels
-                thisPageMain.find("ul.photo-carousel").addClass("masthead").wrap("<div class='photo-carousel'></div>");
-                thisPageMain.find("div.photo-carousel").append("<ul class='photo-carousel thumbnails'></ul>");
-                thisPageMain.find("ul.photo-carousel.thumbnails").append(thumbnails);
-                thisPageMain.find("ul.photo-carousel li:first-of-type").addClass("active");
-                thisPageMain.find("ul.photo-carousel.masthead li img").each(function() {
-                    var thisfilename =  $(this).attr('alt');
-                    $(this).attr("src", base + "/static/img/" + thisPageName + "/" + thisSubPageName + "/lg/" + thisfilename);
-                });
-                thisPageMain.find("ul.photo-carousel.thumbnails li img").each(function() {
-                    var thisfilename =  $(this).attr('alt');
-                    $(this).attr("src", base + "/static/img/" + thisPageName + "/" + thisSubPageName + "/sm/" + thisfilename).wrap("<a class='hash-sub' href='#" + thisfilename + "'></a>");
-                });                                      
-                
-                setTimeout(function(){ 
-                    $("a[href='../photography/']").parent().addClass("active");
-                    $(".load").html(thisPageMain);
-                    $("footer .footer-load").html(thisPageFooter);
-                    $("body").attr("class", "photography photography-sub loaded-sub " + thisSubPageName); 
-                    $("a.navigo-back-to-parent").click(function() {
-                        $("body").addClass("unloading-sub");
-                        event.preventDefault();
-                        router.navigate($(this).attr("href"));
-                        $("main").addClass("from-sub");
-                    });
-                    window.onkeydown = function() {
-                       if (event.keyCode == 033) {
-                           //do it this way so that when the modal is removed, it can't fire again yeh
-                          $("a.navigo-back-to-parent").click();
-                       }
-                       if (event.keyCode == 37) {
-                          $("ul.photo-carousel.thumbnails li.active").prev().children().click();
-                       }
-                       if (event.keyCode == 39) {
-                          $("ul.photo-carousel.thumbnails li.active").next().children().click();
-                       }
-                    }                    
-                    if (location.hash) {
-                        console.log("hash-val " + hash);
-                        document.title = "Wil Nichols : Photography : " + thisSubPageName + " : " + hash;
-                        //remove all selections
-                        $("ul.photo-carousel li").removeClass("active")
-                        //active class on main
-                        $("img[alt='" + hash + "']").parent("li").addClass("active");
-                        //active class on thumbnail // could do it with .parents(), it'd be less efficient but much more succinct
-                        $("a[href='#" + hash + "']").parent("li").addClass("active");
-                    };
-                    $("a.hash-sub").click(function(){
-                        var thisfilename =  $(this).children().attr('alt');
-                        //prevent reload
-                        event.preventDefault();
-                        history.pushState(null, null, '#' + thisfilename);
-                        //remove all selections
-                        $("ul.photo-carousel li").removeClass("active")
-                        //active class on main
-                        $("img[alt='" + thisfilename + "']").parent("li").addClass("active");
-                        //active class on thumbnail // could do it with .parents(), it'd be less efficient but much more succinct
-                        $("a[href='#" + thisfilename + "']").parent("li").addClass("active");
-                        document.title = "Wil Nichols : Photography : " + thisSubPageName + " : " + thisfilename;
-                    });
-
-                }, duration);
-            }); 
-        },            
+        '/photography/:collection': function (params) { makePhotographySub(params); },            
         
         // PHOTOGRAPHY
         '/photography/': function () { makePhotography(); },
