@@ -134,10 +134,10 @@ function makeHome () {
 }
 function makeProducts () {
     pageSetup();
-    var thisPageTemplate = base + "/components/page-contact.html"
-    var thisPageName = "contact"
+    var thisPageTemplate = base + "/components/page-products.html"
+    var thisPageName = "products"
     
-    document.title = "Wil Nichols : Contact";
+    document.title = "Wil Nichols : Products";
 
     $("body").removeClass("loaded").addClass("loading");
     $("footer .footer-load *").remove();
@@ -155,7 +155,7 @@ function makeProducts () {
             setSubPageLinks();
         }, duration);  
     });
-    prevpage = "contact"
+    prevpage = "products"
 }
 function makeIllustrations() {
     pageSetup();
