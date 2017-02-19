@@ -1,37 +1,28 @@
-<p id="header-fragment-contact" lang="en" class="header-text"><strong>Ping me!</strong> I’ll be in touch within twenty-four hours. If you’re near Austin and want to chat, I always make time for coffee.</p>
-
 <div role="page" id="page-fragment-contact" class="u__align-items-center wrapper">
-    <div class="fixed-width-centered-container" lang="en">
+    <div class="fixed-width-centered-container">
         <div id="success">
             <p lang="en">Your message was sent successfully! I will be in touch as soon as I can.</p>
         </div>
         <div id="error">
             <p lang="en">Something went wrong, try refreshing and submitting the form again.</p>
-        </div>   
-        <form id="contact" name="contact" method="post" novalidate="novalidate" lang="en"xw>
+        </div> 
+        <p id="header-fragment-contact" lang="en" class="header-text"><strong>Ping me!</strong> I’ll be in touch within twenty-four hours. If you’re near Austin and want to chat, I always make time for coffee.</p>
+        <form id="contact" name="contact" method="post" novalidate="novalidate" lang="en">
             <fieldset>
-                <input type="text" name="name" id="name" value="" required="" placeholder="Name *">
+                <input type="text" name="firstname" id="name" value="" required="" placeholder="First Name *">
+                <input type="text" name="lastname" id="name" value="" required="" placeholder="Last Name *">
                 <input type="text" name="email" id="email" value="" required="" placeholder="Email Address *">
-<!--                    <input type="text" name="budget" id="budget" value="" placeholder="Budget"> -->
-                <select name="budget" id="budget">
-                    <option value="" disabled selected hidden>Budget</option>
-                    <option value="Unspecified">Unspecified</option>
-                    <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-                    <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                    <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                    <option value="$50,000 +">$50,000 +</option>
-                </select>
+                <input type="text" name="budget" id="budget" value="" placeholder="Budget">
                 <textarea name="message" id="message" required="" placeholder="Message *"></textarea>
                 <input type="text" name="answer" value="" required="" placeholder="Name the small house pet that says “meow“ *">
-                <a href="" class="contact_send"><input tabindex="5" type="submit" name="submit" id="submit" value="Send Message" lang="en"/>{% include 'svg/contact_send.svg' %}</a>
+                <a href="" class="contact_send"><input tabindex="5" type="submit" name="submit" id="submit" value="Send Message" lang="en"/></a>
             </fieldset>
         </form>           
     </div>
     <script type="text/javascript">
 jQuery.validator.addMethod('answercheck', function (value, element) {
         return this.optional(element) || /^\bcat\b$/.test(value);
-    }, "type the correct answer -_-");
+    }, "type the correct answer");
 
 // validate contact form
 $(function() {
@@ -92,13 +83,4 @@ $(function() {
     });
 });
 </script>
-
 </div>
-
-<ul id="footer-fragment-contact" class="buttons">
-    <li><a href="http://www.dribbble.com/wil" target="_blank">{% include "svg/footer_dribbble.svg" %}</a></li>
-    <li><a href="http://www.instagram.com/wilthedznr" target="_blank">{% include "svg/footer_instagram.svg" %}</a></li>
-    <li><a href="http://www.instagram.com/wilthedznr" target="_blank">{% include "svg/footer_twitter.svg" %}</a></li>
-    <li><a href="http://www.bathrobesandbeignets.com" target="_blank">{% include "svg/footer_tumblr.svg" %}</a></li>
-    <li><a href="http://www.last.fm/user/wilnichols" target="_blank">{% include "svg/footer_lastfm.svg" %}</a></li>
-</ul>

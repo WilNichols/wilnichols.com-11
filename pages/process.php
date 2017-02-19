@@ -2,7 +2,7 @@
 
     $to = "hi@wilnichols.com";
     $from = $_REQUEST['email'];
-    $name = $_REQUEST['name'];
+    $name = $_REQUEST['first-name' + 'last-name'];
     $headers = "From: $from";
     $subject = "You have a message.";
 
