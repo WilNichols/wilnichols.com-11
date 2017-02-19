@@ -94,7 +94,7 @@ function pageChange (thisPageTemplate, thisPageName){
         $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
         setTimeout(function(){
             $("body").attr("class", thisPageName);
-            $(".load").html(thisPageMain);
+           $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setLinks();
             setTimeout(function(){
@@ -125,7 +125,7 @@ function makeHome () {
         setTimeout(function(){
             $("body").attr("class", "loaded " + thisPageName);
             $("#pageheader-load").html(thisPageHeader);
-            $(".load").html(thisPageMain);
+            $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
         }, duration);  
@@ -151,7 +151,7 @@ function makeProducts () {
         setTimeout(function(){
             $("body").attr("class", "loaded " + thisPageName);
             $("#pageheader-load").html(thisPageHeader);
-            $(".load").html(thisPageMain);
+            $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
             $('.load').css('height', $(".product-table").height() + 24);  
@@ -183,7 +183,7 @@ function makeIllustrations() {
                 $("body").attr("class", "loaded " + thisPageName);
                 $("#pageheader-load").html(thisPageHeader);
                 $("footer .footer-load").html(thisPageFooter);
-                $(".load").html(thisPageMain).trigger("insert-page");
+                $(".load").attr('style', '').html(thisPageMain).trigger("insert-page");
                 setSubPageLinks();
                 setTimeout(function(){
                     $("main").removeClass("from-sub");
@@ -310,7 +310,7 @@ function makePhotography() {
         setTimeout(function(){
             $("body").attr("class", "loaded " + thisPageName);
             $("#pageheader-load").html(thisPageHeader);
-            $(".load").html(thisPageMain);
+           $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
             setTimeout(function(){
@@ -391,7 +391,7 @@ function makePhotographySub(params) {
         setTimeout(function(){ 
             $("a[href='../photography/']").parent().addClass("active");
             $("#pageheader-load").html(thisPageHeader);
-            $(".load").html(thisPageMain);
+           $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             $("body").attr("class", "photography photography-sub loaded-sub " + thisSubPageName); 
             albumClose();               
@@ -433,7 +433,7 @@ function makeResume() {
         setTimeout(function(){
             $("body").attr("class", "loaded " + thisPageName);
             $("#pageheader-load").html(thisPageHeader);
-            $(".load").html(thisPageMain);
+           $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
         }, duration);  
@@ -459,7 +459,7 @@ function makeContact() {
         setTimeout(function(){
             $("body").attr("class", "loaded " + thisPageName + " " + referrer);
             $("#pageheader-load").html(thisPageHeader);
-            $(".load").html(thisPageMain);
+           $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
         }, duration);  
