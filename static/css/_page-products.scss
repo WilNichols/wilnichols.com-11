@@ -1,0 +1,210 @@
+@import "bourbon/bourbon";
+@import "_common";
+// products index 
+body.products {
+    div[role='page'] {
+        position: absolute;
+    }
+    .product-table {
+        max-width: 100vw;
+        width: 100vw;
+        display: block;
+        position: absolute;
+        @include share(left, right, 0);
+        box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.0625);
+        font-size: 0 rem;
+        section {
+            max-height: 62.5rem;
+            font-size: 0rem;
+            @include display(flex);
+            overflow: hidden;
+            @media only screen and (max-width: $m__viewport-med) {
+                @include flex-direction(column);
+                max-height: intrinsic;
+            }
+            .product-img, .product-text { 
+                @include flex-basis(50%);
+                @include flex-grow(0);
+                direction: ltr;
+                position: relative;
+                .frame, .text-container {
+                    @include display(flex);
+                    @include justify-content(center);
+                    @include align-items(center);
+                    
+                }
+                .text-container {
+                    position: absolute;
+                    @include share(top, right, bottom, left, 0);
+                    @media only screen and (max-width: $m__viewport-med) {
+                        position: static;
+                    }
+                    .text {
+                        width: 34rem;
+                        padding: 0 2rem;
+                        @media only screen and (max-width: $m__viewport-med) {
+                            padding: 3rem 2rem;
+                            width: 100%;
+                        }
+                    }
+                    h2, h3 {
+                        display: block;
+                        white-space: normal;
+                        text-align: left;
+                        time {
+                            font-weight: 800;
+                        }
+                    }
+                    h2 {
+                        margin: 0 0 1rem 0;
+                        font-weight: 200;
+                        font-size: 3rem;
+                        white-space: nowrap;
+                        @media only screen and (max-width: 56rem) and (min-width: $m__viewport-med) {
+                            font-size: 5vw;
+                            margin: 0 0 .5rem 0;
+                        }
+                        @media only screen and (max-width: $m__viewport-med) {
+                            font-size: 2rem;
+                            margin: 0 0 .5rem 0;
+                        }
+                    }
+                    h3 {
+                        font-weight: 400;
+                        font-variant: oblique;
+                        margin: 0 0 .5rem 0;
+                        white-space: nowrap;
+                        @include share(height, line-height, 1.5rem);
+                        @media only screen and (max-width: 56rem) and (min-width: $m__viewport-med) {
+                            font-size: 2vw;
+                            margin: 0 0 .25rem 0;
+                        }
+                        @media only screen and (max-width: $m__viewport-med) {
+                            font-size: 1rem;
+                            margin: 0 0 .25rem 0;
+                        }
+                    }
+                    p {
+                        display: inline-block;
+                        white-space: normal;
+                        text-align: left;
+                        @media only screen and (max-width: $m__viewport-med) {
+                            font-size: 1rem;
+                            line-height: 1.75rem;
+                            margin-bottom: .75rem;
+                        }
+                    }
+                    a.view-details {
+                        display: inline-block;
+                        height: 1.5rem;
+                        line-height: 22px;
+                        border-radius: .75rem;
+                        background-color: $c__key-blue;
+                        color: #fff;
+                        font-weight: 800;
+                        font-size: 1rem;
+                        text-transform: lowercase;
+                        font-variant: small-caps;
+                        padding: 0 1.5rem 0 .5rem;
+                        position: relative;
+                        z-index: 1;
+                        &:after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            @include share(top, right, .25rem);
+                            @include share(height, width, 1rem);
+                            background-image: url('/static/img/view-details-arrow.svg');
+                            background-repeat: no-repeat;
+                            z-index: 1;
+                        }
+                        &:before {
+                            @include transition(opacity 0.2s ease-out);
+                            opacity: 0;
+                            content: '';
+                            display: block;
+                            background-color: $c__key-blue;
+                            position: absolute;
+                            @include share(top, right, bottom, left, 0px);
+                            border-radius: .75rem;
+                            @include filter(blur(.25rem));
+                            margin: 0 0 -.125rem 0;
+                            z-index: -1;
+                        }
+                        &:hover {
+                            text-decoration: none;
+                            &:before {
+                                @include transition(opacity 0.2s ease-out);
+                                opacity: 0.5;
+                            }
+                        }
+                        &:active {
+                            box-shadow: inset 0 .0625rem .125rem rgba(0,0,0,0.125);
+                            &:before {
+                                @include transition(opacity 0.2s ease-out);
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+               
+                img {
+                    width: 100%;
+                    display: block;
+                    &.ios {
+                        max-width: 1000px;
+                    }
+                    &.macos {
+                        max-width: 1220px;
+                    }
+                }
+            }
+            .product-text {
+                @media only screen and (max-width: $m__viewport-med) {
+                    @include flex-grow(initial);
+                    @include flex-basis(initial);   
+                }
+            }
+            &:nth-of-type(2n) {
+                direction: rtl;
+            }
+        }
+    
+        .products__tastebud .frame {
+            background-color: #ffe4bf;
+        }
+        .products__analog-osx .frame {
+            background-color: #f2f2f2;
+        }
+        .products__analog-ios .frame {
+            background-color: #d1dee7;
+        }
+        .products__invite .frame {
+            background-color: #6cd9a6;
+        }
+        .products__keycard-osx .frame {
+            background-color: #fff6f2;
+        }
+        .products__keycard-ios .frame {
+            background-color: #6b7c8f;
+        }
+        .products__keycard-osx .frame {
+            background-color: #62daf8;
+        }
+        .products__vevi .frame {
+            background-color: #33c6f4;
+        }
+        .products__AustinFreeNet .frame {
+            background-color: #9ecae3;
+        }
+        .products__Arex .frame {
+            background-color: #fff0d9;
+        }
+        .products__FiveSquare .frame {
+            background-color: #2fc87d;
+        }
+        .products__Diligence .frame{
+            background-color: #f2f9ff;
+        }
+    }
+}
