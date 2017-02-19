@@ -5,4 +5,52 @@
     .mosaic__panel ul.details {
         display: none;
     }
+    #page-fragment-photography {
+        .grid__col {
+            a.category {
+                padding: 0 0 2rem 0;
+                .titlecontainer {
+                    opacity: 1;
+                    height: 2rem;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    top: auto;
+                    @include display(flex);
+                    @include flex-direction(row);
+                    span.title {
+                        width: auto;
+                        font-variant: normal;
+                        text-transform: capitalize;
+                        letter-spacing: normal;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        margin: .625rem 0;
+                        @include share(font-size, height, line-height, .75rem);
+                        opacity: 0.5;
+                        flex-grow: 1;
+                        text-align: left;
+                        
+                    }
+                    span.sub-title {
+                        width: auto;
+                        flex-grow: 1;
+                        text-align: right;
+                        transform: none;
+                        margin: .625rem 0;
+                        top: auto;
+                        opacity: 0.5;
+                    }
+                }
+                // bleed index images on mobile
+                @media only screen and (max-width: $m__viewport-sm) {
+                    img {
+                        width: calc(100% + 2rem);
+                        margin-left: -1rem;
+                    }
+                }
+            }
+        }
+
+    }   
 }

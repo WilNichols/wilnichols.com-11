@@ -4,9 +4,9 @@
 body.index {
     overflow-x: hidden;
     &:before {
-        background-color: $c__key-yellow;
+        opacity: 1;
         @include transform(skewX(-5deg));
-        box-shadow: inset 2rem 0 5rem 0 $c__key-yellow-dark;
+        
     }
     &:after {
         opacity: 1;
@@ -30,7 +30,7 @@ body.index {
         margin-top: -20.6%;
         z-index: -1;
         opacity: 1;
-        @include animation(portrait 0.55s ease-out);
+        @include animation(portrait $duration*3 ease-out);
         @media only screen and (max-width: $m__viewport-med) {
             height: 100vh;
             width: 100vw;
@@ -56,7 +56,7 @@ body.index {
     }
     section.about {
         margin: 3.375rem 0;
-        @include animation(about-text 0.55s ease-out);
+        @include animation(about-text $duration*3 ease-out);
         p {
             font-size: 1.4375rem;
             line-height: 2.25rem;

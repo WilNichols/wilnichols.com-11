@@ -95,10 +95,8 @@ body.photography {
             display: inline-block;
             height: 100%;
             vertical-align: middle;
-            text-transform: lowercase;
             text-align: center;
             font-weight: 600;
-            font-variant: small-caps;
             background-color: rgba(0,0,0,0.75);
             width: 100%;
             top: 0;
@@ -107,12 +105,25 @@ body.photography {
                 line-height: 1.5rem;
                 font-size: 1.5rem;
                 letter-spacing: .25rem;
-                word-spacing: .5rem;
+//                word-spacing: .5rem;
                 position: relative;
                 display: inline-block;
                 top: 50%;
                 @include transform(translateY(-1rem));
                 width: 100%;
+                text-transform: lowercase;
+                font-variant: small-caps;
+            }
+            .sub-title {
+                height: .75rem;
+                line-height: .75rem;
+                font-size: .75rem;
+                position: relative;
+                display: inline-block;
+                top: 50%;
+                @include transform(translateY(-1.5rem));
+                width: 100%;
+                font-weight: 800;
             }
         }
         &:hover {
