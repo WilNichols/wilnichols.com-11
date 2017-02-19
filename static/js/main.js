@@ -153,6 +153,10 @@ function makeProducts () {
             $(".load").html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
+            $('.load').css('height', $(".product-table").height() + 24);  
+            $(window).on('resize', function(){
+                $('.load').css('height', $(".product-table").height() + 24);  
+            });
         }, duration);  
     });
     prevpage = "products"
