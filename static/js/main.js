@@ -162,6 +162,64 @@ function makeWork () {
     });
     prevpage = "work"
 }
+
+function makeWorkSub(params) {
+    pageSetup();
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf('/')+1);
+    var thisPageName = "work";
+    var thisSubPageName = params.project.split('#')[0];
+    var thisPageTemplate = base + "/components/work/" + thisSubPageName + ".html";
+    var pageTitle = thisSubPageName.replace(/_/g , ". ").replace(/--/g , " : ");
+    var hash = window.location.href.split('#')[1] || '';
+    function hashPage() {
+        $("a.hash-sub").click(function(){
+            var thisfilename =  $(this).children().attr('alt');
+            //prevent reload
+            event.preventDefault();
+            history.pushState(null, null, '#' + thisfilename);
+            //remove all selections
+            $("ul.photo-carousel li").removeClass("active")
+            //active class on main
+            $("img[alt='" + thisfilename + "']").parent("li").addClass("active");
+            //active class on thumbnail // could do it with .parents(), it'd be less efficient but much more succinct
+            $("a[href='#" + thisfilename + "']").parent("li").addClass("active");
+            document.title = "Wil Nichols : Photography : " + pageTitle + " : " + thisfilename;
+        });
+        if (location.hash) {
+            console.log("hash-val " + hash);
+            //remove all selections
+            $("ul.photo-carousel li").removeClass("active")
+            //active class on main
+            $("img[alt='" + hash + "']").parent("li").addClass("active");
+            //active class on thumbnail // could do it with .parents(), it'd be less efficient but much more succinct
+            $("a[href='#" + hash + "']").parent("li").addClass("active");
+        };
+    }
+    
+    document.title = "Wil Nichols : Work : " + pageTitle;
+    $("body").attr("class", "work unloading " + thisPageName + " loading-sub " + thisSubPageName).attr("id", "work");
+    console.log(thisSubPageName);
+    $.get(thisPageTemplate, function(thisPageContents) {
+        var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisSubPageName);
+        var thisPageMain = $(thisPageContents).filter("#subpage-fragment-" + thisPageName);
+        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisSubPageName);
+        
+        setTimeout(function(){ 
+            $("a[href='../work/']").parent().addClass("active");
+            $("#pageheader-load").html(thisPageHeader);
+           $(".load").attr('style', '').html(thisPageMain);
+            $("footer .footer-load").html(thisPageFooter);
+            $("body").attr("class", "work work-sub loaded-sub " + thisSubPageName);           
+            hashPage();
+        }, duration);
+    }).fail(function() {
+        router.navigate('../work')
+    }); 
+
+}
+
+
 function makeIllustrations() {
     pageSetup();
     var thisPageTemplate = base + "/components/page-illustrations.html"
@@ -412,8 +470,8 @@ function makePhotographySub(params) {
     }).fail(function() {
         router.navigate('../photography')
     }); 
-
 }
+
 function makeResume() {
     pageSetup();
     var thisPageTemplate = base + "/components/page-resume.html"
@@ -516,17 +574,20 @@ $(document).ready(function() {
         // LANDING
         '/home/': function () { makeHome(); },
         
-        // PRODUCTS 
+        // INDIVIDUAL PROJECT 
+        '/work/:project/': function (params) { makeWorkSub(params); },
+        
+        // PROJECTS
         '/work/': function () { makeWork(); },
         
         // INDIVIDUAL ILLUSTRATION
-        '/illustrations/:illustration': function (params) { makeIllustrationsSub(params); },
+        '/illustrations/:illustration/': function (params) { makeIllustrationsSub(params); },
 
         // ILLUSTRATIONS
-        '/illustrations': function () { makeIllustrations(); },
+        '/illustrations/': function () { makeIllustrations(); },
         
         // INDIVIUAL PHOTO
-        '/photography/:collection': function (params) { makePhotographySub(params); },            
+        '/photography/:collection/': function (params) { makePhotographySub(params); },            
         
         // PHOTOGRAPHY
         '/photography/': function () { makePhotography(); },

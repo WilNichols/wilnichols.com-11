@@ -246,6 +246,13 @@ img {
     padding: 0 1rem;
 }
 
+.wrapper-small {
+    margin: 0 auto;
+    position: relative;
+    max-width: 62rem; 
+    width: 100%;
+    padding: 10rem 1rem;
+}
 // Common
 
 html.no-js .mobile-menu-container, html.no-js ul.tabs {
@@ -714,6 +721,8 @@ html.no-js {
 @import "_page-about";
 
 @import "_page-work";
+
+@import "_page-worksub";
 
 @import "_page-resume";
 
