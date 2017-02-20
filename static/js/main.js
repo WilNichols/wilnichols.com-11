@@ -133,12 +133,12 @@ function makeHome () {
     prevpage = "home";
     fromillsub = false;
 }
-function makeProducts () {
+function makeWork () {
     pageSetup();
-    var thisPageTemplate = base + "/components/page-products.html"
-    var thisPageName = "products"
+    var thisPageTemplate = base + "/components/page-work.html"
+    var thisPageName = "work"
     
-    document.title = "Wil Nichols : Products";
+    document.title = "Wil Nichols : Work";
 
     $("body").removeClass("loaded").addClass("loading");
     $("footer .footer-load *").remove();
@@ -154,13 +154,13 @@ function makeProducts () {
             $(".load").attr('style', '').html(thisPageMain);
             $("footer .footer-load").html(thisPageFooter);
             setSubPageLinks();
-            $('.load').css('height', $(".product-table").height() + 24);  
+            $('.load').css('height', $(".work-table").height() + 24);  
             $(window).on('resize', function(){
-                $('.load').css('height', $(".product-table").height() + 24);  
+                $('.load').css('height', $(".work-table").height() + 24);  
             });
         }, duration);  
     });
-    prevpage = "products"
+    prevpage = "work"
 }
 function makeIllustrations() {
     pageSetup();
@@ -517,7 +517,7 @@ $(document).ready(function() {
         '/home/': function () { makeHome(); },
         
         // PRODUCTS 
-        '/products/': function () { makeProducts(); },
+        '/work/': function () { makeWork(); },
         
         // INDIVIDUAL ILLUSTRATION
         '/illustrations/:illustration': function (params) { makeIllustrationsSub(params); },
