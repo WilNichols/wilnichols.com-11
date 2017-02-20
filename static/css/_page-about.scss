@@ -15,6 +15,10 @@ body.index {
         min-height: 640px;
         height: 100vh;
     }
+    section.about {
+        position: relative;
+        height: 32rem;
+    }
     #portrait {
         display: inline-block;
         float: right;
@@ -25,7 +29,7 @@ body.index {
         box-shadow: 0 2rem 4rem rgba(0,0,0,0.125);
         position: absolute;
         width: 61.8%;
-        right: 1rem;
+        right: 0;
         top: 50%;
         margin-top: -20.6%;
         z-index: -1;
@@ -54,7 +58,7 @@ body.index {
         @include display(flex);
         @include flex-grow(1);
     }
-    section.about {
+    .about-text {
         margin: 3.375rem 0;
         @include animation(about-text $duration*3 ease-out);
         p {
@@ -122,6 +126,20 @@ body.index {
                     color: $c__instagram;
                 }
             }
+        }
+    }
+    section.work {
+        h3 {
+            color: $c__slate_dark;
+        }
+        .grid__col--1-of-3 a {
+            display: block;
+            background-color: #fff;
+            //padding-bottom: 41.2%;
+            box-shadow: 0 2rem 4rem rgba(0,0,0,0.125);
+            box-sizing: content-box;
+            height: 6rem;
+            width: 100%;
         }
     }
 }
