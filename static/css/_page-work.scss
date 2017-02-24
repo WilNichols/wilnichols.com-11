@@ -2,6 +2,15 @@
 @import "_common";
 // products index 
 body.work {
+     &.unloading-work.loading-index {
+        .load {
+            opacity: 0;
+        }
+    }
+    &.loaded .load {
+        opacity: 1;
+        @include transition(opacity $duration ease-out);
+    }
     div[role='page'] {
         position: absolute;
     }

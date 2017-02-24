@@ -42,8 +42,8 @@ body {
         box-shadow: inset 2rem 0 5rem 0 $c__key-yellow-dark;
         background-color: $c__key-yellow;
         @include transform-origin(left center);
-        @include transform(skewX(-5deg) translate(5vw));
-        @include transition(transform $duration ease-out, opacity $duration*2.5 ease-out);
+        @include transform(skewX(-5deg) translateX(10vw));
+        @include transition(transform $duration ease-out, opacity $duration ease-out);
         @media only screen and (max-width: $m__viewport-med) {
             display: none;
         }
@@ -514,6 +514,7 @@ main {
     z-index: 100;
     background: transparent;
     height: auto;
+    @include transition(opacity $duration ease-out);
 }
 
 footer {
@@ -597,16 +598,26 @@ footer {
 // non-content
 
 body {
-    nav {
-        @include animation(fade-in 1s ease-out);
-    }
-    .header-text {
-        @include animation(fade-in 1s ease-out);
-    }
-    &:not(.index) {
-        .load {
+    opacity: 0;
+    &.loaded {
+        opacity: 1;
+        nav {
             @include animation(fade-in 1s ease-out);
         }
+        .header-text {
+            @include animation(fade-in 1s ease-out);
+        }
+        &:not(.index) {
+            .load {
+                @include animation(fade-in 1s ease-out);
+            }
+        }
+    }
+    &.unloading {
+        opacity: 1;
+    }
+    &[class*="loading-"] {
+        opacity: 1;
     }
 }
 //photography transitions
@@ -956,6 +967,7 @@ body.illustrations {
     .load {
         position: static;
         padding-bottom: 54px !important;
+        
     }
     .head {
         width: 100%;

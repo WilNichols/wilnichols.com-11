@@ -42,11 +42,9 @@ function pageSetup (thisPageName) {
     if(prevpage === 'home') {
         console.log("from home")
         fromillsub = false;
-        
     } 
     if(prevpage === 'illustrations') {
         console.log("from illustrations")
-
     } 
     if(prevpage === 'photography') {
         console.log("from photography")
@@ -60,9 +58,6 @@ function pageSetup (thisPageName) {
         console.log("from contact")
         fromillsub = false;
     }
-/*    if(prevpage !== 'none') {
-        referrer = "self-ref from-" + prevpage;
-    }   */
     if(prevpage === 'none') {
         $(".load #no-js").remove();
         console.log("from none")
@@ -74,6 +69,7 @@ function setLinks() {
     $("nav a[data-navigo]").click(function() {
         event.preventDefault();
         router.navigate($(this).attr("href"));
+        
     });
 }
 function setSubPageLinks () {
@@ -83,35 +79,19 @@ function setSubPageLinks () {
     });
 }
 
-function pageChange (thisPageTemplate, thisPageName){
-    console.log(thisPageName);
-    $("body").removeClass("loaded").addClass("loading");
-    $("footer .footer-load *").remove();
-    $.get(thisPageTemplate, function(thisPageContents) {
-        var thisPageMain = $(thisPageContents).filter("#page-fragment-" + thisPageName);
-        var thisPageFooter = $(thisPageContents).filter("#footer-fragment-" + thisPageName);
-        $("nav ul li a").parent("li").removeClass("active");
-        $("nav ul li a[href='../" + thisPageName + "/']").parent("li").addClass("active");
-        setTimeout(function(){
-            $("body").attr("class", thisPageName);
-           $(".load").attr('style', '').html(thisPageMain);
-            $("footer .footer-load").html(thisPageFooter);
-            setLinks();
-            setTimeout(function(){
-                $("main").removeClass("from-sub");
-                $("body").addClass("class", thisPageName);
-            }, longduration);   
-        }, duration);  
-    });
-}
-
-
 // pages 
 
 function makeHome () {
     pageSetup();
     var thisPageTemplate = base + "/components/page-index.html";
     var thisPageName = "index";
+    
+    // top level page transitions
+    
+    if(prevpage !== 'none') {
+        $("body").addClass("unloading-" + prevpage);
+        console.log("unloading-" + prevpage);
+    }
     
     document.title = "Wil Nichols";
     $("body").removeClass("loaded").addClass("loading loading-" + thisPageName);
@@ -134,13 +114,20 @@ function makeHome () {
     fromillsub = false;
 }
 function makeWork () {
-    pageSetup();
+    pageSetup(prevpage);
     var thisPageTemplate = base + "/components/page-work.html"
     var thisPageName = "work"
     
+    // top level page transitions
+    
+    if(prevpage !== 'none') {
+        $("body").addClass("unloading-" + prevpage);
+        console.log("unloading-" + prevpage);
+    }
+    
     document.title = "Wil Nichols : Work";
 
-    $("body").removeClass("loaded").addClass("loading");
+    $("body").removeClass("loaded").addClass("loading loading-" + thisPageName);
     $("footer .footer-load *").remove();
     $.get(thisPageTemplate, function(thisPageContents) {
         var thisPageHeader = $(thisPageContents).filter("#header-fragment-" + thisPageName);

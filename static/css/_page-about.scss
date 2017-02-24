@@ -11,6 +11,12 @@ body.index {
     &:after {
         opacity: 1;
     }
+    // page transitions 
+    &.unloading-index {
+        .load {
+            opacity: 0;
+        }
+    }
     main {
         min-height: 640px;
         height: 100vh;
