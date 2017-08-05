@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block title %}Wil Nichols, Designer{% endblock title%}
+
+{% block css %}	
+<link href="/static/css/page-index.css" media="screen" rel="stylesheet"> 
+{% endblock css %}
+
+{% block pagename %}index{% endblock pagename%}
+
+{% block content %}		
+<header class="wrapper">   
+    <div class="container">
+        <h1>Wil<span>Nichols</span></h1>
+        <nav class="nav">
+            <ul class="nav-desktop" lang="en"><!--
+            --><li class="products active"><a href="../work/" >Work</a></li><!--
+            --><li class="photography"><a href="../photography/" >Photography</a></li><!--
+            --><li class="resume"><a href="../resume/" >Résumé</a></li><!--
+            --><li class="contact"><a href="../contact/" >Contact</a></li><!--
+         --></ul>
+            <div class="mobile-menu-container" lang="en">
+                <ul class="mobile-menu-link"><li></li><li></li><li></li></ul>
+                <ul class="mobile-menu">
+            		<li class="index"><a class="index" href="../work/" class="active">{% include "svg/mobilenav-projects.svg" %}Work</a></li><!--
+                 --><li class="photography"><a class="photography"  href="../photography/" >{% include "svg/mobilenav-photography.svg" %}Photography</a></li><!--
+                 --><li class="resume"><a class="resume" href="../resume/" >{% include "svg/mobilenav-resume.svg" %}Résumé</a></li><!--
+                 --><li class="contact"><a class="contact" href="../contact/" >{% include "svg/mobilenav-contact.svg" %}Contact</a></li><!--
+             --></ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<main class="wrapper">
+    <div class="container">
+        <p lang="en" class="bio">I'm a multidisciplinary designer creating the world's best business and consumer push-to-talk solution at <a target="_blank" href="//www.zellowork.com">Zello</a>. I've been polishing pixels since 2008, and when not designing interfaces, you'll find me exploring the streets of Austin, TX.</p>
+        <div class="products-table grid">
+            <div class="products__tastebud grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>TasteBud</h2>
+                        <h3><time>2016.</time> Mobile, Product Design, Branding</h3>
+                        <p>TasteBud allows diners to save up to 50% on meals by eating at off-peak hours, creating new consumers and offsetting restaurants' static overhead.</p>
+                    </div>
+                    <div class="background">
+                        <img src="/static/img/products/TasteBud@2x.png" srcset="/static/img/products/TasteBud@1x.png 1x, /static/img/products/TasteBud@2x.png 2x" alt="" class="ios" />
+                    </div>
+                </a>
+            </div>
+            <div class="products__analog-osx grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Analog for MacOS</h2>
+                        <h3><time>2015.</time> MacOS, Product Design</h3>
+                        <p>Analog for MacOS pairs with its iOS companion to wirelessly sync, develop, and publish photos.</p>
+                    </div>
+                    <div class="background">
+                        <img src="/static/img/products/Analog-OSX@2x.png" srcset="/static/img/products/Analog-OSX@1x.png 1x, /static/img/products/Analog-OSX@2x.png 2x" alt="" class="macos" />
+                    </div>
+                </a>
+            </div>
+            <div class="products__analog-ios grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Analog for iOS</h2>
+                        <h3><time>2015</time>: Mobile, Product Design</h3>
+                        <p>Analog for iOS builds on its predecessor's filter packs, while offering fine-grain control of the device's camera hardware and library management.</p>
+                    </div>
+                    <div class="background"><img src="/static/img/products/Analog-iOS@2x.png" srcset="/static/img/products/Analog-iOS@1x.png 1x, /static/img/products/Analog-iOS@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__invite grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Invite</h2>
+                        <h3><time>2015.</time> Mobile, Product Design</h3>
+                        <p>Integrating with existing calendar services, Invite allows for individuals to schedule meetings around a group's convenience, requiring neither today's enterprise calendar solutions or recipient input.</p>
+                    </div>
+                    <div class="background"><img src="/static/img/products/Invite.png" srcset="/static/img/products/Invite@1x.png 1x, /static/img/products/Invite@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__keycard-osx grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Keycard for MacOS</h2>
+                        <h3><time>2015.</time> MacOS, Product Design</h3>
+                        <p>Keycard for MacOS performs specific user-customizable actions when triggered remotely from a paired device, or once a device comes into range.</p>
+                    </div>
+                    <div class="background"><img src="/static/img/products/Keycard-OSX@2x.png" srcset="/static/img/products/Keycard-OSX@1x.png 1x, /static/img/products/Keycard-OSX@2x.png 2x" alt="" class="macos" /></div>
+                </a>
+            </div>
+            <div class="products__keycard-ios grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Keycard for iOS</h2>
+                        <h3><time>2015.</time> Mobile, Product Design</h3>
+                        <p>Keycard for iOS remotely performs actions on a paired desktop.</p>
+                    </div>
+                    <div class="background"><img src="/static/img/products/Keycard-iOS@2x.png" srcset="/static/img/products/Keycard-iOS@1x.png 1x, /static/img/products/Keycard-iOS@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__vevi grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>[Unnamed]</h2>
+                        <h3><time>2015.</time> Mobile, Visual & Interface Design</h3>
+                        <p>[Unnamed] is designed to control a bluetooth device with three motors, operated with minimal attention paid to the phone's screen.</p>
+                    </div>
+                    <div class="background"><img ssrc="/static/img/products/vEvi@2x.png" srcset="/static/img/products/vEvi@1x.png 1x, /static/img/products/vEvi@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__AustinFreeNet grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Austin Free-Net</h2>
+                        <h3><time>2015.</time> Mobile, Product Design</h3>
+                        <p>The Austin Free-Net mobile app provides access to AFN's static online content, and allows volunteers to find their nearest location.</p>
+                    </div>
+                    <div class="background"><img src="/static/img/products/AFN@2x.png" srcset="/static/img/products/AFN@1x.png 1x, /static/img/products/AFN@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__Arex grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Arex</h2>
+                        <h3><time>2013.</time> Mobile, Product & Visual Design</h3>
+                        <p>Arex allows for location- and schedule-based medicine reminders.</p>
+                    </div>
+                    <div class="background"><img ssrc="/static/img/products/Arex@2x.png" srcset="/static/img/products/Arex@1x.png 1x, /static/img/products/Arex@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__FiveSquare grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>FiveSquare</h2>
+                        <h3><time>2011.</time> Mobile, Interface & Visual Design</h3>
+                        <p>Five Square combines the simplicity and elegance of classic solitaire with the allure of strategic gameplay.</p>
+                    </div>
+                    <div class="background"><img src="/static/img/products/FiveSquare@2x.png" srcset="/static/img/products/FiveSquare@1x.png 1x, /static/img/products/FiveSquare@2x.png 2x" alt="" class="ios" /></div>
+                </a>
+            </div>
+            <div class="products__Diligence grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Diligence</h2>
+                        <h3><time>2011.</time> MacOS, Interface & Visual Design</h3>
+                        <p>Diligence is a lightweight GTD app for MacOS.</p>
+                    </div>   
+                    <div class="background"><img src="/static/img/products/Diligence@2x.png" srcset="/static/img/products/Diligence@1x.png 1x, /static/img/products/Diligence@2x.png 2x" alt="" class="macos" /></div>
+                </a>
+            </div>
+            <div class="products__Illustrations grid__col grid__col--1-of-3">
+                <a href="">
+                    <div class="text">
+                        <h2>Illustrations</h2>
+                        <h3><time>2009-</time> Mixed Platforms</h3>
+                        <p>I've been drawing icons for over eight years. Take a look.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}
